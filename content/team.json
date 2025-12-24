@@ -1,28 +1,37 @@
 {
   "bureau": [
-    { "role": "Président", "name": "À compléter" },
-    { "role": "Secrétaire générale", "name": "À compléter" },
-    { "role": "Trésorier", "name": "À compléter" }
+    {
+      "role": "Président",
+      "name": "Hached Elyes"
+    },
+    {
+      "role": "Secrétaire générale",
+      "name": "Sorby Pauline"
+    },
+    {
+      "role": "Trésorier",
+      "name": "Poussier Erwan"
+    }
   ],
   "poles": [
     {
       "title": "Pôle Communication & Partenariats",
-      "lead": "À compléter",
+      "lead": "Test",
       "desc": "Réseaux, identité, contenus"
     },
     {
       "title": "Pôle Conférences & Débats",
-      "lead": "À compléter",
+      "lead": "Test",
       "desc": "Logistique, invités, calendrier"
     },
     {
       "title": "Pôle Publications (Recherche)",
-      "lead": "À compléter",
+      "lead": "Test",
       "desc": "Policy briefs, notes, relectures"
     },
     {
       "title": "Pôle Simulations & Visites",
-      "lead": "À compléter",
+      "lead": "Test",
       "desc": "Contacts, partenariats, organisation"
     }
   ],
