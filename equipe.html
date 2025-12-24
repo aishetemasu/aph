@@ -41,42 +41,46 @@
       <div class="wrap">
         <div style="margin-bottom:14px;">
           <h2>Équipe</h2>
-          <p class="sub">Géré depuis Decap → <b>content/team.json</b>. Bureau + Pôles + responsables.</p>
+          <p class="sub">Tout est modifiable dans Decap → <b>content/team.json</b>.</p>
         </div>
 
         <div class="split">
+          <!-- Bureau -->
           <div class="card">
             <span class="pill">Bureau</span>
             <div style="height:12px"></div>
             <div id="bureauList" class="stack"></div>
-            <p id="bureauHint" class="sub" style="display:none;">Aucun membre “Bureau” renseigné.</p>
+            <p id="bureauHint" class="sub" style="display:none;">Bureau non renseigné.</p>
           </div>
 
+          <!-- Membres optionnels -->
           <div class="card">
-            <span class="pill">Membres</span>
+            <span class="pill">Membres (optionnel)</span>
             <div style="height:12px"></div>
+
             <div class="split">
-              <input class="input" id="filterQ" placeholder="Rechercher un membre (nom, rôle…)" />
+              <input class="input" id="filterQ" placeholder="Rechercher (nom, rôle…)" />
               <select class="input" id="filterPole">
                 <option value="all">Tous les pôles</option>
               </select>
             </div>
+
             <div style="height:12px"></div>
             <div id="membersList" class="stack"></div>
-            <p id="membersHint" class="sub" style="display:none;">Aucun membre ne correspond à ta recherche.</p>
+            <p id="membersHint" class="sub" style="display:none;">Aucun membre ne correspond.</p>
           </div>
         </div>
 
         <div style="height:14px"></div>
 
+        <!-- Pôles + responsables -->
         <div class="card">
           <span class="pill">Pôles</span>
-          <h2 style="margin-top:12px;">Organisation</h2>
+          <h2 style="margin-top:12px;">Responsables de pôles</h2>
           <p class="sub" style="margin-top:10px;">
-            Les pôles ci-dessous sont affichés avec leur description + le nom du responsable (modifiable dans Decap).
+            Chaque pôle a son responsable + sa mission (modifiables dans Decap).
           </p>
           <div style="height:14px"></div>
-
           <div class="grid-3" id="polesGrid"></div>
         </div>
 
@@ -108,10 +112,10 @@
   <script>
     const bureauList = document.getElementById("bureauList");
     const bureauHint = document.getElementById("bureauHint");
-    const membersList = document.getElementById("membersList");
-    const membersHint = document.getElementById("membersHint");
     const polesGrid = document.getElementById("polesGrid");
 
+    const membersList = document.getElementById("membersList");
+    const membersHint = document.getElementById("membersHint");
     const qEl = document.getElementById("filterQ");
     const poleEl = document.getElementById("filterPole");
 
@@ -124,36 +128,11 @@
         .replaceAll("'", "&#039;");
     }
 
-    let members = [];
+    let bureau = [];
     let poles = [];
-
-    // Pôles par défaut (si team.json n’en a pas encore)
-    const defaultPoles = [
-      {
-        title: "Pôle Communication & Partenariats",
-        lead: "À compléter",
-        desc: "Réseaux, identité, contenus"
-      },
-      {
-        title: "Pôle Conférences & Débats",
-        lead: "À compléter",
-        desc: "Logistique, invités, calendrier"
-      },
-      {
-        title: "Pôle Publications (Recherche)",
-        lead: "À compléter",
-        desc: "Policy briefs, notes, relectures"
-      },
-      {
-        title: "Pôle Simulations & Visites",
-        lead: "À compléter",
-        desc: "Contacts, partenariats, organisation"
-      }
-    ];
+    let members = [];
 
     function renderBureau() {
-      const bureau = members.filter(m => (m.pole || "").toLowerCase() === "bureau");
-
       bureauList.innerHTML = "";
       if (!bureau.length) {
         bureauHint.style.display = "block";
@@ -161,69 +140,21 @@
       }
       bureauHint.style.display = "none";
 
-      bureau.forEach(m => {
+      bureau.forEach(b => {
         const card = document.createElement("div");
         card.className = "card";
         card.style.boxShadow = "none";
         card.innerHTML = `
-          <span class="pill">${escapeHtml(m.role || "Membre")}</span>
-          <h3 style="margin-top:10px;">${escapeHtml(m.name || "")}</h3>
-          <p class="sub" style="margin-top:6px;">${escapeHtml(m.pole || "Bureau")}</p>
+          <span class="pill">${escapeHtml(b.role || "Poste")}</span>
+          <h3 style="margin-top:10px;">${escapeHtml(b.name || "À compléter")}</h3>
         `;
         bureauList.appendChild(card);
       });
     }
 
-    function buildPoleFilter() {
-      // Collecte les pôles existants des membres + poles list
-      const set = new Set();
-      members.forEach(m => { if (m.pole) set.add(m.pole); });
-      (poles.length ? poles : defaultPoles).forEach(p => set.add(p.title));
-
-      // reset
-      poleEl.innerHTML = `<option value="all">Tous les pôles</option>`;
-      Array.from(set)
-        .filter(Boolean)
-        .sort((a,b) => a.localeCompare(b, "fr"))
-        .forEach(p => {
-          const opt = document.createElement("option");
-          opt.value = p;
-          opt.textContent = p;
-          poleEl.appendChild(opt);
-        });
-    }
-
-    function renderMembers(list) {
-      membersList.innerHTML = "";
-
-      if (!list.length) {
-        membersHint.style.display = "block";
-        return;
-      }
-      membersHint.style.display = "none";
-
-      list.forEach(m => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.style.boxShadow = "none";
-        card.innerHTML = `
-          <div style="display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap;">
-            <div>
-              <span class="pill">${escapeHtml(m.pole || "Équipe")}</span>
-              <h3 style="margin-top:10px;">${escapeHtml(m.name || "")}</h3>
-              <p class="sub" style="margin-top:6px;">${escapeHtml(m.role || "")}</p>
-            </div>
-          </div>
-        `;
-        membersList.appendChild(card);
-      });
-    }
-
     function renderPoles() {
-      const list = poles.length ? poles : defaultPoles;
-
       polesGrid.innerHTML = "";
-      list.forEach(p => {
+      poles.forEach(p => {
         const card = document.createElement("div");
         card.className = "card";
         card.style.boxShadow = "none";
@@ -239,7 +170,42 @@
       });
     }
 
-    function applyFilter() {
+    function buildPoleFilter() {
+      const set = new Set();
+      poles.forEach(p => set.add(p.title));
+      members.forEach(m => { if (m.pole) set.add(m.pole); });
+
+      poleEl.innerHTML = `<option value="all">Tous les pôles</option>`;
+      Array.from(set).filter(Boolean).sort((a,b) => a.localeCompare(b, "fr")).forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p;
+        opt.textContent = p;
+        poleEl.appendChild(opt);
+      });
+    }
+
+    function renderMembers(list) {
+      membersList.innerHTML = "";
+      if (!list.length) {
+        membersHint.style.display = "block";
+        return;
+      }
+      membersHint.style.display = "none";
+
+      list.forEach(m => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.boxShadow = "none";
+        card.innerHTML = `
+          <span class="pill">${escapeHtml(m.pole || "Équipe")}</span>
+          <h3 style="margin-top:10px;">${escapeHtml(m.name || "")}</h3>
+          <p class="sub" style="margin-top:6px;">${escapeHtml(m.role || "")}</p>
+        `;
+        membersList.appendChild(card);
+      });
+    }
+
+    function applyMemberFilter() {
       const qq = (qEl.value || "").trim().toLowerCase();
       const pp = (poleEl.value || "all").toLowerCase();
 
@@ -249,7 +215,7 @@
         const pole = (m.pole || "").toLowerCase();
 
         const okQ = !qq || name.includes(qq) || role.includes(qq) || pole.includes(qq);
-        const okP = (pp === "all") || pole === pp || (m.pole || "").toLowerCase() === pp;
+        const okP = (pp === "all") || pole === pp;
 
         return okQ && okP;
       });
@@ -257,8 +223,8 @@
       renderMembers(filtered);
     }
 
-    qEl.addEventListener("input", applyFilter);
-    poleEl.addEventListener("change", applyFilter);
+    qEl.addEventListener("input", applyMemberFilter);
+    poleEl.addEventListener("change", applyMemberFilter);
 
     (async function loadTeam() {
       try {
@@ -266,25 +232,21 @@
         if (!res.ok) throw new Error("team.json introuvable");
         const data = await res.json();
 
-        members = Array.isArray(data.members) ? data.members : [];
+        bureau = Array.isArray(data.bureau) ? data.bureau : [];
         poles = Array.isArray(data.poles) ? data.poles : [];
+        members = Array.isArray(data.members) ? data.members : [];
 
         renderBureau();
         renderPoles();
         buildPoleFilter();
-        applyFilter();
+        applyMemberFilter();
       } catch (err) {
-        membersList.innerHTML = `
+        bureauList.innerHTML = `
           <div class="card" style="box-shadow:none;">
             <span class="pill">Erreur</span>
-            <h3 style="margin-top:10px;">Impossible de charger l’équipe</h3>
-            <p class="sub" style="margin-top:8px;line-height:1.8;">
-              Vérifie que <b>/content/team.json</b> existe et est publié.
-            </p>
+            <p class="sub" style="margin-top:8px;line-height:1.8;">Impossible de charger <b>/content/team.json</b>.</p>
           </div>
         `;
-        renderPoles();
-        buildPoleFilter();
       }
     })();
   </script>
