@@ -1,6 +1,8 @@
 {
-  "members": [
-    { "name": "À compléter", "role": "Président", "pole": "Bureau" }
+  "bureau": [
+    { "role": "Président", "name": "À compléter" },
+    { "role": "Secrétaire générale", "name": "À compléter" },
+    { "role": "Trésorier", "name": "À compléter" }
   ],
   "poles": [
     {
@@ -23,5 +25,6 @@
       "lead": "À compléter",
       "desc": "Contacts, partenariats, organisation"
     }
-  ]
+  ],
+  "members": []
 }
