@@ -1,28 +1,69 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "content"
+    label: "Contenus"
+    files:
+      - name: "events"
+        label: "Événements"
+        file: "content/events.json"
+        format: "json"
+        fields:
+          - name: "events"
+            label: "Événements"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Titre", widget: "string" }
+              - { name: "cat", label: "Catégorie", widget: "select", options: ["cafe-debat","visite","simulation","rencontre"] }
+              - { name: "date", label: "Date (texte)", widget: "string" }
+              - { name: "lieu", label: "Lieu", widget: "string" }
+              - { name: "desc", label: "Description", widget: "text" }
+
+      - name: "briefs"
+        label: "Policy Briefs"
+        file: "content/briefs.json"
+        format: "json"
+        fields:
+          - name: "briefs"
+            label: "Briefs"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Titre", widget: "string" }
+              - { name: "tag", label: "Type", widget: "select", options: ["brief","note","research"], required: false }
+              - { name: "summary", label: "Résumé", widget: "text" }
+              - { name: "reco", label: "Recommandation", widget: "text" }
+              - { name: "pdf", label: "Lien PDF (optionnel)", widget: "string", required: false }
+
       - name: "team"
         label: "Équipe"
         file: "content/team.json"
         format: "json"
         fields:
-          - label: "Bureau (3 postes)"
-            name: "bureau"
+          - name: "bureau"
+            label: "Bureau (3 postes)"
             widget: "list"
             fields:
-              - { label: "Poste", name: "role", widget: "string" }
-              - { label: "Nom", name: "name", widget: "string" }
+              - { name: "role", label: "Poste", widget: "string" }
+              - { name: "name", label: "Nom", widget: "string" }
 
-          - label: "Pôles (responsables)"
-            name: "poles"
+          - name: "poles"
+            label: "Pôles (responsables)"
             widget: "list"
             fields:
-              - { label: "Nom du pôle", name: "title", widget: "string" }
-              - { label: "Responsable", name: "lead", widget: "string" }
-              - { label: "Description / mission", name: "desc", widget: "text" }
+              - { name: "title", label: "Nom du pôle", widget: "string" }
+              - { name: "lead", label: "Responsable", widget: "string" }
+              - { name: "desc", label: "Description / mission", widget: "text" }
 
-          - label: "Membres (optionnel)"
-            name: "members"
+          - name: "members"
+            label: "Membres (optionnel)"
             widget: "list"
             required: false
             fields:
-              - { label: "Nom", name: "name", widget: "string" }
-              - { label: "Rôle", name: "role", widget: "string" }
-              - { label: "Pôle", name: "pole", widget: "string", required: false }
+              - { name: "name", label: "Nom", widget: "string" }
+              - { name: "role", label: "Rôle", widget: "string" }
+              - { name: "pole", label: "Pôle", widget: "string", required: false }
