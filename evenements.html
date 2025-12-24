@@ -4,28 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Événements – APH</title>
+  <meta name="description" content="Événements, visites et rencontres – APH (Affaires Publiques HEIP)." />
+
+  <!-- Unbounded -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="index.html">
-<div class="logo" aria-hidden="true">
-  <img src="logo.png" alt="" />
-</div>
-        <div><strong>APH</strong><small>Affaires Publiques HEIP</small></div>
+        <div class="logo" aria-hidden="true">
+          <img src="logo.png" alt="" />
+        </div>
+        <div>
+          <strong>APH</strong>
+          <small>Affaires Publiques HEIP</small>
+        </div>
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Navigation principale">
         <a data-nav href="index.html">Accueil</a>
         <a data-nav href="evenements.html">Événements</a>
         <a data-nav href="briefs.html">Policy Briefs</a>
@@ -43,14 +45,14 @@
         <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;">
           <div>
             <h2>Événements</h2>
-            <p class="sub"> Tu pourras trouver ici tous les évenemnts que nous avons pu faire, en les recherchant.</p>
+            <p class="sub">Ces événements sont chargés automatiquement depuis <b>content/events.json</b> (géré par Decap).</p>
           </div>
-          <a class="btn" href="rejoindre.html"> Nous rejoindre </a>
+          <a class="btn" href="rejoindre.html">S’inscrire</a>
         </div>
 
         <div class="split">
-          <input class="input" placeholder="Rechercher (ex: Sénat, souveraineté…)" data-filter-q />
-          <select class="input" data-filter-cat>
+          <input class="input" placeholder="Rechercher (ex: Sénat, souveraineté…)" id="filterQ" />
+          <select class="input" id="filterCat">
             <option value="all">Toutes catégories</option>
             <option value="cafe-debat">Café-débat</option>
             <option value="visite">Visite</option>
@@ -61,78 +63,29 @@
 
         <div style="height:14px"></div>
 
-        <div class="stack">
-          <div class="card" data-event-item data-title="Café-débat — Souveraineté industrielle" data-cat="cafe-debat">
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
-              <div>
-                <span class="pill">Café-débat</span>
-                <h3 style="margin-top:10px;">Café-débat — Lorem Ipsum </h3>
-                <p class="sub" style="margin-top:8px;">Janvier • 19h30 • Paris (Lorem Ipsum)</p>
-              </div>
-              <a class="btn" href="#"
-                 data-event-open
-                 data-title="Café-débat — Souveraineté industrielle"
-                 data-date="Janvier • 19h30"
-                 data-lieu="Paris (à préciser)"
-                 data-desc="Décryptage + échanges structurés : enjeux, acteurs, options publiques, arbitrages.">
-                Détails
-              </a>
-            </div>
-          </div>
+        <!-- Liste (remplie en JS depuis le JSON) -->
+        <div class="stack" id="eventsList"></div>
 
-          <div class="card" data-event-item data-title="Visite institutionnelle — Palais du Luxembourg" data-cat="visite">
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
-              <div>
-                <span class="pill">Visite</span>
-                <h3 style="margin-top:10px;">Visite institutionnelle — Palais du Luxembourg</h3>
-                <p class="sub" style="margin-top:8px;">Février • Créneau à confirmer • Paris</p>
-              </div>
-              <a class="btn" href="#"
-                 data-event-open
-                 data-title="Visite — Palais du Luxembourg"
-                 data-date="Février • créneau à confirmer"
-                 data-lieu="Paris"
-                 data-desc="Visite guidée : institutions, procédures, culture parlementaire, clés de lecture.">
-                Détails
-              </a>
-            </div>
-          </div>
-
-          <div class="card" data-event-item data-title="Simulation — Commission parlementaire" data-cat="simulation">
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
-              <div>
-                <span class="pill">Simulation</span>
-                <h3 style="margin-top:10px;">Simulation — Commission parlementaire</h3>
-                <p class="sub" style="margin-top:8px;">Mars • 2h • Campus HEIP</p>
-              </div>
-              <a class="btn" href="#"
-                 data-event-open
-                 data-title="Simulation — Commission parlementaire"
-                 data-date="Mars • 2h"
-                 data-lieu="Campus HEIP"
-                 data-desc="Prise de rôle, auditions, rédaction d’amendements, arbitrage et vote en commission.">
-                Détails
-              </a>
-            </div>
-          </div>
-        </div>
-
+        <div style="height:14px"></div>
+        <p class="sub" id="eventsHint" style="display:none;">
+          Aucun événement ne correspond à ta recherche.
+        </p>
       </div>
     </section>
   </main>
 
   <!-- Modal -->
-  <div class="modal-backdrop" data-modal-backdrop>
+  <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal" role="dialog" aria-modal="true" aria-label="Détail événement">
       <div class="modal-header">
         <div>
           <div class="pill">Événement</div>
-          <h2 data-modal-title style="margin-top:10px;">Détails</h2>
+          <h2 id="modalTitle" style="margin-top:10px;">Détails</h2>
         </div>
-        <button class="icon-btn" data-modal-close aria-label="Fermer">✕</button>
+        <button class="icon-btn" id="modalClose" aria-label="Fermer">✕</button>
       </div>
       <div style="height:12px"></div>
-      <div data-modal-body></div>
+      <div id="modalBody"></div>
     </div>
   </div>
 
@@ -146,9 +99,160 @@
     </div>
   </footer>
 
+  <!-- Ton script global (active menu + year) -->
   <script src="script.js"></script>
+
+  <!-- Script page : charge le JSON + filtre + modal -->
+  <script>
+    const listEl = document.getElementById("eventsList");
+    const hintEl = document.getElementById("eventsHint");
+    const qEl = document.getElementById("filterQ");
+    const catEl = document.getElementById("filterCat");
+
+    const backdrop = document.getElementById("modalBackdrop");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalClose = document.getElementById("modalClose");
+
+    function openModal(title, html) {
+      modalTitle.textContent = title || "Détails";
+      modalBody.innerHTML = html || "";
+      backdrop.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal() {
+      backdrop.style.display = "none";
+      document.body.style.overflow = "";
+    }
+    modalClose.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    let allEvents = [];
+
+    function render(events) {
+      listEl.innerHTML = "";
+
+      if (!events.length) {
+        hintEl.style.display = "block";
+        return;
+      }
+      hintEl.style.display = "none";
+
+      for (const ev of events) {
+        const title = ev.title || "Événement";
+        const cat = ev.cat || "";
+        const date = ev.date || "";
+        const lieu = ev.lieu || "";
+        const desc = ev.desc || "";
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.setAttribute("data-event-item", "");
+        card.setAttribute("data-title", title);
+        card.setAttribute("data-cat", cat);
+
+        card.innerHTML = `
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+            <div>
+              <span class="pill">${escapeHtml(cat || "événement")}</span>
+              <h3 style="margin-top:10px;">${escapeHtml(title)}</h3>
+              <p class="sub" style="margin-top:8px;">${escapeHtml(date)}${date && lieu ? " • " : ""}${escapeHtml(lieu)}</p>
+            </div>
+
+            <a class="btn" href="#"
+               data-event-open="1"
+               data-title="${escapeHtml(title)}"
+               data-date="${escapeHtml(date)}"
+               data-lieu="${escapeHtml(lieu)}"
+               data-desc="${escapeHtml(desc)}">
+              Détails
+            </a>
+          </div>
+        `;
+
+        listEl.appendChild(card);
+      }
+    }
+
+    function applyFilter() {
+      const qq = (qEl.value || "").trim().toLowerCase();
+      const cc = (catEl.value || "all").toLowerCase();
+
+      const filtered = allEvents.filter(ev => {
+        const t = (ev.title || "").toLowerCase();
+        const c = (ev.cat || "").toLowerCase();
+        const okQ = !qq || t.includes(qq);
+        const okC = (cc === "all") || (c === cc);
+        return okQ && okC;
+      });
+
+      render(filtered);
+    }
+
+    qEl.addEventListener("input", applyFilter);
+    catEl.addEventListener("change", applyFilter);
+
+    // Delegation pour ouvrir la modal sur les boutons "Détails"
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-event-open]");
+      if (!btn) return;
+      e.preventDefault();
+
+      const title = btn.getAttribute("data-title") || "Événement";
+      const date = btn.getAttribute("data-date") || "";
+      const lieu = btn.getAttribute("data-lieu") || "";
+      const desc = btn.getAttribute("data-desc") || "";
+
+      openModal(title, `
+        <div class="split" style="gap:12px;">
+          <div class="card" style="box-shadow:none;">
+            <span class="pill">Infos</span>
+            <p class="sub" style="margin-top:10px;line-height:1.9;">
+              <b>Date :</b> ${escapeHtml(date)}<br/>
+              <b>Lieu :</b> ${escapeHtml(lieu)}
+            </p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <span class="pill">Description</span>
+            <p class="sub" style="margin-top:10px;line-height:1.9;">${escapeHtml(desc)}</p>
+          </div>
+        </div>
+        <div style="height:14px"></div>
+        <a class="btn primary" href="rejoindre.html">S’inscrire / Rejoindre</a>
+      `);
+    });
+
+    // Charge les événements depuis le JSON (mis à jour par Decap)
+    (async function loadEvents() {
+      try {
+        const res = await fetch("/content/events.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("events.json introuvable");
+        const data = await res.json();
+        allEvents = Array.isArray(data.events) ? data.events : [];
+        applyFilter();
+      } catch (err) {
+        listEl.innerHTML = `
+          <div class="card">
+            <span class="pill">Erreur</span>
+            <h3 style="margin-top:10px;">Impossible de charger les événements</h3>
+            <p class="sub" style="margin-top:8px; line-height:1.8;">
+              Vérifie que <b>/content/events.json</b> existe bien et est publié (Netlify Deploy ok).
+            </p>
+          </div>
+        `;
+      }
+    })();
+  </script>
 </body>
 </html>
-
-
-
