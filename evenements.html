@@ -17,7 +17,7 @@
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" aria-label="Accueil">
         <div class="logo" aria-hidden="true">
           <img src="logo.png" alt="" />
         </div>
@@ -45,7 +45,7 @@
         <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;">
           <div>
             <h2>Événements</h2>
-            <p class="sub">Ces événements sont chargés automatiquement depuis <b>content/events.json</b> (géré par Decap).</p>
+            <p class="sub">Ces événements sont chargés depuis <b>content/events.json</b> (géré via Decap).</p>
           </div>
           <a class="btn" href="rejoindre.html">S’inscrire</a>
         </div>
@@ -63,13 +63,10 @@
 
         <div style="height:14px"></div>
 
-        <!-- Liste (remplie en JS depuis le JSON) -->
         <div class="stack" id="eventsList"></div>
 
         <div style="height:14px"></div>
-        <p class="sub" id="eventsHint" style="display:none;">
-          Aucun événement ne correspond à ta recherche.
-        </p>
+        <p class="sub" id="eventsHint" style="display:none;">Aucun événement ne correspond à ta recherche.</p>
       </div>
     </section>
   </main>
@@ -95,14 +92,13 @@
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>
+        <a class="admin-footer" href="/admin/" aria-label="Admin">•</a>
       </div>
     </div>
   </footer>
 
-  <!-- Ton script global (active menu + year) -->
   <script src="script.js"></script>
 
-  <!-- Script page : charge le JSON + filtre + modal -->
   <script>
     const listEl = document.getElementById("eventsList");
     const hintEl = document.getElementById("eventsHint");
@@ -157,29 +153,46 @@
         const desc = ev.desc || "";
         const form = ev.form || "";
 
-        const card = document.createElement("div");
-        card.className = "card";
-        card.setAttribute("data-event-item", "");
-        card.setAttribute("data-title", title);
-        card.setAttribute("data-cat", cat);
-
-        card.innerHTML = `
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
-            <div>
-              <span class="pill">${escapeHtml(cat || "événement")}</span>
-              <h3 style="margin-top:10px;">${escapeHtml(title)}</h3>
-              <p class="sub" style="margin-top:8px;">${escapeHtml(date)}${date && lieu ? " • " : ""}${escapeHtml(lieu)}</p>
+        const actionsHtml = form
+          ? `
+            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+              <a class="btn primary" href="${escapeHtml(form)}" target="_blank" rel="noopener">S’inscrire</a>
+              <a class="btn" href="#"
+                 data-event-open="1"
+                 data-title="${escapeHtml(title)}"
+                 data-date="${escapeHtml(date)}"
+                 data-lieu="${escapeHtml(lieu)}"
+                 data-desc="${escapeHtml(desc)}"
+                 data-form="${escapeHtml(form)}">
+                Détails
+              </a>
             </div>
-
+          `
+          : `
             <a class="btn" href="#"
                data-event-open="1"
                data-title="${escapeHtml(title)}"
                data-date="${escapeHtml(date)}"
                data-lieu="${escapeHtml(lieu)}"
-               data-desc="${escapeHtml(desc)}">
-               data-form="${escapeHtml(form)}"
+               data-desc="${escapeHtml(desc)}"
+               data-form="">
               Détails
             </a>
+          `;
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <div>
+              <span class="pill">${escapeHtml(cat || "événement")}</span>
+              <h3 style="margin-top:10px;">${escapeHtml(title)}</h3>
+              <p class="sub" style="margin-top:8px;">
+                ${escapeHtml(date)}${date && lieu ? " • " : ""}${escapeHtml(lieu)}
+              </p>
+            </div>
+            ${actionsHtml}
           </div>
         `;
 
@@ -205,47 +218,47 @@
     qEl.addEventListener("input", applyFilter);
     catEl.addEventListener("change", applyFilter);
 
-    // Delegation pour ouvrir la modal sur les boutons "Détails"
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-event-open]");
-  if (!btn) return;
-  e.preventDefault();
+    // Ouvre la modal
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-event-open]");
+      if (!btn) return;
+      e.preventDefault();
 
-  const title = btn.getAttribute("data-title") || "Événement";
-  const date = btn.getAttribute("data-date") || "";
-  const lieu = btn.getAttribute("data-lieu") || "";
-  const desc = btn.getAttribute("data-desc") || "";
-  const form = btn.getAttribute("data-form") || "";
+      const title = btn.getAttribute("data-title") || "Événement";
+      const date = btn.getAttribute("data-date") || "";
+      const lieu = btn.getAttribute("data-lieu") || "";
+      const desc = btn.getAttribute("data-desc") || "";
+      const form = btn.getAttribute("data-form") || "";
 
-  const formBtn = form
-    ? `<a class="btn primary" href="${escapeHtml(form)}" target="_blank" rel="noopener">S’inscrire (Google Form)</a>`
-    : `<a class="btn primary" href="rejoindre.html">Rejoindre</a>`;
+      const formBtn = form
+        ? `<a class="btn primary" href="${escapeHtml(form)}" target="_blank" rel="noopener">S’inscrire (Google Form)</a>`
+        : `<a class="btn primary" href="rejoindre.html">Rejoindre</a>`;
 
-  openModal(title, `
-    <div class="split" style="gap:12px;">
-      <div class="card" style="box-shadow:none;">
-        <span class="pill">Infos</span>
-        <p class="sub" style="margin-top:10px;line-height:1.9;">
-          <b>Date :</b> ${escapeHtml(date)}<br/>
-          <b>Lieu :</b> ${escapeHtml(lieu)}
-        </p>
-      </div>
-      <div class="card" style="box-shadow:none;">
-        <span class="pill">Description</span>
-        <p class="sub" style="margin-top:10px;line-height:1.9;">${escapeHtml(desc)}</p>
-      </div>
-    </div>
+      openModal(title, `
+        <div class="split" style="gap:12px;">
+          <div class="card" style="box-shadow:none;">
+            <span class="pill">Infos</span>
+            <p class="sub" style="margin-top:10px;line-height:1.9;">
+              <b>Date :</b> ${escapeHtml(date)}<br/>
+              <b>Lieu :</b> ${escapeHtml(lieu)}
+            </p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <span class="pill">Description</span>
+            <p class="sub" style="margin-top:10px;line-height:1.9;">${escapeHtml(desc)}</p>
+          </div>
+        </div>
 
-    <div style="height:14px"></div>
+        <div style="height:14px"></div>
 
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-      ${formBtn}
-      <a class="btn" href="rejoindre.html">Contacter APH</a>
-    </div>
-  `);
-});
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+          ${formBtn}
+          <a class="btn" href="rejoindre.html">Contacter APH</a>
+        </div>
+      `);
+    });
 
-    // Charge les événements depuis le JSON (mis à jour par Decap)
+    // Charge les événements depuis Decap JSON
     (async function loadEvents() {
       try {
         const res = await fetch("/content/events.json", { cache: "no-store" });
@@ -259,7 +272,7 @@ document.addEventListener("click", (e) => {
             <span class="pill">Erreur</span>
             <h3 style="margin-top:10px;">Impossible de charger les événements</h3>
             <p class="sub" style="margin-top:8px; line-height:1.8;">
-              Vérifie que <b>/content/events.json</b> existe bien et est publié (Netlify Deploy ok).
+              Vérifie que <b>/content/events.json</b> existe et est publié.
             </p>
           </div>
         `;
@@ -268,4 +281,3 @@ document.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
-
