@@ -23,9 +23,7 @@ collections:
               - { name: "date", label: "Date (texte)", widget: "string" }
               - { name: "lieu", label: "Lieu", widget: "string" }
               - { name: "desc", label: "Description", widget: "text" }
-              - { name: "desc", label: "Description", widget: "text" }
               - { name: "form", label: "Lien Google Form (inscription)", widget: "string", required: false }
-
 
       - name: "briefs"
         label: "Policy Briefs"
@@ -70,4 +68,3 @@ collections:
               - { name: "name", label: "Nom", widget: "string" }
               - { name: "role", label: "Rôle", widget: "string" }
               - { name: "pole", label: "Pôle", widget: "string", required: false }
-
