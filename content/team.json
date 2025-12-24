@@ -35,5 +35,11 @@
       "desc": "Contacts, partenariats, organisation"
     }
   ],
-  "members": []
+  "members": [
+    {
+      "name": "celia",
+      "role": "hached",
+      "pole": "bouffon du président"
+    }
+  ]
 }
