@@ -50,7 +50,7 @@
           <p style="margin:10px 0 0;color:rgba(17,17,17,.75);line-height:1.7;">${recos}</p>
         </div>
         <div style="height:14px"></div>
-        <a class="btn primary" href="#" onclick="event.preventDefault(); alert('Remplace ce lien par ton PDF');">Télécharger le PDF</a>
+        <a class="btn primary" href="#" onclick="event.preventDefault(); alert('PDF non disponible');">Télécharger le PDF</a>
       `);
     });
   });
@@ -105,3 +105,4 @@
     });
   });
 })();
+
