@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Policy Briefs – APH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"><span></span></div>
+        <div><strong>APH</strong><small>Affaires Publiques HEIP</small></div>
+      </a>
+
+      <nav class="nav-links">
+        <a data-nav href="index.html">Accueil</a>
+        <a data-nav href="evenements.html">Événements</a>
+        <a data-nav href="briefs.html">Policy Briefs</a>
+        <a data-nav href="equipe.html">Équipe</a>
+        <a data-nav href="rejoindre.html">Rejoindre</a>
+      </nav>
+
+      <a class="btn primary" href="rejoindre.html">Rejoindre</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;">
+          <div>
+            <h2>Policy Briefs</h2>
+            <p class="sub">Clique sur une fiche : un panneau s’ouvre avec le détail (modal).</p>
+          </div>
+          <a class="btn" href="rejoindre.html">Proposer un brief</a>
+        </div>
+
+        <div class="grid-3">
+          <button class="card" style="text-align:left; cursor:pointer;"
+            data-brief
+            data-title="Brief #01 — Souveraineté industrielle"
+            data-summary="Diagnostic rapide, options de politique publique, leviers de financement et de coordination territoriale."
+            data-reco="Créer un guichet unique local-régional pour les projets industriels à fort impact et accélérer les procédures de mise en conformité.">
+            <span class="pill">Brief</span>
+            <h3 style="margin:12px 0 8px;">Brief #01 — Souveraineté industrielle</h3>
+            <p class="sub">Résumé : stratégie, options, recommandation.</p>
+          </button>
+
+          <button class="card" style="text-align:left; cursor:pointer;"
+            data-brief
+            data-title="Brief #02 — Logement étudiant & attractivité"
+            data-summary="Analyse des tensions, cartographie des acteurs, propositions d’outils (foncier, régulation, partenariats)."
+            data-reco="Renforcer les conventions avec bailleurs et développer des résidences à loyers encadrés via partenariats public-privé.">
+            <span class="pill">Brief</span>
+            <h3 style="margin:12px 0 8px;">Brief #02 — Logement étudiant</h3>
+            <p class="sub">Résumé : tensions, acteurs, leviers.</p>
+          </button>
+
+          <button class="card" style="text-align:left; cursor:pointer;"
+            data-brief
+            data-title="Brief #03 — Transition énergétique (terrain)"
+            data-summary="Focus sur l’acceptabilité, la communication de projet et les mécanismes de compensation."
+            data-reco="Mettre en place une gouvernance locale participative + un mécanisme de partage de valeur pour sécuriser l’adhésion.">
+            <span class="pill">Brief</span>
+            <h3 style="margin:12px 0 8px;">Brief #03 — Transition énergétique</h3>
+            <p class="sub">Résumé : acceptabilité & gouvernance.</p>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" data-modal-backdrop>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Détail du brief">
+      <div class="modal-header">
+        <div>
+          <div class="pill">Détail</div>
+          <h2 data-modal-title style="margin-top:10px;">Policy Brief</h2>
+        </div>
+        <button class="icon-btn" data-modal-close aria-label="Fermer">✕</button>
+      </div>
+      <div style="height:12px"></div>
+      <div data-modal-body></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

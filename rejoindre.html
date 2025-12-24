@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rejoindre – APH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"><span></span></div>
+        <div><strong>APH</strong><small>Affaires Publiques HEIP</small></div>
+      </a>
+
+      <nav class="nav-links">
+        <a data-nav href="index.html">Accueil</a>
+        <a data-nav href="evenements.html">Événements</a>
+        <a data-nav href="briefs.html">Policy Briefs</a>
+        <a data-nav href="equipe.html">Équipe</a>
+        <a data-nav href="rejoindre.html">Rejoindre</a>
+      </nav>
+
+      <a class="btn primary" href="rejoindre.html">Rejoindre</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="split">
+          <div class="card">
+            <span class="pill">Candidature</span>
+            <h2 style="margin-top:12px;">Rejoindre APH</h2>
+            <p class="sub" style="margin-top:10px;">
+              Tu peux rejoindre un pôle (com / event / rédaction / partenariats) ou aider ponctuellement.
+            </p>
+            <div style="height:14px"></div>
+
+            <form onsubmit="event.preventDefault(); alert('Connecte ce formulaire à Google Forms / Formspree / ton backend');">
+              <div class="stack">
+                <input class="input" placeholder="Nom / Prénom" required />
+                <input class="input" placeholder="Email" type="email" required />
+                <select class="input" required>
+                  <option value="">Pôle souhaité</option>
+                  <option>Communication</option>
+                  <option>Événementiel</option>
+                  <option>Rédaction (Policy Briefs)</option>
+                  <option>Partenariats / Relations institutionnelles</option>
+                </select>
+                <textarea class="input" rows="5" placeholder="En 3 lignes : pourquoi APH + ce que tu veux faire" required></textarea>
+                <button class="btn primary" type="submit">Envoyer</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card" id="contact">
+            <span class="pill">Contact</span>
+            <h2 style="margin-top:12px;">Écrire à l’association</h2>
+            <p class="sub" style="margin-top:10px;">
+              Remplace les infos ci-dessous par tes liens réels.
+            </p>
+            <div style="height:12px"></div>
+            <div class="card" style="box-shadow:none;">
+              <p class="sub" style="margin:0;line-height:1.9;">
+                <b>Email :</b> contact@aph-heip.fr<br/>
+                <b>Instagram :</b> @aph.heip<br/>
+                <b>LinkedIn :</b> APH – Affaires Publiques HEIP
+              </p>
+            </div>
+            <div style="height:12px"></div>
+            <a class="btn" href="mailto:contact@aph-heip.fr">Envoyer un email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

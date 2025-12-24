@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Événements – APH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"><span></span></div>
+        <div><strong>APH</strong><small>Affaires Publiques HEIP</small></div>
+      </a>
+
+      <nav class="nav-links">
+        <a data-nav href="index.html">Accueil</a>
+        <a data-nav href="evenements.html">Événements</a>
+        <a data-nav href="briefs.html">Policy Briefs</a>
+        <a data-nav href="equipe.html">Équipe</a>
+        <a data-nav href="rejoindre.html">Rejoindre</a>
+      </nav>
+
+      <a class="btn primary" href="rejoindre.html">Rejoindre</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;">
+          <div>
+            <h2>Événements</h2>
+            <p class="sub">Recherche + filtre catégorie. Clique “Détails” pour ouvrir une fiche.</p>
+          </div>
+          <a class="btn" href="rejoindre.html">S’inscrire</a>
+        </div>
+
+        <div class="split">
+          <input class="input" placeholder="Rechercher (ex: Sénat, souveraineté…)" data-filter-q />
+          <select class="input" data-filter-cat>
+            <option value="all">Toutes catégories</option>
+            <option value="cafe-debat">Café-débat</option>
+            <option value="visite">Visite</option>
+            <option value="simulation">Simulation</option>
+            <option value="rencontre">Rencontre</option>
+          </select>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="stack">
+          <div class="card" data-event-item data-title="Café-débat — Souveraineté industrielle" data-cat="cafe-debat">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+              <div>
+                <span class="pill">Café-débat</span>
+                <h3 style="margin-top:10px;">Café-débat — Souveraineté industrielle</h3>
+                <p class="sub" style="margin-top:8px;">Janvier • 19h30 • Paris (à préciser)</p>
+              </div>
+              <a class="btn" href="#"
+                 data-event-open
+                 data-title="Café-débat — Souveraineté industrielle"
+                 data-date="Janvier • 19h30"
+                 data-lieu="Paris (à préciser)"
+                 data-desc="Décryptage + échanges structurés : enjeux, acteurs, options publiques, arbitrages.">
+                Détails
+              </a>
+            </div>
+          </div>
+
+          <div class="card" data-event-item data-title="Visite institutionnelle — Palais du Luxembourg" data-cat="visite">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+              <div>
+                <span class="pill">Visite</span>
+                <h3 style="margin-top:10px;">Visite institutionnelle — Palais du Luxembourg</h3>
+                <p class="sub" style="margin-top:8px;">Février • Créneau à confirmer • Paris</p>
+              </div>
+              <a class="btn" href="#"
+                 data-event-open
+                 data-title="Visite — Palais du Luxembourg"
+                 data-date="Février • créneau à confirmer"
+                 data-lieu="Paris"
+                 data-desc="Visite guidée : institutions, procédures, culture parlementaire, clés de lecture.">
+                Détails
+              </a>
+            </div>
+          </div>
+
+          <div class="card" data-event-item data-title="Simulation — Commission parlementaire" data-cat="simulation">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+              <div>
+                <span class="pill">Simulation</span>
+                <h3 style="margin-top:10px;">Simulation — Commission parlementaire</h3>
+                <p class="sub" style="margin-top:8px;">Mars • 2h • Campus HEIP</p>
+              </div>
+              <a class="btn" href="#"
+                 data-event-open
+                 data-title="Simulation — Commission parlementaire"
+                 data-date="Mars • 2h"
+                 data-lieu="Campus HEIP"
+                 data-desc="Prise de rôle, auditions, rédaction d’amendements, arbitrage et vote en commission.">
+                Détails
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" data-modal-backdrop>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Détail événement">
+      <div class="modal-header">
+        <div>
+          <div class="pill">Événement</div>
+          <h2 data-modal-title style="margin-top:10px;">Détails</h2>
+        </div>
+        <button class="icon-btn" data-modal-close aria-label="Fermer">✕</button>
+      </div>
+      <div style="height:12px"></div>
+      <div data-modal-body></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
