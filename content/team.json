@@ -1,5 +1,27 @@
 {
   "members": [
     { "name": "À compléter", "role": "Président", "pole": "Bureau" }
+  ],
+  "poles": [
+    {
+      "title": "Pôle Communication & Partenariats",
+      "lead": "À compléter",
+      "desc": "Réseaux, identité, contenus"
+    },
+    {
+      "title": "Pôle Conférences & Débats",
+      "lead": "À compléter",
+      "desc": "Logistique, invités, calendrier"
+    },
+    {
+      "title": "Pôle Publications (Recherche)",
+      "lead": "À compléter",
+      "desc": "Policy briefs, notes, relectures"
+    },
+    {
+      "title": "Pôle Simulations & Visites",
+      "lead": "À compléter",
+      "desc": "Contacts, partenariats, organisation"
+    }
   ]
 }
