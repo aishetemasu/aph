@@ -11,14 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Small hardening: avoid flash of unstyled admin dot -->
-  <style>
-    .admin-entry{ display:none; }
-    body.ready .admin-entry{ display:grid; }
-  </style>
 </head>
 
 <body>
@@ -49,7 +42,7 @@
       <div class="wrap">
         <div style="margin-bottom:14px;">
           <h2>Équipe</h2>
-          <p class="sub">Modifiable depuis Decap → <b>content/team.json</b> (Bureau + Responsables de pôles).</p>
+          <p class="sub">Modifiable depuis Decap → <b>content/team.json</b> (Bureau + responsables de pôles).</p>
         </div>
 
         <div class="split">
@@ -57,7 +50,6 @@
           <div class="card">
             <span class="pill">Bureau</span>
             <div style="height:12px"></div>
-
             <div id="bureauList" class="stack"></div>
             <p id="bureauHint" class="sub" style="display:none;">Bureau non renseigné.</p>
           </div>
@@ -90,7 +82,6 @@
           <p class="sub" style="margin-top:10px;">
             Chaque pôle a un responsable + une mission (modifiables dans Decap).
           </p>
-
           <div style="height:14px"></div>
           <div class="grid-3" id="polesGrid"></div>
         </div>
@@ -114,19 +105,14 @@
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>
+        <a class="admin-footer" href="/admin/" aria-label="Admin">•</a>
       </div>
     </div>
   </footer>
 
-  <!-- Petit bouton caché vers /admin -->
-  <a class="admin-entry" href="/admin/" aria-label="Admin">•</a>
-
   <script src="script.js"></script>
 
   <script>
-    // to show admin dot after CSS is loaded
-    document.body.classList.add("ready");
-
     const bureauList = document.getElementById("bureauList");
     const bureauHint = document.getElementById("bureauHint");
     const polesGrid = document.getElementById("polesGrid");
@@ -261,7 +247,9 @@
         bureauList.innerHTML = `
           <div class="card" style="box-shadow:none;">
             <span class="pill">Erreur</span>
-            <p class="sub" style="margin-top:8px;line-height:1.8;">Impossible de charger <b>/content/team.json</b>.</p>
+            <p class="sub" style="margin-top:8px;line-height:1.8;">
+              Impossible de charger <b>/content/team.json</b>.
+            </p>
           </div>
         `;
       }
