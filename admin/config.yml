@@ -3,18 +3,26 @@
         file: "content/team.json"
         format: "json"
         fields:
-          - label: "Membres"
-            name: "members"
+          - label: "Bureau (3 postes)"
+            name: "bureau"
             widget: "list"
             fields:
+              - { label: "Poste", name: "role", widget: "string" }
               - { label: "Nom", name: "name", widget: "string" }
-              - { label: "Rôle", name: "role", widget: "string" }
-              - { label: "Pôle", name: "pole", widget: "string", required: false }
 
-          - label: "Pôles"
+          - label: "Pôles (responsables)"
             name: "poles"
             widget: "list"
             fields:
               - { label: "Nom du pôle", name: "title", widget: "string" }
               - { label: "Responsable", name: "lead", widget: "string" }
               - { label: "Description / mission", name: "desc", widget: "text" }
+
+          - label: "Membres (optionnel)"
+            name: "members"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Rôle", name: "role", widget: "string" }
+              - { label: "Pôle", name: "pole", widget: "string", required: false }
