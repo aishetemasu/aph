@@ -13,6 +13,13 @@
       "date": "22/12/2025",
       "lieu": "Paris",
       "desc": "test test test "
+    },
+    {
+      "title": "Pauline la plus belle",
+      "cat": "visite",
+      "date": "25/12/2025",
+      "lieu": "paris ",
+      "desc": "test test "
     }
   ]
 }
