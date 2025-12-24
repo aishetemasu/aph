@@ -387,3 +387,32 @@ footer{
   .split{ grid-template-columns: 1fr; }
   .nav-links{ display:none; }
 }
+
+.admin-entry{
+  position:fixed;
+  right:14px;
+  bottom:14px;
+  width:22px;
+  height:22px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.35);
+  text-decoration:none;
+
+  opacity:.10;              /* quasi invisible */
+  filter: blur(.4px);       /* petit effet “caché” */
+  transition: opacity .15s ease, transform .15s ease, filter .15s ease;
+}
+
+.admin-entry:hover,
+.admin-entry:focus{
+  opacity:.95;
+  transform: translateY(-1px);
+  filter:none;
+}
+
+
