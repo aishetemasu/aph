@@ -4,28 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Équipe – APH</title>
+  <meta name="description" content="Équipe et organisation – APH (Affaires Publiques HEIP)." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="index.html">
-<div class="logo" aria-hidden="true">
-  <img src="logo.png" alt="" />
-</div>
-        <div><strong>APH</strong><small>Affaires Publiques HEIP</small></div>
+        <div class="logo" aria-hidden="true"><img src="logo.png" alt="" /></div>
+        <div>
+          <strong>APH</strong>
+          <small>Affaires Publiques HEIP</small>
+        </div>
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Navigation principale">
         <a data-nav href="index.html">Accueil</a>
         <a data-nav href="evenements.html">Événements</a>
         <a data-nav href="briefs.html">Policy Briefs</a>
@@ -42,40 +41,53 @@
       <div class="wrap">
         <div style="margin-bottom:14px;">
           <h2>Équipe</h2>
-          <p class="sub">Structure claire : Bureau + pôles.</p>
+          <p class="sub">Géré depuis Decap → <b>content/team.json</b>. Bureau + Pôles + responsables.</p>
         </div>
 
         <div class="split">
           <div class="card">
             <span class="pill">Bureau</span>
-            <div style="height:10px"></div>
-            <p class="sub" style="line-height:1.9;margin:0;">
-              <b>Président : </b> Hached Elyes <br/>
-              <b>Secrétaire général :</b> Sorby Pauline<br/>
-              <b>Trésorier :</b> Poussier Erwan <br/>
-              <b>Responsable partenariats :</b> …<br/>
-            </p>
+            <div style="height:12px"></div>
+            <div id="bureauList" class="stack"></div>
+            <p id="bureauHint" class="sub" style="display:none;">Aucun membre “Bureau” renseigné.</p>
           </div>
 
           <div class="card">
-            <span class="pill">Pôles</span>
-            <div style="height:10px"></div>
-            <p class="sub" style="line-height:1.9;margin:0;">
-              <b> Pôle Communication & Partenariats :</b> réseaux, identité, contenus<br/>
-              <b> Pôle Conférences & Débats :  :</b> logistique, invités, calendrier<br/>
-              <b> Pôle Publications (Recherche) : </b> policy briefs, notes, relectures<br/>
-              <b> Pôle Simulations & Visites : </b> contacts, partenariats<br/>
-            </p>
+            <span class="pill">Membres</span>
+            <div style="height:12px"></div>
+            <div class="split">
+              <input class="input" id="filterQ" placeholder="Rechercher un membre (nom, rôle…)" />
+              <select class="input" id="filterPole">
+                <option value="all">Tous les pôles</option>
+              </select>
+            </div>
+            <div style="height:12px"></div>
+            <div id="membersList" class="stack"></div>
+            <p id="membersHint" class="sub" style="display:none;">Aucun membre ne correspond à ta recherche.</p>
           </div>
         </div>
 
         <div style="height:14px"></div>
+
+        <div class="card">
+          <span class="pill">Pôles</span>
+          <h2 style="margin-top:12px;">Organisation</h2>
+          <p class="sub" style="margin-top:10px;">
+            Les pôles ci-dessous sont affichés avec leur description + le nom du responsable (modifiable dans Decap).
+          </p>
+          <div style="height:14px"></div>
+
+          <div class="grid-3" id="polesGrid"></div>
+        </div>
+
+        <div style="height:14px"></div>
+
         <div class="card">
           <span class="pill">Recrutement</span>
-          <h2 style="margin-top:12px;"> APH cherche des personnes motivées</h2>
-          <p class="sub" style="margin-top:10px;">Si tu veux aider (même 1h/semaine), c’est déjà énorme.</p>
+          <h2 style="margin-top:12px;">Construire APH avec nous</h2>
+          <p class="sub" style="margin-top:10px;">Tu peux aider même ponctuellement : rédaction, com, logistique, partenariats.</p>
           <div style="height:12px"></div>
-          <a class="btn primary" href="rejoindre.html">Rejoindre APH</a>
+          <a class="btn primary" href="rejoindre.html">Rejoindre</a>
         </div>
       </div>
     </section>
@@ -92,9 +104,189 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <script>
+    const bureauList = document.getElementById("bureauList");
+    const bureauHint = document.getElementById("bureauHint");
+    const membersList = document.getElementById("membersList");
+    const membersHint = document.getElementById("membersHint");
+    const polesGrid = document.getElementById("polesGrid");
+
+    const qEl = document.getElementById("filterQ");
+    const poleEl = document.getElementById("filterPole");
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    let members = [];
+    let poles = [];
+
+    // Pôles par défaut (si team.json n’en a pas encore)
+    const defaultPoles = [
+      {
+        title: "Pôle Communication & Partenariats",
+        lead: "À compléter",
+        desc: "Réseaux, identité, contenus"
+      },
+      {
+        title: "Pôle Conférences & Débats",
+        lead: "À compléter",
+        desc: "Logistique, invités, calendrier"
+      },
+      {
+        title: "Pôle Publications (Recherche)",
+        lead: "À compléter",
+        desc: "Policy briefs, notes, relectures"
+      },
+      {
+        title: "Pôle Simulations & Visites",
+        lead: "À compléter",
+        desc: "Contacts, partenariats, organisation"
+      }
+    ];
+
+    function renderBureau() {
+      const bureau = members.filter(m => (m.pole || "").toLowerCase() === "bureau");
+
+      bureauList.innerHTML = "";
+      if (!bureau.length) {
+        bureauHint.style.display = "block";
+        return;
+      }
+      bureauHint.style.display = "none";
+
+      bureau.forEach(m => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.boxShadow = "none";
+        card.innerHTML = `
+          <span class="pill">${escapeHtml(m.role || "Membre")}</span>
+          <h3 style="margin-top:10px;">${escapeHtml(m.name || "")}</h3>
+          <p class="sub" style="margin-top:6px;">${escapeHtml(m.pole || "Bureau")}</p>
+        `;
+        bureauList.appendChild(card);
+      });
+    }
+
+    function buildPoleFilter() {
+      // Collecte les pôles existants des membres + poles list
+      const set = new Set();
+      members.forEach(m => { if (m.pole) set.add(m.pole); });
+      (poles.length ? poles : defaultPoles).forEach(p => set.add(p.title));
+
+      // reset
+      poleEl.innerHTML = `<option value="all">Tous les pôles</option>`;
+      Array.from(set)
+        .filter(Boolean)
+        .sort((a,b) => a.localeCompare(b, "fr"))
+        .forEach(p => {
+          const opt = document.createElement("option");
+          opt.value = p;
+          opt.textContent = p;
+          poleEl.appendChild(opt);
+        });
+    }
+
+    function renderMembers(list) {
+      membersList.innerHTML = "";
+
+      if (!list.length) {
+        membersHint.style.display = "block";
+        return;
+      }
+      membersHint.style.display = "none";
+
+      list.forEach(m => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.boxShadow = "none";
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap;">
+            <div>
+              <span class="pill">${escapeHtml(m.pole || "Équipe")}</span>
+              <h3 style="margin-top:10px;">${escapeHtml(m.name || "")}</h3>
+              <p class="sub" style="margin-top:6px;">${escapeHtml(m.role || "")}</p>
+            </div>
+          </div>
+        `;
+        membersList.appendChild(card);
+      });
+    }
+
+    function renderPoles() {
+      const list = poles.length ? poles : defaultPoles;
+
+      polesGrid.innerHTML = "";
+      list.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.boxShadow = "none";
+        card.innerHTML = `
+          <span class="pill">Pôle</span>
+          <h3 style="margin-top:10px;">${escapeHtml(p.title || "")}</h3>
+          <p class="sub" style="margin-top:8px;line-height:1.9;">
+            <b>Responsable :</b> ${escapeHtml(p.lead || "À compléter")}<br/>
+            <b>Mission :</b> ${escapeHtml(p.desc || "")}
+          </p>
+        `;
+        polesGrid.appendChild(card);
+      });
+    }
+
+    function applyFilter() {
+      const qq = (qEl.value || "").trim().toLowerCase();
+      const pp = (poleEl.value || "all").toLowerCase();
+
+      const filtered = members.filter(m => {
+        const name = (m.name || "").toLowerCase();
+        const role = (m.role || "").toLowerCase();
+        const pole = (m.pole || "").toLowerCase();
+
+        const okQ = !qq || name.includes(qq) || role.includes(qq) || pole.includes(qq);
+        const okP = (pp === "all") || pole === pp || (m.pole || "").toLowerCase() === pp;
+
+        return okQ && okP;
+      });
+
+      renderMembers(filtered);
+    }
+
+    qEl.addEventListener("input", applyFilter);
+    poleEl.addEventListener("change", applyFilter);
+
+    (async function loadTeam() {
+      try {
+        const res = await fetch("/content/team.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("team.json introuvable");
+        const data = await res.json();
+
+        members = Array.isArray(data.members) ? data.members : [];
+        poles = Array.isArray(data.poles) ? data.poles : [];
+
+        renderBureau();
+        renderPoles();
+        buildPoleFilter();
+        applyFilter();
+      } catch (err) {
+        membersList.innerHTML = `
+          <div class="card" style="box-shadow:none;">
+            <span class="pill">Erreur</span>
+            <h3 style="margin-top:10px;">Impossible de charger l’équipe</h3>
+            <p class="sub" style="margin-top:8px;line-height:1.8;">
+              Vérifie que <b>/content/team.json</b> existe et est publié.
+            </p>
+          </div>
+        `;
+        renderPoles();
+        buildPoleFilter();
+      }
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
