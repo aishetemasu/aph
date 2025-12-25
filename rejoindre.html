@@ -21,29 +21,46 @@
 </head>
 
 <body>
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="index.html" aria-label="Accueil">
-<div class="logo" aria-hidden="true">
-  <img src="logo.png" alt="" />
-</div>
-        <div>
-          <strong>APH</strong>
-          <small>Affaires Publiques HEIP</small>
-        </div>
-      </a>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Accueil">
+      <div class="logo" aria-hidden="true"><img src="logo.png" alt="" /></div>
+      <div>
+        <strong>APH</strong>
+        <small>Affaires Publiques HEIP</small>
+      </div>
+    </a>
 
-      <nav class="nav-links" aria-label="Navigation principale">
-        <a data-nav href="index.html">Accueil</a>
-        <a data-nav href="evenements.html">Événements</a>
-        <a data-nav href="briefs.html">Policy Briefs</a>
-        <a data-nav href="equipe.html">Équipe</a>
-        <a data-nav href="rejoindre.html">Rejoindre</a>
-      </nav>
+    <!-- Desktop menu -->
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a data-nav href="index.html">Accueil</a>
+      <a data-nav href="evenements.html">Événements</a>
+      <a data-nav href="briefs.html">Policy Briefs</a>
+      <a data-nav href="equipe.html">Équipe</a>
+      <a data-nav href="rejoindre.html">Rejoindre</a>
+    </nav>
 
-      <a class="btn primary" href="rejoindre.html">Rejoindre</a>
+    <div class="nav-actions">
+      <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
+
+      <!-- Mobile hamburger -->
+      <button class="burger mobile-only" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </header>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+    <a data-nav href="index.html">Accueil</a>
+    <a data-nav href="evenements.html">Événements</a>
+    <a data-nav href="briefs.html">Policy Briefs</a>
+    <a data-nav href="equipe.html">Équipe</a>
+    <a data-nav href="rejoindre.html">Rejoindre</a>
+    <a class="btn primary" href="rejoindre.html" style="width:100%; margin-top:10px;">Rejoindre</a>
+  </div>
+</header>
+
 
   <main>
     <section>
@@ -179,6 +196,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
