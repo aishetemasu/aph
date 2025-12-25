@@ -9,6 +9,20 @@ collections:
   - name: "content"
     label: "Contenus"
     files:
+      - name: "featured"
+        label: "Accueil - À la une"
+        file: "content/featured.json"
+        format: "json"
+        fields:
+          - name: "items"
+            label: "Cartes (À la une)"
+            widget: "list"
+            fields:
+              - { name: "pill", label: "Badge (ex: Info, Contact)", widget: "string" }
+              - { name: "title", label: "Titre / Texte principal", widget: "text" }
+              - { name: "sub", label: "Sous-texte (Gris)", widget: "string", required: false }
+              - { name: "link", label: "Lien (optionnel)", widget: "string", required: false }
+
       - name: "events"
         label: "Événements"
         file: "content/events.json"
@@ -68,21 +82,3 @@ collections:
               - { name: "name", label: "Nom", widget: "string" }
               - { name: "role", label: "Rôle", widget: "string" }
               - { name: "pole", label: "Pôle", widget: "string", required: false }
-
-      - name: "home"
-        label: "Accueil – À la une"
-        file: "content/home.json"
-        format: "json"
-        fields:
-          - name: "alaune"
-            label: "Bloc À la une"
-            widget: "object"
-            fields:
-              - { name: "kicker", label: "Petit label (ex: À la une)", widget: "string" }
-              - { name: "title", label: "Titre", widget: "string" }
-              - { name: "text", label: "Texte", widget: "text" }
-              - { name: "primary_label", label: "Bouton principal (texte)", widget: "string" }
-              - { name: "primary_href", label: "Bouton principal (lien)", widget: "string" }
-              - { name: "secondary_label", label: "Bouton secondaire (texte)", widget: "string", required: false }
-              - { name: "secondary_href", label: "Bouton secondaire (lien)", widget: "string", required: false }
-
