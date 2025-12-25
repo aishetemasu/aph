@@ -31,8 +31,7 @@
       <a data-nav href="evenements.html">Événements</a>
       <a data-nav href="briefs.html">Policy Briefs</a>
       <a data-nav href="equipe.html">Équipe</a>
-      <a data-nav href="rejoindre.html">Rejoindre</a>
-    </nav>
+      </nav>
 
     <div class="nav-actions">
       <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
@@ -48,8 +47,7 @@
     <a data-nav href="evenements.html">Événements</a>
     <a data-nav href="briefs.html">Policy Briefs</a>
     <a data-nav href="equipe.html">Équipe</a>
-    <a data-nav href="rejoindre.html">Rejoindre</a>
-    <a class="btn primary" href="rejoindre.html" style="width:100%; margin-top:10px;">Rejoindre</a>
+    <a class="btn primary" href="rejoindre.html" style="width:100%; margin-top:10px; justify-content:center;">Rejoindre</a>
   </div>
 </header>
 
@@ -177,26 +175,18 @@
         const data = await res.json();
         
         const items = Array.isArray(data.items) ? data.items : [];
-        
-        // Si vide, on cache ou on met un message
         if(!items.length) {
            container.innerHTML = `<p class="sub">Aucune info à la une.</p>`;
            return;
         }
 
-        container.innerHTML = ""; // on vide le "Chargement..."
+        container.innerHTML = "";
         
         function escapeHtml(str) {
-          return String(str ?? "")
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#039;");
+          return String(str ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
         }
 
         items.forEach(item => {
-          // Si un lien est présent, on fait une balise <a>, sinon une <div>
           const tag = item.link ? 'a' : 'div';
           const hrefAttr = item.link ? `href="${escapeHtml(item.link)}"` : '';
           const style = "box-shadow:none; display:block; text-decoration:none; color:inherit;";
@@ -215,11 +205,7 @@
 
       } catch (err) {
         console.warn(err);
-        container.innerHTML = `
-          <div class="card" style="box-shadow:none;">
-             <span class="pill">Erreur</span>
-             <p class="sub" style="margin-top:8px;">Impossible de charger les infos.</p>
-          </div>`;
+        container.innerHTML = `<div class="card" style="box-shadow:none;"><span class="pill">Erreur</span><p class="sub" style="margin-top:8px;">Impossible de charger les infos.</p></div>`;
       }
     })();
   </script>
