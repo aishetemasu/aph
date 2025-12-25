@@ -11,6 +11,12 @@
       "title": "Merci à lui, texte modifiable depuis l'admin.",
       "sub": "Tésorier",
       "link": "https://www.linkedin.com/in/erwan-poussier-79b839227/"
+    },
+    {
+      "pill": "test",
+      "title": "test",
+      "sub": "test",
+      "link": ""
     }
   ]
 }
