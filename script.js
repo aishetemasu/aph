@@ -19,9 +19,50 @@
       .replaceAll("'", "&#039;");
   }
 
+  function encodeFormData(form) {
+    const data = new FormData(form);
+    return new URLSearchParams(data).toString();
+  }
+
   // ---------- Année footer ----------
   const y = document.getElementById("year");
   if (y) y.textContent = String(new Date().getFullYear());
+
+  // ---------- Soumission Netlify robuste (fetch + fallback redirect) ----------
+  const netlifyForm = document.querySelector(
+    'form[data-netlify][name="candidature-aph"]'
+  );
+
+  if (netlifyForm) {
+    const handleNetlifySubmit = (e) => {
+      e.preventDefault();
+
+      const body = encodeFormData(netlifyForm);
+      const redirectTo = netlifyForm.getAttribute("action") || "/merci.html";
+
+      fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body,
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Netlify form error");
+          window.location.href = redirectTo;
+        })
+        .catch(() => {
+          // Fallback à la soumission native (Netlify) en cas d'erreur fetch
+          netlifyForm.removeEventListener("submit", handleNetlifySubmit);
+          netlifyForm.submit();
+          alert(
+            "Le message n’a pas pu être envoyé via fetch. Nous relançons la soumission."
+          );
+        });
+    };
+
+    netlifyForm.addEventListener("submit", handleNetlifySubmit);
+  }
 
   // ---------- Active link navbar ----------
   const currentFile = (location.pathname.split("/").pop() || "index.html")
