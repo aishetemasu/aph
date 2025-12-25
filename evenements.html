@@ -273,7 +273,7 @@
     // Charge les événements depuis Decap JSON
     (async function loadEvents() {
       try {
-        const res = await fetch("/content/team.json");
+        const res = await fetch("/content/event.json");
         if (!res.ok) throw new Error("events.json introuvable");
         const data = await res.json();
         allEvents = Array.isArray(data.events) ? data.events : [];
@@ -293,6 +293,7 @@
   </script>
 </body>
 </html>
+
 
 
 
