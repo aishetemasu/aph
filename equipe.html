@@ -241,7 +241,7 @@
 
     (async function loadTeam() {
       try {
-        const res = await fetch("/content/team.json", { cache: "no-store" });
+        const res = await fetch("/content/team.json");
         if (!res.ok) throw new Error("team.json introuvable");
         const data = await res.json();
 
@@ -267,6 +267,7 @@
   </script>
 </body>
 </html>
+
 
 
 
