@@ -1,6 +1,14 @@
 {
   "events": [
     {
+      "title": "Visite de l'assemblée nationale",
+      "cat": "visite",
+      "date": "01/01/2026",
+      "lieu": "Paris",
+      "desc": "Visite de l'assemblée nationale, organisée par APH",
+      "form": "https://forms.gle/yW3o3V4okkwGbipe8"
+    },
+    {
       "title": "arrivée d'Erwann",
       "cat": "rencontre",
       "date": "22/12/2025",
