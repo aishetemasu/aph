@@ -68,3 +68,21 @@ collections:
               - { name: "name", label: "Nom", widget: "string" }
               - { name: "role", label: "Rôle", widget: "string" }
               - { name: "pole", label: "Pôle", widget: "string", required: false }
+
+      - name: "home"
+        label: "Accueil – À la une"
+        file: "content/home.json"
+        format: "json"
+        fields:
+          - name: "alaune"
+            label: "Bloc À la une"
+            widget: "object"
+            fields:
+              - { name: "kicker", label: "Petit label (ex: À la une)", widget: "string" }
+              - { name: "title", label: "Titre", widget: "string" }
+              - { name: "text", label: "Texte", widget: "text" }
+              - { name: "primary_label", label: "Bouton principal (texte)", widget: "string" }
+              - { name: "primary_href", label: "Bouton principal (lien)", widget: "string" }
+              - { name: "secondary_label", label: "Bouton secondaire (texte)", widget: "string", required: false }
+              - { name: "secondary_href", label: "Bouton secondaire (lien)", widget: "string", required: false }
+
