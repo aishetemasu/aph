@@ -1,6 +1,7 @@
 /* =========================================================
    APH — styles.css (GLASS THEME / ROUGE + BLUR)
    Version corrigée : inputs/selects beaux + admin dans footer
+   + Nouveau MENU BURGER ANIMÉ
    ========================================================= */
 
 /* ---------- Variables ---------- */
@@ -393,9 +394,9 @@ footer{
 }
 
 .desktop-only{ display:inline-flex; }
-.mobile-only{ display:none; }
+.mobile-only{ display:none; } /* Caché par défaut, affiché par media query */
 
-/* ===== Burger Menu (Redesign & Animation) ===== */
+/* --- NOUVEAU BURGER ANIMÉ --- */
 .burger {
   width: 44px;
   height: 44px;
@@ -456,6 +457,7 @@ footer{
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* --- Drawer (Menu déroulant) --- */
 .mobile-menu{
   display:none;
   padding:14px 20px 18px;
@@ -484,8 +486,5 @@ footer{
 @media (max-width: 920px){
   .nav-links{ display:none; }     /* on cache le menu desktop */
   .desktop-only{ display:none; }
-  .mobile-only{ display:grid; }  /* on montre le burger */
+  .mobile-only{ display:flex; }  /* on montre le burger (en flex pour centrer) */
 }
-
-
-
