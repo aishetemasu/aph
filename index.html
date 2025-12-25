@@ -4,165 +4,142 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>APH – Affaires Publiques HEIP</title>
-  <meta name="description" content="APH – Affaires Publiques HEIP : comprendre la décision publique, former à l’analyse, agir dans le débat." />
+  <meta name="description" content="APH – Affaires Publiques HEIP : conférences, cafés-débats, visites d’institutions, simulations et publications (policy briefs)." />
+
+  <!-- Favicons (mets bien ces fichiers à la racine du site) -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Unbounded -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="index.html" aria-label="Accueil">
-      <div class="logo" aria-hidden="true"><img src="logo.png" alt="" /></div>
-      <div>
-        <strong>APH</strong>
-        <small>Affaires Publiques HEIP</small>
-      </div>
-    </a>
+  <!-- Header (avec menu mobile) -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html" aria-label="Accueil">
+        <div class="logo" aria-hidden="true"><img src="logo.png" alt="" /></div>
+        <div>
+          <strong>APH</strong>
+          <small>Affaires Publiques HEIP</small>
+        </div>
+      </a>
 
-    <!-- Desktop menu -->
-    <nav class="nav-links" aria-label="Navigation principale">
+      <!-- Desktop menu -->
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a data-nav href="index.html">Accueil</a>
+        <a data-nav href="evenements.html">Événements</a>
+        <a data-nav href="briefs.html">Policy Briefs</a>
+        <a data-nav href="equipe.html">Équipe</a>
+        <a data-nav href="rejoindre.html">Rejoindre</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
+
+        <!-- Mobile hamburger -->
+        <button class="burger mobile-only" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
       <a data-nav href="index.html">Accueil</a>
       <a data-nav href="evenements.html">Événements</a>
       <a data-nav href="briefs.html">Policy Briefs</a>
       <a data-nav href="equipe.html">Équipe</a>
       <a data-nav href="rejoindre.html">Rejoindre</a>
-    </nav>
-
-    <div class="nav-actions">
-      <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
-
-      <!-- Mobile hamburger -->
-      <button class="burger mobile-only" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <a class="btn primary" href="rejoindre.html" style="width:100%; margin-top:10px;">Rejoindre</a>
     </div>
-  </div>
-
-  <!-- Mobile drawer -->
-  <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
-    <a data-nav href="index.html">Accueil</a>
-    <a data-nav href="evenements.html">Événements</a>
-    <a data-nav href="briefs.html">Policy Briefs</a>
-    <a data-nav href="equipe.html">Équipe</a>
-    <a data-nav href="rejoindre.html">Rejoindre</a>
-    <a class="btn primary" href="rejoindre.html" style="width:100%; margin-top:10px;">Rejoindre</a>
-  </div>
-</header>
-
+  </header>
 
   <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="kicker">Penser • Débattre • Agir </div>
-          <h1>Comprendre les décisions politiques.<br/>Former à l’analyse.<br/>Agir dans le débat.</h1>
-          <p class="lead">
-            <b>APH</b> est une association étudiante dédiée aux affaires publiques.
-            Nous créons des passerelles entre étudiants, institutions et professionnels à travers des formats exigeants, concrets et accessibles.
-          </p>
-                  <div style="height:35px"></div>
-
-          <div class="hero-actions">
-            <a class="btn primary" href="evenements.html">Voir nos événements</a>
-            <a class="btn" href="briefs.html">Lire nos Policy Briefs</a>
-          </div>
-        </div>
-
-        <div style="height:35px"></div>
-
-
-        <aside class="card">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-            <div>
-              <div style="font-weight:700;font-size:14px;">À la une</div>
-              <div style="color:rgba(17,17,17,.62);font-size:12px;margin-top:4px;">
-              </div>
-            </div>
-            <span class="pill">Prochainement</span>
-          </div>
-
-          <div style="height:12px"></div>
-
-          <div class="split">
-            <div class="card" style="box-shadow:none;">
-              <span class="pill">Formats</span>
-              <p class="sub" style="margin-top:10px;">Cafés-débats • Visites • Simulations • Briefs</p>
-            </div>
-            <div class="card" style="box-shadow:none;">
-              <span class="pill">Contact</span>
-              <p class="sub" style="margin-top:10px;"> elyes.hached@edu.heip.fr</p>
-            </div>
-          </div>
-
-          <div style="height:14px"></div>
-          <a class="btn" href="rejoindre.html" style="width:100%;"> Nous rejoindre </a>
-        </aside>
-      </div>
-    </section>
-
     <section>
       <div class="wrap">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;">
-          <div>
-            <h2>Nos formats</h2>
-            <p class="sub">Des événements pensés pour être clairs, utiles et institutionnels.</p>
+        <!-- HERO -->
+        <div class="split">
+          <div class="card">
+            <span class="pill">APH</span>
+            <h1>Affaires Publiques HEIP</h1>
+            <p class="lead">
+              Une association d’affaires publiques pensée pour connecter les étudiants aux acteurs de la décision publique.
+            </p>
+
+            <div style="height:14px"></div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn primary" href="rejoindre.html">Nous rejoindre</a>
+              <a class="btn" href="evenements.html">Voir les événements</a>
+            </div>
           </div>
-          <a class="btn" href="evenements.html">Tous nos événements</a>
+
+          <!-- À la une (modifiable via Decap /content/home.json) -->
+          <div class="card" id="alauneCard">
+            <span class="pill" id="alauneKicker">À la une</span>
+            <h2 style="margin-top:12px;" id="alauneTitle">
+              Une association d’affaires publiques pensée pour l’action.
+            </h2>
+            <p class="sub" style="margin-top:10px;line-height:1.9;" id="alauneText">
+              Visites d’institutions, cafés-débats, notes et policy briefs : APH connecte les étudiants aux acteurs de la décision publique.
+            </p>
+
+            <!-- ESPACEMENT : “À la une” plus collé aux boutons -->
+            <div class="hero-actions" style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" id="alaunePrimary" href="evenements.html">Voir nos événements</a>
+              <a class="btn" id="alauneSecondary" href="rejoindre.html">Rejoindre</a>
+            </div>
+          </div>
         </div>
 
+        <div style="height:14px"></div>
+
+        <!-- 3 piliers -->
         <div class="grid-3">
           <div class="card">
-            <span class="pill">Cafés-débats</span>
-            <h3 style="margin:12px 0 8px;">Décrypter un enjeu</h3>
-            <p class="sub">Un thème, des sources, une discussion structurée : argumenter, nuancer, convaincre.</p>
+            <span class="pill">Débat</span>
+            <h3 style="margin-top:10px;">Conférences & Cafés-débats</h3>
+            <p class="sub" style="margin-top:8px;line-height:1.9;">
+              Rencontres avec des élus, hauts fonctionnaires, experts, ONG et acteurs privés.
+            </p>
           </div>
 
           <div class="card">
-            <span class="pill">Visites</span>
-            <h3 style="margin:12px 0 8px;">Voir la décision</h3>
-            <p class="sub">Institutions, administrations, lieux du débat démocratique : comprendre “où” et “comment”.</p>
+            <span class="pill">Terrain</span>
+            <h3 style="margin-top:10px;">Simulations & Visites</h3>
+            <p class="sub" style="margin-top:8px;line-height:1.9;">
+              Institutions, administrations, lieux de pouvoir : comprendre concrètement comment ça décide.
+            </p>
           </div>
 
           <div class="card">
-            <span class="pill">Policy Briefs</span>
-            <h3 style="margin:12px 0 8px;">Écrire utile</h3>
-            <p class="sub">Notes courtes orientées décision : diagnostic, options, recommandation.</p>
+            <span class="pill">Recherche</span>
+            <h3 style="margin-top:10px;">Policy Briefs & Notes</h3>
+            <p class="sub" style="margin-top:8px;line-height:1.9;">
+              Produire des analyses courtes et actionnables, relues et structurées.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section>
-      <div class="wrap">
+        <div style="height:14px"></div>
+
+        <!-- CTA -->
         <div class="card">
-          <div class="split">
-            <div>
-              <span class="pill">Rejoindre</span>
-              <h2 style="margin-top:12px;">Construire APH avec nous</h2>
-              <p class="lead" style="margin-top:10px;">
-                Communication • Événementiel • Rédaction • Partenariats • Relations institutionnelles
-              </p>
-              <div style="height:12px"></div>
-              <a class="btn primary" href="rejoindre.html">Je rejoins l’asso</a>
-            </div>
-            <div>
-              <span class="pill">Pro</span>
-              <h3 style="margin-top:12px;">Vous souhaitez intervenir ?</h3>
-              <p class="sub" style="margin-top:10px;">
-                APH organise des rencontres et tables rondes : contactez-nous pour proposer un format.
-              </p>
-              <div style="height:10px"></div>
-              <a class="btn" href="rejoindre.html#contact">Nous contacter</a>
-            </div>
-          </div>
+          <span class="pill">Participer</span>
+          <h2 style="margin-top:12px;">Tu veux t’impliquer ?</h2>
+          <p class="sub" style="margin-top:10px;line-height:1.9;">
+            Même ponctuellement : organisation, communication, partenariats, rédaction, logistique.
+          </p>
+          <div style="height:12px"></div>
+          <a class="btn primary" href="rejoindre.html">Rejoindre APH</a>
         </div>
       </div>
     </section>
@@ -174,20 +151,49 @@
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>
+        <a class="admin-footer" href="/admin/" aria-label="Admin">•</a>
       </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- Charge “À la une” depuis l’admin (content/home.json) -->
+  <script>
+    (async function () {
+      try {
+        const res = await fetch("/content/home.json", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = await res.json();
+        const a = data.alaune || {};
+
+        const kicker = document.getElementById("alauneKicker");
+        const title = document.getElementById("alauneTitle");
+        const text = document.getElementById("alauneText");
+        const pBtn = document.getElementById("alaunePrimary");
+        const sBtn = document.getElementById("alauneSecondary");
+
+        if (kicker && a.kicker) kicker.textContent = a.kicker;
+        if (title && a.title) title.textContent = a.title;
+        if (text && a.text) text.textContent = a.text;
+
+        if (pBtn) {
+          if (a.primary_label) pBtn.textContent = a.primary_label;
+          if (a.primary_href) pBtn.setAttribute("href", a.primary_href);
+        }
+
+        const hasSecondary = (a.secondary_label && a.secondary_href);
+        if (sBtn) {
+          if (hasSecondary) {
+            sBtn.textContent = a.secondary_label;
+            sBtn.setAttribute("href", a.secondary_href);
+            sBtn.style.display = "";
+          } else {
+            sBtn.style.display = "none";
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
