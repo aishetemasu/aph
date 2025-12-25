@@ -103,8 +103,7 @@
         <a class="btn primary" href="rejoindre.html">S’inscrire / Rejoindre</a>
       `);
     });
-  });
-})();
+  }
 
 // ===== Mobile menu toggle =====
 (() => {
@@ -135,6 +134,7 @@
     close();
   });
 })();
+
 
 
 
