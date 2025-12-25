@@ -1,0 +1,11 @@
+{
+  "alaune": {
+    "kicker": "À la une",
+    "title": "Une association d’affaires publiques pensée pour l’action.",
+    "text": "Visites d’institutions, cafés-débats, notes et policy briefs : APH connecte les étudiants aux acteurs de la décision publique.",
+    "primary_label": "Voir nos événements",
+    "primary_href": "evenements.html",
+    "secondary_label": "Rejoindre",
+    "secondary_href": "rejoindre.html"
+  }
+}
