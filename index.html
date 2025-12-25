@@ -170,7 +170,7 @@
     (async function loadFeatured() {
       const container = document.getElementById("featuredContainer");
       try {
-        const res = await fetch("/content/featured.json", { cache: "no-store" });
+        const res = await fetch("/content/featured.json");
         if (!res.ok) throw new Error("featured.json introuvable");
         const data = await res.json();
         
@@ -211,3 +211,4 @@
   </script>
 </body>
 </html>
+
