@@ -106,3 +106,35 @@
   });
 })();
 
+// ===== Mobile menu toggle =====
+(() => {
+  const toggle = document.getElementById("navToggle");
+  const menu = document.getElementById("mobileMenu");
+  if (!toggle || !menu) return;
+
+  const close = () => {
+    menu.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle.addEventListener("click", () => {
+    const isOpen = menu.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  // Close when clicking a link
+  menu.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a) close();
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!menu.classList.contains("open")) return;
+    if (e.target.closest("#mobileMenu") || e.target.closest("#navToggle")) return;
+    close();
+  });
+})();
+
+
+
