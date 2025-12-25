@@ -37,14 +37,24 @@
   ],
   "members": [
     {
-      "name": "celia",
-      "role": "hached",
-      "pole": "bouffon du président"
+      "name": "Membre 1",
+      "role": "Membre",
+      "pole": "Pôle Conférences & Débats"
     },
     {
-      "name": "dalila hached",
-      "role": "amour de la vie du président ( impératrice )",
-      "pole": "Débat"
+      "name": "membre 2",
+      "role": "Membre",
+      "pole": "Pôle Publications (Recherche)"
+    },
+    {
+      "name": "Membre 3 ",
+      "role": "membre",
+      "pole": "Pôle Communication & Partenariats"
+    },
+    {
+      "name": "membre 4",
+      "role": "membre",
+      "pole": "Pôle Simulations & Visites"
     }
   ]
 }
