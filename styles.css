@@ -384,3 +384,67 @@ footer{
   .nav-links{ display:none; }
   h1{ font-size:38px; }
 }
+
+/* ===== Mobile menu (hamburger + drawer) ===== */
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.desktop-only{ display:inline-flex; }
+.mobile-only{ display:none; }
+
+.burger{
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  padding:0;
+}
+
+.burger span{
+  display:block;
+  width:18px;
+  height:2px;
+  background: rgba(255,255,255,.92);
+  border-radius:99px;
+  margin:2px 0;
+}
+
+.mobile-menu{
+  display:none;
+  padding:14px 20px 18px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  background: rgba(71,7,0,.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.mobile-menu a{
+  display:block;
+  padding:12px 10px;
+  border-radius:14px;
+  color: rgba(255,255,255,.90);
+}
+
+.mobile-menu a:hover{
+  background: rgba(255,255,255,.06);
+}
+
+.mobile-menu.open{
+  display:block;
+}
+
+/* breakpoint */
+@media (max-width: 920px){
+  .nav-links{ display:none; }     /* on cache le menu desktop */
+  .desktop-only{ display:none; }
+  .mobile-only{ display:grid; }  /* on montre le burger */
+}
+
+
