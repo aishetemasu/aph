@@ -1,60 +1,46 @@
 {
-  "bureau": [
+  "team": [
     {
+      "name": "Hached Elyes",
       "role": "Président",
-      "name": "Hached Elyes"
+      "photo": "",
+      "linkedin": ""
     },
     {
+      "name": "Sorby Pauline",
       "role": "Secrétaire générale",
-      "name": "Sorby Pauline"
+      "photo": "",
+      "linkedin": ""
     },
     {
+      "name": "Poussier Erwan",
       "role": "Trésorier",
-      "name": "Poussier Erwan"
-    }
-  ],
-  "poles": [
-    {
-      "title": "Pôle Communication & Partenariats",
-      "lead": "Test",
-      "desc": "Réseaux, identité, contenus"
+      "photo": "",
+      "linkedin": ""
     },
     {
-      "title": "Pôle Conférences & Débats",
-      "lead": "Test",
-      "desc": "Logistique, invités, calendrier"
+      "name": "À définir",
+      "role": "Resp. Communication & Partenariats",
+      "photo": "",
+      "linkedin": ""
     },
     {
-      "title": "Pôle Publications (Recherche)",
-      "lead": "Test",
-      "desc": "Policy briefs, notes, relectures"
+      "name": "À définir",
+      "role": "Resp. Conférences & Débats",
+      "photo": "",
+      "linkedin": ""
     },
     {
-      "title": "Pôle Simulations & Visites",
-      "lead": "Test",
-      "desc": "Contacts, partenariats, organisation"
-    }
-  ],
-  "members": [
-    {
-      "name": "Membre 1",
-      "role": "Membre",
-      "pole": "Pôle Conférences & Débats"
+      "name": "À définir",
+      "role": "Resp. Publications (Recherche)",
+      "photo": "",
+      "linkedin": ""
     },
     {
-      "name": "membre 2",
-      "role": "Membre",
-      "pole": "Pôle Publications (Recherche)"
-    },
-    {
-      "name": "Membre 3 ",
-      "role": "membre",
-      "pole": "Pôle Communication & Partenariats"
-    },
-    {
-      "name": "membre 4",
-      "role": "membre",
-      "pole": "Pôle Simulations & Visites"
+      "name": "À définir",
+      "role": "Resp. Simulations & Visites",
+      "photo": "",
+      "linkedin": ""
     }
   ]
 }
