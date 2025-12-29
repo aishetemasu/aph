@@ -7,12 +7,12 @@ public_folder: "/assets/uploads"
 
 collections:
   - name: "content"
-    label: "Contenus"
+    label: "Contenus du site"
     files:
+      # --- 1. ACCUEIL ---
       - name: "featured"
         label: "Accueil - À la une"
         file: "content/featured.json"
-        format: "json"
         fields:
           - name: "items"
             label: "Cartes (À la une)"
@@ -23,13 +23,13 @@ collections:
               - { name: "sub", label: "Sous-texte (Gris)", widget: "string", required: false }
               - { name: "link", label: "Lien (optionnel)", widget: "string", required: false }
 
+      # --- 2. ÉVÉNEMENTS ---
       - name: "events"
-        label: "Événements"
+        label: "Page Événements"
         file: "content/events.json"
-        format: "json"
         fields:
           - name: "events"
-            label: "Événements"
+            label: "Liste des événements"
             widget: "list"
             fields:
               - { name: "title", label: "Titre", widget: "string" }
@@ -39,13 +39,13 @@ collections:
               - { name: "desc", label: "Description", widget: "text" }
               - { name: "form", label: "Lien Google Form (inscription)", widget: "string", required: false }
 
+      # --- 3. POLICY BRIEFS ---
       - name: "briefs"
-        label: "Policy Briefs"
+        label: "Page Policy Briefs"
         file: "content/briefs.json"
-        format: "json"
         fields:
           - name: "briefs"
-            label: "Briefs"
+            label: "Liste des briefs"
             widget: "list"
             fields:
               - { name: "title", label: "Titre", widget: "string" }
@@ -54,34 +54,12 @@ collections:
               - { name: "reco", label: "Recommandation", widget: "text" }
               - { name: "pdf", label: "Lien PDF (optionnel)", widget: "string", required: false }
 
+      # --- 4. ÉQUIPE (NOUVELLE VERSION) ---
       - name: "team"
-        label: "Équipe"
-        file: "content/team.json"
-        format: "json"
-        fields:
-          - name: "bureau"
-            label: "Bureau (3 postes)"
-            widget: "list"
-            fields:
-              - { name: "role", label: "Poste", widget: "string" }
-              - { name: "name", label: "Nom", widget: "string" }
-
-          - name: "poles"
-            label: "Pôles (responsables)"
-            widget: "list"
-            fields:
-              - { name: "title", label: "Nom du pôle", widget: "string" }
-              - { name: "lead", label: "Responsable", widget: "string" }
-              - { name: "desc", label: "Description / mission", widget: "text" }
-
-- name: "team"
-    label: "Gestion de l'Équipe"
-    files:
-      - name: "team"
-        label: "Membres de l'équipe"
+        label: "Page Équipe"
         file: "content/team.json"
         fields:
-          # LISTE 1 : LE BUREAU
+          # A. LE BUREAU
           - name: "bureau"
             label: "1. Le Bureau"
             widget: "list"
@@ -91,7 +69,7 @@ collections:
               - {label: "Photo", name: "photo", widget: "image", required: false}
               - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
 
-          # LISTE 2 : RESPONSABLES
+          # B. RESPONSABLES
           - name: "responsables"
             label: "2. Responsables de Pôles"
             widget: "list"
@@ -101,12 +79,10 @@ collections:
               - {label: "Photo", name: "photo", widget: "image", required: false}
               - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
 
-          # LISTE 3 : MEMBRES (Simple)
+          # C. MEMBRES
           - name: "membres"
             label: "3. Tous les membres"
             widget: "list"
             fields:
               - {label: "Nom & Prénom", name: "name", widget: "string"}
               - {label: "Pôle / Rôle", name: "role", widget: "string"}
-
-
