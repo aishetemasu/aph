@@ -74,18 +74,20 @@ collections:
               - { name: "lead", label: "Responsable", widget: "string" }
               - { name: "desc", label: "Description / mission", widget: "text" }
 
-          - name: "members"
-            label: "Membres (optionnel)"
+       - name: "team"
+    label: "Équipe"
+    files:
+      - name: "team"
+        label: "Membres du Bureau & Responsables"
+        file: "content/team.json"
+        fields:
+          - name: "team"
+            label: "Liste des membres"
             widget: "list"
-            required: false
             fields:
-              - { name: "name", label: "Nom", widget: "string" }
-              - { name: "role", label: "Rôle", widget: "string" }
-              - { name: "pole", label: "Pôle", widget: "string", required: false }
+              - {label: "Nom & Prénom", name: "name", widget: "string"}
+              - {label: "Rôle (ex: Président)", name: "role", widget: "string"}
+              - {label: "Photo", name: "photo", widget: "image", required: false}
+              - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
 
-              fields:
-        - {label: "Nom & Prénom", name: "name", widget: "string"}
-        - {label: "Rôle (ex: Président, Resp. Com...)", name: "role", widget: "string"}
-        - {label: "Photo", name: "photo", widget: "image", required: false}
-        - {label: "Lien LinkedIn (Optionnel)", name: "linkedin", widget: "string", required: false}
 
