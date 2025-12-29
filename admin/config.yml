@@ -74,11 +74,11 @@ collections:
               - { name: "lead", label: "Responsable", widget: "string" }
               - { name: "desc", label: "Description / mission", widget: "text" }
 
-       - name: "team"
-    label: "Équipe"
+     - name: "team"
+    label: "Équipe (Bureau & Responsables)"
     files:
       - name: "team"
-        label: "Membres du Bureau & Responsables"
+        label: "Membres"
         file: "content/team.json"
         fields:
           - name: "team"
