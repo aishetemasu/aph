@@ -19,27 +19,27 @@
       <div><strong>APH</strong><small>Affaires Publiques HEIP</small></div>
     </a>
     <nav class="nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="evenements.html">Événements</a>
-      <a href="briefs.html">Policy Briefs</a>
-      <a href="equipe.html" class="active">Équipe</a>
+      <a data-nav href="index.html">Accueil</a>
+      <a data-nav href="apropos.html">À Propos</a>
+      <a data-nav href="evenements.html">Événements</a>
+      <a data-nav href="briefs.html">Policy Briefs</a>
+      <a data-nav href="equipe.html" class="active">Équipe</a>
     </nav>
     <div class="nav-actions">
       <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
       <button class="burger mobile-only" id="navToggle"><span></span><span></span><span></span></button>
     </div>
   </div>
+  
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Accueil</a>
+    <a href="apropos.html">À Propos</a>
     <a href="evenements.html">Événements</a>
-    <a data-nav href="apropos.html">À Propos</a>
     <a href="briefs.html">Policy Briefs</a>
     <a href="equipe.html">Équipe</a>
     <a class="btn primary" href="rejoindre.html" style="width:100%;margin-top:10px;">Rejoindre</a>
   </div>
 </header>
-
-  <center>
 
 <main>
   <section>
@@ -53,8 +53,6 @@
       </div>
     </div>
   </section>
-
-   </center>
 
   <section style="padding-top:0;">
     <div class="wrap">
@@ -92,15 +90,15 @@
   </section>
 </main>
 
- <footer>
-    <div class="wrap foot">
-      <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
-      </div>
+<footer>
+  <div class="wrap foot">
+    <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
+    <div style="display:flex;gap:14px;">
+      <a href="mentions-legales.html">Mentions légales et confidentialité</a>
+      <a href="/admin/" class="admin-footer">•</a>
     </div>
-  </footer>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 
@@ -179,8 +177,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
