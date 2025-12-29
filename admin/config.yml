@@ -82,3 +82,10 @@ collections:
               - { name: "name", label: "Nom", widget: "string" }
               - { name: "role", label: "Rôle", widget: "string" }
               - { name: "pole", label: "Pôle", widget: "string", required: false }
+
+              fields:
+        - {label: "Nom & Prénom", name: "name", widget: "string"}
+        - {label: "Rôle (ex: Président, Resp. Com...)", name: "role", widget: "string"}
+        - {label: "Photo", name: "photo", widget: "image", required: false}
+        - {label: "Lien LinkedIn (Optionnel)", name: "linkedin", widget: "string", required: false}
+
