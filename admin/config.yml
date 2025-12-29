@@ -74,20 +74,39 @@ collections:
               - { name: "lead", label: "Responsable", widget: "string" }
               - { name: "desc", label: "Description / mission", widget: "text" }
 
-     - name: "team"
-    label: "Équipe (Bureau & Responsables)"
+- name: "team"
+    label: "Gestion de l'Équipe"
     files:
       - name: "team"
-        label: "Membres"
+        label: "Membres de l'équipe"
         file: "content/team.json"
         fields:
-          - name: "team"
-            label: "Liste des membres"
+          # LISTE 1 : LE BUREAU
+          - name: "bureau"
+            label: "1. Le Bureau"
             widget: "list"
             fields:
               - {label: "Nom & Prénom", name: "name", widget: "string"}
               - {label: "Rôle (ex: Président)", name: "role", widget: "string"}
               - {label: "Photo", name: "photo", widget: "image", required: false}
               - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
+
+          # LISTE 2 : RESPONSABLES
+          - name: "responsables"
+            label: "2. Responsables de Pôles"
+            widget: "list"
+            fields:
+              - {label: "Nom & Prénom", name: "name", widget: "string"}
+              - {label: "Pôle dirigé", name: "role", widget: "string"}
+              - {label: "Photo", name: "photo", widget: "image", required: false}
+              - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
+
+          # LISTE 3 : MEMBRES (Simple)
+          - name: "membres"
+            label: "3. Tous les membres"
+            widget: "list"
+            fields:
+              - {label: "Nom & Prénom", name: "name", widget: "string"}
+              - {label: "Pôle / Rôle", name: "role", widget: "string"}
 
 
