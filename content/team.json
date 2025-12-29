@@ -1,16 +1,50 @@
 {
   "bureau": [
-    { "name": "Elyes Hached", "role": "Président", "photo": "", "linkedin": "" },
-    { "name": "Pauline Sorby", "role": "Secrétaire Générale", "photo": "", "linkedin": "" },
-    { "name": "Erwan Poussier", "role": "Trésorier", "photo": "", "linkedin": "" }
+    {
+      "name": "Elyes Hached",
+      "role": "Président",
+      "photo": "/assets/uploads/1760830639355.jpeg",
+      "linkedin": "https://fr.linkedin.com/in/elyes-hached-869a90231"
+    },
+    {
+      "name": "Pauline Sorby",
+      "role": "Secrétaire Générale",
+      "photo": "/assets/uploads/1760086299196.jpeg",
+      "linkedin": "https://www.linkedin.com/in/pauline-sorby-13a6b3346/"
+    },
+    {
+      "name": "Erwan Poussier",
+      "role": "Trésorier",
+      "photo": "/assets/uploads/1750099046328.jpeg",
+      "linkedin": "https://www.linkedin.com/in/erwan-poussier-79b839227/"
+    }
   ],
   "responsables": [
-    { "name": "Nom Resp 1", "role": "Resp. Communication", "photo": "", "linkedin": "" },
-    { "name": "Nom Resp 2", "role": "Resp. Événementiel", "photo": "", "linkedin": "" }
+    {
+      "name": "Nom Resp 1",
+      "role": "Resp. Communication",
+      "photo": "",
+      "linkedin": ""
+    },
+    {
+      "name": "Nom Resp 2",
+      "role": "Resp. Événementiel",
+      "photo": "",
+      "linkedin": ""
+    }
   ],
   "membres": [
-    { "name": "Membre A", "role": "Pôle Com" },
-    { "name": "Membre B", "role": "Pôle Débats" },
-    { "name": "Membre C", "role": "Pôle Rédaction" }
+    {
+      "name": "Membre A",
+      "role": "Pôle Com"
+    },
+    {
+      "name": "Membre B",
+      "role": "Pôle Débats"
+    },
+    {
+      "name": "Membre C",
+      "role": "Pôle Rédaction"
+    }
   ]
 }
