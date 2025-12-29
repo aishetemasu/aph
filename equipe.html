@@ -3,272 +3,138 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Équipe – APH</title>
-  <meta name="description" content="Équipe et organisation – APH (Affaires Publiques HEIP)." />
-
-  <!-- Unbounded -->
+  <title>L'Équipe – APH</title>
+  <meta name="description" content="Le bureau et les responsables de pôles de l'association Affaires Publiques HEIP." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=2" />
+</head>
 
-<link rel="stylesheet" href="styles.css?v=2" />
+<body>
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="index.html" aria-label="Accueil">
-      <div class="logo" aria-hidden="true"><img src="logo.png" alt="" /></div>
-      <div>
-        <strong>APH</strong>
-        <small>Affaires Publiques HEIP</small>
-      </div>
+    <a class="brand" href="index.html">
+      <div class="logo"><img src="logo.png" alt="" /></div>
+      <div><strong>APH</strong><small>Affaires Publiques HEIP</small></div>
     </a>
-
-    <nav class="nav-links" aria-label="Navigation principale">
-      <a data-nav href="index.html">Accueil</a>
-      <a data-nav href="evenements.html">Événements</a>
-      <a data-nav href="briefs.html">Policy Briefs</a>
-      <a data-nav href="equipe.html">Équipe</a>
-      </nav>
-
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="evenements.html">Événements</a>
+      <a href="briefs.html">Policy Briefs</a>
+      <a href="equipe.html" class="active">Équipe</a>
+    </nav>
     <div class="nav-actions">
       <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
-
-      <button class="burger mobile-only" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="burger mobile-only" id="navToggle"><span></span><span></span><span></span></button>
     </div>
   </div>
-
-  <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
-    <a data-nav href="index.html">Accueil</a>
-    <a data-nav href="evenements.html">Événements</a>
-    <a data-nav href="briefs.html">Policy Briefs</a>
-    <a data-nav href="equipe.html">Équipe</a>
-    <a class="btn primary" href="rejoindre.html" style="width:100%; margin-top:10px; justify-content:center;">Rejoindre</a>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Accueil</a>
+    <a href="evenements.html">Événements</a>
+    <a href="briefs.html">Policy Briefs</a>
+    <a href="equipe.html">Équipe</a>
+    <a class="btn primary" href="rejoindre.html" style="width:100%;margin-top:10px;">Rejoindre</a>
   </div>
 </header>
 
-  <main>
-    <section>
-      <div class="wrap">
-        <div style="margin-bottom:14px;">
-          <h2>Équipe</h2>
-          <p class="sub">Voici comment se compose l'équipe d' <b>APH</b>en espérant te voir bientôt parmi nos membres !</p>
-        </div>
-
-        <div class="split">
-          <!-- Bureau -->
-          <div class="card">
-            <span class="pill">Bureau</span>
-            <div style="height:12px"></div>
-            <div id="bureauList" class="stack"></div>
-            <p id="bureauHint" class="sub" style="display:none;">Bureau non renseigné.</p>
-          </div>
-
-          <!-- Membres optionnels -->
-          <div class="card">
-            <span class="pill">Membres (optionnel)</span>
-            <div style="height:12px"></div>
-
-            <div class="split">
-              <input class="input" id="filterQ" placeholder="Rechercher (nom, rôle…)" />
-              <select class="input" id="filterPole">
-                <option value="all">Tous les pôles</option>
-              </select>
-            </div>
-
-            <div style="height:12px"></div>
-
-            <div id="membersList" class="stack"></div>
-            <p id="membersHint" class="sub" style="display:none;">Aucun membre ne correspond.</p>
-          </div>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <!-- Pôles + responsables -->
-        <div class="card">
-          <span class="pill">Pôles</span>
-          <h2 style="margin-top:12px;">Responsables de pôles</h2>
-          <p class="sub" style="margin-top:10px;">
-            Chaque pôle a un responsable + une mission (modifiables dans Decap).
-          </p>
-          <div style="height:14px"></div>
-          <div class="grid-3" id="polesGrid"></div>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="card">
-          <span class="pill">Recrutement</span>
-          <h2 style="margin-top:12px;">Construire APH avec nous</h2>
-          <p class="sub" style="margin-top:10px;">Tu peux aider même ponctuellement : rédaction, com, logistique, partenariats.</p>
-          <div style="height:12px"></div>
-          <a class="btn primary" href="rejoindre.html">Rejoindre</a>
-        </div>
+<main>
+  <section>
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Le Bureau & Les Pôles</h2>
+        <p class="sub" style="margin:10px auto 0; max-width:600px;">
+          L'équipe qui fait vivre l'association au quotidien.
+        </p>
       </div>
-    </section>
-  </main>
 
-  <footer>
-    <div class="wrap foot">
-      <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
-        <a class="admin-footer" href="/admin/" aria-label="Admin">•</a>
+      <div class="team-grid" id="teamContainer">
+        <div class="card" style="text-align:center;">Chargement...</div>
+      </div>
+
+    </div>
+  </section>
+  
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="card">
+        <div style="text-align:center;">
+          <h3>Tu veux nous aider ?</h3>
+          <p class="sub" style="margin:10px auto 16px; max-width:500px;">
+            Pas besoin d'être responsable pour participer ! Rejoins un pôle en tant que membre actif.
+          </p>
+          <a class="btn primary" href="rejoindre.html">Rejoindre un pôle</a>
+        </div>
       </div>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <script src="script.js"></script>
+<footer>
+  <div class="wrap foot">
+    <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
+    <div style="display:flex;gap:14px;">
+      <a href="mentions-legales.html">Mentions</a>
+      <a href="/admin/" class="admin-footer">•</a>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    const bureauList = document.getElementById("bureauList");
-    const bureauHint = document.getElementById("bureauHint");
-    const polesGrid = document.getElementById("polesGrid");
+<script src="script.js"></script>
+<script>
+  (async function loadTeam() {
+    const container = document.getElementById("teamContainer");
+    try {
+      // On charge le fichier JSON
+      const res = await fetch("/content/team.json");
+      if (!res.ok) throw new Error("Erreur chargement");
+      const data = await res.json();
+      
+      // On récupère la liste (bureau + responsables)
+      // Note: Assure-toi que dans l'admin tu mets tout le monde dans la même liste "team"
+      const members = Array.isArray(data.team) ? data.team : [];
 
-    const membersList = document.getElementById("membersList");
-    const membersHint = document.getElementById("membersHint");
-    const qEl = document.getElementById("filterQ");
-    const poleEl = document.getElementById("filterPole");
-
-    function escapeHtml(str) {
-      return String(str ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    let bureau = [];
-    let poles = [];
-    let members = [];
-
-    function renderBureau() {
-      bureauList.innerHTML = "";
-      if (!bureau.length) {
-        bureauHint.style.display = "block";
+      if (!members.length) {
+        container.innerHTML = `<p class="sub" style="grid-column:1/-1;text-align:center;">Aucun membre affiché pour le moment.</p>`;
         return;
       }
-      bureauHint.style.display = "none";
 
-      bureau.forEach(b => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.style.boxShadow = "none";
-        card.innerHTML = `
-          <span class="pill">${escapeHtml(b.role || "Poste")}</span>
-          <h3 style="margin-top:10px;">${escapeHtml(b.name || "À compléter")}</h3>
-        `;
-        bureauList.appendChild(card);
-      });
-    }
+      container.innerHTML = ""; // On vide le "Chargement..."
 
-    function renderPoles() {
-      polesGrid.innerHTML = "";
-      poles.forEach(p => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.style.boxShadow = "none";
-        card.innerHTML = `
-          <span class="pill">Pôle</span>
-          <h3 style="margin-top:10px;">${escapeHtml(p.title || "")}</h3>
-          <p class="sub" style="margin-top:8px;line-height:1.9;">
-            <b>Responsable :</b> ${escapeHtml(p.lead || "À compléter")}<br/>
-            <b>Mission :</b> ${escapeHtml(p.desc || "")}
-          </p>
-        `;
-        polesGrid.appendChild(card);
-      });
-    }
+      members.forEach(m => {
+        // Gestion de la photo (si pas de photo, on met une image par défaut ou une div colorée)
+        // Astuce : Si tu n'as pas de photo, on affiche un rond gris avec les initiales
+        let photoHtml = "";
+        if (m.photo) {
+          photoHtml = `<img src="${m.photo}" alt="${m.name}" class="member-photo" loading="lazy" />`;
+        } else {
+          // Fallback : initiales
+          const initials = (m.name || "?").split(" ").map(n=>n[0]).join("").slice(0,2);
+          photoHtml = `<div class="member-photo-placeholder">${initials}</div>`;
+        }
 
-    function buildPoleFilter() {
-      const set = new Set();
-      poles.forEach(p => set.add(p.title));
-      members.forEach(m => { if (m.pole) set.add(m.pole); });
-
-      poleEl.innerHTML = `<option value="all">Tous les pôles</option>`;
-      Array.from(set).filter(Boolean).sort((a,b) => a.localeCompare(b, "fr")).forEach(p => {
-        const opt = document.createElement("option");
-        opt.value = p;
-        opt.textContent = p;
-        poleEl.appendChild(opt);
-      });
-    }
-
-    function renderMembers(list) {
-      membersList.innerHTML = "";
-      if (!list.length) {
-        membersHint.style.display = "block";
-        return;
-      }
-      membersHint.style.display = "none";
-
-      list.forEach(m => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.style.boxShadow = "none";
-        card.innerHTML = `
-          <span class="pill">${escapeHtml(m.pole || "Équipe")}</span>
-          <h3 style="margin-top:10px;">${escapeHtml(m.name || "")}</h3>
-          <p class="sub" style="margin-top:6px;">${escapeHtml(m.role || "")}</p>
-        `;
-        membersList.appendChild(card);
-      });
-    }
-
-    function applyMemberFilter() {
-      const qq = (qEl.value || "").trim().toLowerCase();
-      const pp = (poleEl.value || "all").toLowerCase();
-
-      const filtered = members.filter(m => {
-        const name = (m.name || "").toLowerCase();
-        const role = (m.role || "").toLowerCase();
-        const pole = (m.pole || "").toLowerCase();
-
-        const okQ = !qq || name.includes(qq) || role.includes(qq) || pole.includes(qq);
-        const okP = (pp === "all") || pole === pp;
-
-        return okQ && okP;
-      });
-
-      renderMembers(filtered);
-    }
-
-    qEl.addEventListener("input", applyMemberFilter);
-    poleEl.addEventListener("change", applyMemberFilter);
-
-    (async function loadTeam() {
-      try {
-        const res = await fetch("/content/team.json");
-        if (!res.ok) throw new Error("team.json introuvable");
-        const data = await res.json();
-
-        bureau = Array.isArray(data.bureau) ? data.bureau : [];
-        poles = Array.isArray(data.poles) ? data.poles : [];
-        members = Array.isArray(data.members) ? data.members : [];
-
-        renderBureau();
-        renderPoles();
-        buildPoleFilter();
-        applyMemberFilter();
-      } catch (err) {
-        bureauList.innerHTML = `
-          <div class="card" style="box-shadow:none;">
-            <span class="pill">Erreur</span>
-            <p class="sub" style="margin-top:8px;line-height:1.8;">
-              Impossible de charger <b>/content/team.json</b>.
-            </p>
+        const role = m.role || "Membre actif";
+        const name = m.name || "Nom Prénom";
+        
+        // Création de la carte HTML
+        const html = `
+          <div class="card member-card">
+            <div class="photo-wrapper">
+              ${photoHtml}
+            </div>
+            <h3 style="margin-bottom:4px;">${name}</h3>
+            <span class="pill" style="font-size:10px; opacity:0.8;">${role}</span>
+            ${ m.linkedin ? `<div style="margin-top:12px;"><a href="${m.linkedin}" target="_blank" class="sub" style="font-size:11px; text-decoration:underline;">LinkedIn ↗</a></div>` : '' }
           </div>
         `;
-      }
-    })();
-  </script>
+        container.insertAdjacentHTML('beforeend', html);
+      });
+
+    } catch (err) {
+      console.error(err);
+      container.innerHTML = `<p class="sub">Impossible de charger l'équipe.</p>`;
+    }
+  })();
+</script>
 </body>
 </html>
-
-
-
-
-
