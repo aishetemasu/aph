@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>L'Équipe – APH</title>
-  <meta name="description" content="Le bureau et les responsables de pôles de l'association Affaires Publiques HEIP." />
+  <meta name="description" content="Le bureau, les responsables et les membres d'Affaires Publiques HEIP." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -42,29 +42,46 @@
   <section>
     <div class="wrap">
       <div style="text-align:center; margin-bottom:40px;">
-        <h2>Le Bureau & Les Pôles</h2>
-        <p class="sub" style="margin:10px auto 0; max-width:600px;">
-          L'équipe qui fait vivre l'association au quotidien.
-        </p>
+        <span class="pill">Direction</span>
+        <h2 style="margin-top:10px;">Le Bureau</h2>
       </div>
-
-      <div class="team-grid" id="teamContainer">
+      <div class="team-grid" id="bureauContainer">
         <div class="card" style="text-align:center;">Chargement...</div>
       </div>
-
     </div>
   </section>
-  
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom:40px;">
+         <span class="pill">Pôles</span>
+        <h2 style="margin-top:10px;">Responsables de Pôles</h2>
+      </div>
+      <div class="team-grid" id="respContainer"></div>
+    </div>
+  </section>
+
   <section style="padding-top:0;">
     <div class="wrap">
       <div class="card">
-        <div style="text-align:center;">
-          <h3>Tu veux nous aider ?</h3>
-          <p class="sub" style="margin:10px auto 16px; max-width:500px;">
-            Pas besoin d'être responsable pour participer ! Rejoins un pôle en tant que membre actif.
-          </p>
-          <a class="btn primary" href="rejoindre.html">Rejoindre un pôle</a>
-        </div>
+        <h3 style="margin-bottom:20px;">Tous les membres actifs</h3>
+        
+        <div id="membresContainer" style="display:flex; flex-wrap:wrap; gap:10px;">
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="split">
+         <div>
+            <h2>Rejoindre l'équipe</h2>
+            <p class="sub" style="margin-top:10px;">Envie de t'investir ? Rejoins un pôle !</p>
+         </div>
+         <div style="display:flex; align-items:center; justify-content:flex-end;">
+            <a class="btn primary" href="rejoindre.html">Candidater</a>
+         </div>
       </div>
     </div>
   </section>
@@ -81,58 +98,77 @@
 </footer>
 
 <script src="script.js"></script>
+
 <script>
   (async function loadTeam() {
-    const container = document.getElementById("teamContainer");
+    const bureauEl = document.getElementById("bureauContainer");
+    const respEl = document.getElementById("respContainer");
+    const membresEl = document.getElementById("membresContainer");
+
     try {
-      // On charge le fichier JSON
       const res = await fetch("/content/team.json");
       if (!res.ok) throw new Error("Erreur chargement");
       const data = await res.json();
       
-      // On récupère la liste (bureau + responsables)
-      // Note: Assure-toi que dans l'admin tu mets tout le monde dans la même liste "team"
-      const members = Array.isArray(data.team) ? data.team : [];
+      // Récupération des 3 listes
+      const bureau = Array.isArray(data.bureau) ? data.bureau : [];
+      const responsables = Array.isArray(data.responsables) ? data.responsables : [];
+      const membres = Array.isArray(data.membres) ? data.membres : [];
 
-      if (!members.length) {
-        container.innerHTML = `<p class="sub" style="grid-column:1/-1;text-align:center;">Aucun membre affiché pour le moment.</p>`;
-        return;
-      }
-
-      container.innerHTML = ""; // On vide le "Chargement..."
-
-      members.forEach(m => {
-        // Gestion de la photo (si pas de photo, on met une image par défaut ou une div colorée)
-        // Astuce : Si tu n'as pas de photo, on affiche un rond gris avec les initiales
-        let photoHtml = "";
-        if (m.photo) {
-          photoHtml = `<img src="${m.photo}" alt="${m.name}" class="member-photo" loading="lazy" />`;
-        } else {
-          // Fallback : initiales
-          const initials = (m.name || "?").split(" ").map(n=>n[0]).join("").slice(0,2);
-          photoHtml = `<div class="member-photo-placeholder">${initials}</div>`;
+      // --- FONCTION POUR AFFICHER LES CARTES (Bureau & Resp) ---
+      function renderCards(list, container) {
+        container.innerHTML = "";
+        if(!list.length) {
+            container.innerHTML = `<p class="sub" style="grid-column:1/-1;text-align:center;">Aucun profil.</p>`;
+            return;
         }
 
-        const role = m.role || "Membre actif";
-        const name = m.name || "Nom Prénom";
-        
-        // Création de la carte HTML
-        const html = `
-          <div class="card member-card">
-            <div class="photo-wrapper">
-              ${photoHtml}
+        list.forEach(m => {
+          let photoHtml = "";
+          if (m.photo) {
+            photoHtml = `<img src="${m.photo}" alt="${m.name}" class="member-photo" loading="lazy" />`;
+          } else {
+            // Initiales si pas de photo
+            const initials = (m.name || "?").split(" ").map(n=>n[0]).join("").slice(0,2);
+            photoHtml = `<div class="member-photo-placeholder">${initials}</div>`;
+          }
+
+          const html = `
+            <div class="card member-card">
+              <div class="photo-wrapper">${photoHtml}</div>
+              <h3 style="margin-bottom:4px; font-size:16px;">${m.name || "Nom"}</h3>
+              <span class="sub" style="font-size:12px; color:rgba(255,255,255,0.6);">${m.role || ""}</span>
+              ${ m.linkedin ? `<div style="margin-top:10px;"><a href="${m.linkedin}" target="_blank" class="pill" style="font-size:10px; padding:4px 8px;">LinkedIn</a></div>` : '' }
             </div>
-            <h3 style="margin-bottom:4px;">${name}</h3>
-            <span class="pill" style="font-size:10px; opacity:0.8;">${role}</span>
-            ${ m.linkedin ? `<div style="margin-top:12px;"><a href="${m.linkedin}" target="_blank" class="sub" style="font-size:11px; text-decoration:underline;">LinkedIn ↗</a></div>` : '' }
-          </div>
-        `;
-        container.insertAdjacentHTML('beforeend', html);
-      });
+          `;
+          container.insertAdjacentHTML('beforeend', html);
+        });
+      }
+
+      // --- AFFICHAGE BUREAU & RESPONSABLES ---
+      renderCards(bureau, bureauEl);
+      renderCards(responsables, respEl);
+
+      // --- AFFICHAGE MEMBRES (Format simple badge) ---
+      membresEl.innerHTML = "";
+      if(!membres.length) {
+          membresEl.innerHTML = `<p class="sub">La liste des membres est vide pour l'instant.</p>`;
+      } else {
+          membres.forEach(m => {
+            // Un style "Badge" simple : Nom (Rôle)
+            const html = `
+              <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:8px 12px; font-size:13px; display:flex; gap:6px; align-items:center;">
+                <span style="font-weight:600;">${m.name}</span>
+                <span style="color:rgba(255,255,255,0.5); font-size:12px;">• ${m.role || "Membre"}</span>
+              </div>
+            `;
+            membresEl.insertAdjacentHTML('beforeend', html);
+          });
+      }
 
     } catch (err) {
       console.error(err);
-      container.innerHTML = `<p class="sub">Impossible de charger l'équipe.</p>`;
+      bureauEl.innerHTML = `<p class="sub">Impossible de charger l'équipe.</p>`;
     }
   })();
 </script>
