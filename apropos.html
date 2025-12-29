@@ -20,9 +20,10 @@
     </a>
     <nav class="nav-links">
       <a href="index.html">Accueil</a>
-      <a href="apropos.html" class="active">À Propos</a> <a href="evenements.html">Événements</a>
-      <a href="briefs.html">Policy Briefs</a>
-      <a href="equipe.html">Équipe</a>
+      <a data-nav href="apropos.html" class="active">À Propos</a>
+      <a data-nav href="evenements.html">Événements</a>
+      <a data-nav href="briefs.html">Policy Briefs</a>
+      <a data-nav href="equipe.html">Équipe</a>
     </nav>
     <div class="nav-actions">
       <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
@@ -46,7 +47,7 @@
         <span class="pill">Notre Identité</span>
         <h1 style="margin-top:16px;">Penser, Débattre, Agir.</h1>
         <p class="lead">
-          APH est la première association d'HEIP entièrement dédiée à la pratique des Affaires Publiques et au fonctionnement des institutions.
+          APH est l'association de référence à HEIP dédiée à la pratique concrète des Affaires Publiques et au fonctionnement des institutions.
         </p>
       </div>
     </div>
@@ -56,12 +57,12 @@
     <div class="wrap">
       <div class="split" style="align-items:center;">
         <div>
-          <h2>Notre Genèse</h2>
+          <h2>La Renaissance d'APH</h2>
           <p class="sub" style="margin-bottom:20px;">
-            La vie associative d'HEIP est riche, mais un vide existait : aucune structure ne permettait de se plonger concrètement dans l'élaboration des politiques publiques ou la gestion des affaires gouvernementales.
+            La vie associative d'HEIP est riche, mais un vide persistait : l'association dédiée aux affaires publiques était inactive. Nous avons décidé de la <strong>reprendre et de la relancer</strong>.
           </p>
           <p class="sub">
-            Nous avons créé APH pour combler ce manque. Au-delà des cours théoriques, nous offrons un <strong>laboratoire d'application</strong> pour comprendre les rouages de l'État, des collectivités et de l'Europe.
+            Notre objectif est de combler ce manque en offrant, au-delà des cours théoriques, un véritable <strong>laboratoire d'application</strong> pour comprendre les rouages de l'État, des collectivités et de l'Europe.
           </p>
         </div>
         <div class="card" style="padding:40px; text-align:center;">
@@ -92,7 +93,7 @@
             <div style="padding:10px;">
                 <h3 style="color:var(--aph-white);">Exigence Intellectuelle</h3>
                 <p class="sub">
-                    Contre la désinformation et la partisanerie, nous prônons l'analyse de fond. Nos notes et conférences sont préparées avec rigueur pour garantir une réelle valeur ajoutée académique.
+                    Contre la désinformation, nous prônons l'analyse de fond. Nos notes et conférences sont préparées avec rigueur pour garantir une réelle valeur ajoutée académique.
                 </p>
             </div>
         </div>
@@ -102,12 +103,13 @@
 
   <section>
     <div class="wrap">
-      <div style="text-align:center; margin-bottom:40px;">
+      <div style="text-align:center; margin-bottom:40px; width:100%;">
         <h2>Nos Pôles d'Action</h2>
-        <p class="sub">Une structure pensée pour couvrir toutes les facettes du métier.</p>
+        <p class="sub" style="margin:10px auto 0; display:inline-block;">Une structure pensée pour couvrir toutes les facettes du métier.</p>
       </div>
       
-      <div class="grid-3">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+        
         <div class="card">
             <span class="pill" style="margin-bottom:14px;">Immersion</span>
             <h3>Simulations & Visites</h3>
@@ -115,6 +117,7 @@
                 Incarner un député, négocier un amendement, visiter l'Assemblée ou un Ministère. Nous apprenons en faisant.
             </p>
         </div>
+
         <div class="card">
             <span class="pill" style="margin-bottom:14px;">Échange</span>
             <h3>Conférences & Débats</h3>
@@ -122,13 +125,23 @@
                 Des rencontres de haut niveau avec des élus, hauts-fonctionnaires et experts pour décrypter l'actualité sans filtre.
             </p>
         </div>
+
         <div class="card">
             <span class="pill" style="margin-bottom:14px;">Réflexion</span>
-            <h3>Recherche & Publications</h3>
+            <h3>Publications (Recherche)</h3>
             <p class="sub">
-                Rédaction de Policy Briefs et notes d'analyse. Nous produisons du contenu pour contribuer au débat public.
+                Rédaction de Policy Briefs et notes d'analyse. Nous produisons du contenu pour contribuer au débat public et valoriser l'expertise étudiante.
             </p>
         </div>
+
+        <div class="card">
+            <span class="pill" style="margin-bottom:14px;">Rayonnement</span>
+            <h3>Com' & Partenariats</h3>
+            <p class="sub">
+                Gérer l'image de l'asso, nouer des liens avec d'autres structures et promouvoir nos événements auprès des étudiants et professionnels.
+            </p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -139,7 +152,7 @@
          <div>
             <h2>Rejoignez l'aventure</h2>
             <p class="sub" style="margin-top:10px;">
-                Que vous soyez en Bachelor ou en Master, expert ou novice, votre place est parmi nous.
+                Que vous soyez en Bachelor ou en Master, expert ou novice, votre place est parmi nous pour relancer cette dynamique.
             </p>
          </div>
          <div style="display:flex; align-items:center; justify-content:flex-end;">
@@ -163,3 +176,5 @@
 <script src="script.js"></script>
 </body>
 </html>
+
+
