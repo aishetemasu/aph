@@ -22,15 +22,23 @@
   "responsables": [
     {
       "name": "Nom Resp 1",
-      "role": "Resp. Communication",
+      "role": "Resp. Pôle Conférences & Débats ",
       "photo": "",
       "linkedin": ""
     },
     {
       "name": "Nom Resp 2",
-      "role": "Resp. Événementiel",
+      "role": "Resp. Pôle Simulations & Visites",
       "photo": "",
       "linkedin": ""
+    },
+    {
+      "name": "Nom Resp 3",
+      "role": "Resp. Pôle Publications"
+    },
+    {
+      "name": "Nom Resp 4",
+      "role": "Resp. Pôle Communication & Partenariats"
     }
   ],
   "membres": [
