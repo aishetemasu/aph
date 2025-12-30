@@ -2,33 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    
    <url>
-      <loc>https://apheip.netlify.app/</loc>
+      <loc>https://apheip.fr/</loc>
       <lastmod>2023-10-01</lastmod>
       <priority>1.00</priority>
    </url>
 
    <url>
-      <loc>https://apheip.netlify.app/apropos.html</loc>
+      <loc>https://apheip.fr/apropos.html</loc>
       <priority>0.80</priority>
    </url>
 
    <url>
-      <loc>https://apheip.netlify.app/equipe.html</loc>
+      <loc>https://apheip.fr/equipe.html</loc>
       <priority>0.80</priority>
    </url>
 
    <url>
-      <loc>https://apheip.netlify.app/evenements.html</loc>
+      <loc>https://apheip.fr/evenements.html</loc>
       <priority>0.80</priority>
    </url>
 
    <url>
-      <loc>https://apheip.netlify.app/briefs.html</loc>
+      <loc>https://apheip.fr/briefs.html</loc>
       <priority>0.80</priority>
    </url>
 
    <url>
-      <loc>https://apheip.netlify.app/rejoindre.html</loc>
+      <loc>https://apheip.fr/rejoindre.html</loc>
       <priority>0.70</priority>
    </url>
 
