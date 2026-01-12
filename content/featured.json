@@ -17,6 +17,11 @@
       "title": "test",
       "sub": "test",
       "link": ""
+    },
+    {
+      "pill": "Info",
+      "title": "Bonne année a tous ",
+      "sub": "bonne année"
     }
   ]
 }
