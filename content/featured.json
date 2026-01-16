@@ -7,15 +7,10 @@
       "link": "https://docs.google.com/forms/d/e/1FAIpQLSdhPD2Fw7pKQJN17aw6IqOoCXtlm9Cfa937x7NlukZY7HKadA/viewform"
     },
     {
-      "pill": "Arrivée d'Erwann",
-      "title": "Merci à lui, texte modifiable depuis l'admin.",
-      "sub": "Tésorier",
-      "link": "https://www.linkedin.com/in/erwan-poussier-79b839227/"
-    },
-    {
-      "pill": "Visio ",
-      "title": "Visio avec la meilleure asso aka la wise",
-      "sub": "wise"
+      "pill": "TEST",
+      "title": "Texte modifiable depuis l'admin.",
+      "sub": "Test",
+      "link": ""
     }
   ]
 }
