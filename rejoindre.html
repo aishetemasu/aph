@@ -24,6 +24,57 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <style>
+    /* La carte qui contient le bouton */
+    .helloasso-card {
+        background-color: #f9f9f9; /* Fond très neutre pour s'intégrer au site */
+        border: 1px solid rgba(71,7,0,0.1); /* Bordure subtile couleur APH */
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        margin-bottom: 30px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .helloasso-card h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: rgba(71,7,0,0.88); /* COULEUR APH */
+        font-size: 1.4rem;
+    }
+
+    .helloasso-card p {
+        color: #4a4a4a;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+    }
+
+    /* Le BOUTON aux couleurs du site */
+    .btn-helloasso {
+        background-color: rgba(71,7,0,0.95); /* COULEUR APH (Bordeaux fonce) */
+        color: white;
+        padding: 14px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-family: 'Unbounded', sans-serif; /* Ta police titre */
+        font-size: 0.95rem;
+        display: inline-block;
+        transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+
+    .btn-helloasso:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(71, 7, 0, 0.2);
+        opacity: 0.9;
+        color: white;
+    }
+  </style>
 </head>
 
 <body>
@@ -68,7 +119,7 @@
   <main>
     <section>
       <div class="wrap">
-        <div style="margin-bottom:14px;">
+        <div style="margin-bottom:20px;">
           <h2>Rejoindre APH</h2>
            <p class="sub">
   L’association est ouverte à tous, du Bachelor au Master. <b>Aucune compétence préalable n’est requise</b> : 
@@ -76,18 +127,25 @@
           </p>
         </div>
 
+        <div class="helloasso-card">
+            <h3>Adhérer à l'association 💳</h3>
+            <p>
+                Tu souhaites devenir membre officiel ? L'adhésion se fait directement en ligne via notre plateforme sécurisée HelloAsso.
+            </p>
+            <a href="#" target="_blank" class="btn-helloasso">
+               Prendre mon adhésion HelloAsso
+            </a>
+        </div>
         <div class="split">
-          <!-- Colonne gauche : Formulaire Netlify -->
           <div class="card">
             <span class="pill">Candidature / Nous contacter </span>
-            <h2 style="margin-top:12px;">Formulaire</h2>
+            <h2 style="margin-top:12px;">Formulaire de recrutement</h2>
             <p class="sub" style="margin-top:10px; line-height:1.9;">
-              Remplis ce formulaire : Nous receverons ton message et nous te recontacterons <b> le plus rapidement possible ! </b> 
+              Remplis ce formulaire pour postuler à un pôle ou nous poser une question. Nous te recontacterons <b>le plus rapidement possible !</b> 
             </p>
 
             <div style="height:14px"></div>
 
-            <!-- NETLIFY FORM -->
             <form
               name="candidature-aph"
               method="POST"
@@ -96,10 +154,8 @@
               action="merci.html"
               class="stack"
             >
-              <!-- Obligatoire pour Netlify -->
               <input type="hidden" name="form-name" value="candidature-aph" />
 
-              <!-- Honeypot anti-spam (caché) -->
               <p style="display:none;">
                 <label>Ne pas remplir : <input name="bot-field" /></label>
               </p>
@@ -125,7 +181,6 @@
                   required
                 ></textarea>
 
-                <!-- RGPD (simple et clean) -->
                 <label class="sub" style="display:flex; gap:10px; align-items:flex-start; margin:0; line-height:1.6;">
                   <input type="checkbox" name="rgpd" required style="margin-top:3px;">
                   <span>
@@ -146,7 +201,6 @@
             </form>
           </div>
 
-          <!-- Colonne droite : Contact / Infos -->
           <div class="card" id="contact">
             <span class="pill">Contact</span>
             <h2 style="margin-top:12px;">Écrire à l’association</h2>
@@ -200,26 +254,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
