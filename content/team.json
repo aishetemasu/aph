@@ -27,14 +27,19 @@
       "linkedin": ""
     },
     {
-      "name": "Noah Fosse & Raphaël Genestier",
+      "name": "Noah Fosse",
       "role": "Resp. Pôle Simulations & Visites",
-      "photo": "",
+      "photo": "/assets/uploads/3350d609-d924-4493-bd95-dc4d6433135b.jpg",
       "linkedin": ""
     },
     {
+      "name": "Raphaël Genestier",
+      "role": "Resp. Pôle Simulations & Visites"
+    },
+    {
       "name": "Antoine Fevre Caquille",
-      "role": "Resp. Pôle Publications"
+      "role": "Resp. Pôle Publications",
+      "photo": "/assets/uploads/image.jpeg"
     },
     {
       "name": "Sarah Boulligny",
