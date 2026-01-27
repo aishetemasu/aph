@@ -30,21 +30,24 @@
       "name": "Noah Fosse",
       "role": "Resp. Pôle Simulations & Visites",
       "photo": "/assets/uploads/3350d609-d924-4493-bd95-dc4d6433135b.jpg",
-      "linkedin": ""
+      "linkedin": "https://www.linkedin.com/in/noah-fosse-5640b6367/"
     },
     {
       "name": "Raphaël Genestier",
-      "role": "Resp. Pôle Simulations & Visites"
+      "role": "Resp. Pôle Simulations & Visites",
+      "linkedin": "https://www.linkedin.com/in/raphaël-g-abbb71317/"
     },
     {
       "name": "Antoine Fevre Caquille",
       "role": "Resp. Pôle Publications",
-      "photo": "/assets/uploads/image.jpeg"
+      "photo": "/assets/uploads/image.jpeg",
+      "linkedin": "https://www.linkedin.com/in/antoine-fevre-caquille-468871331/"
     },
     {
       "name": "Sarah Boulligny",
       "role": "Resp. Pôle Communication & Partenariats",
-      "photo": "/assets/uploads/1763815451943.jpeg"
+      "photo": "/assets/uploads/1763815451943.jpeg",
+      "linkedin": "https://www.linkedin.com/in/sarah-boulligny-525775269/"
     }
   ],
   "membres": [
