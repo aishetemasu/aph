@@ -1,20 +1,12 @@
 {
   "events": [
     {
-      "title": "Visite de l'assemblée nationale",
-      "cat": "visite",
-      "date": "01/01/2026",
-      "lieu": "Paris",
-      "desc": "Visite de l'assemblée nationale, organisée par APH",
-      "form": "https://forms.gle/yW3o3V4okkwGbipe8"
-    },
-    {
-      "title": "arrivée d'Erwann",
-      "cat": "rencontre",
-      "date": "22/12/2025",
-      "lieu": "Paris",
-      "desc": "test test test ",
-      "form": "https://www.linkedin.com/in/elyes-hached-869a90231/"
+      "title": "Simulation parlementaire en collaboration avec Theatrum mundi",
+      "cat": "simulation",
+      "date": "05/02/2026",
+      "lieu": "HEIP",
+      "desc": "Theatrum Mundi, en collaboration avec APH, vous propose de participer à une simulation parlementaire immersive.\n\nAu programme : formation, débats en séance, négociations, prises de parole et compréhension concrète du fonctionnement des institutions.\n\n📅 Jeudi 05 février 2026\n📍 Salle communiquée prochainement\n⏰ 15h - 18h45",
+      "form": "https://forms.gle/TgwBcAC8PbifDPKB9"
     }
   ]
 }
