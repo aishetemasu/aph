@@ -1,16 +1,10 @@
 {
   "items": [
     {
-      "pill": "Visite test",
-      "title": "Visite de l'assemblée nationale bientôt !",
-      "sub": "Assemblée nationale",
-      "link": "https://docs.google.com/forms/d/e/1FAIpQLSdhPD2Fw7pKQJN17aw6IqOoCXtlm9Cfa937x7NlukZY7HKadA/viewform"
-    },
-    {
-      "pill": "TEST",
-      "title": "Texte modifiable depuis l'admin.",
-      "sub": "Test",
-      "link": ""
+      "title": "Theatrum Mundi, en collaboration avec APH, vous propose de participer à une simulation parlementaire immersive.\n\nAu programme : formation, débats en séance, négociations, prises de parole et compréhension concrète du fonctionnement des institutions.\n\n📅 Jeudi 05 février 2026\n📍 Salle communiquée prochainement\n⏰ 15h - 18h45",
+      "pill": "Simulation parlementaire",
+      "link": "https://forms.gle/VLaGqnnjBq3k3Jcv7",
+      "sub": ""
     }
   ]
 }
