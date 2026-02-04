@@ -9,9 +9,9 @@ collections:
   - name: "content"
     label: "Contenus du site"
     files:
-      # --- 1. ACCUEIL ---
+      # --- 1. ACCUEIL - À LA UNE ---
       - name: "featured"
-        label: "Accueil - À la une"
+        label: "Accueil - À la une (Texte)"
         file: "content/featured.json"
         fields:
           - name: "items"
@@ -23,7 +23,19 @@ collections:
               - { name: "sub", label: "Sous-texte (Gris)", widget: "string", required: false }
               - { name: "link", label: "Lien (optionnel)", widget: "string", required: false }
 
-      # --- 2. ÉVÉNEMENTS ---
+      # --- 2. ACCUEIL - GALERIE PHOTO (NOUVEAU) ---
+      - name: "gallery"
+        label: "Accueil - Galerie Photos"
+        file: "content/gallery.json"
+        fields:
+          - name: "photos"
+            label: "Liste des photos"
+            widget: "list"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Légende (optionnel)", name: "caption", widget: "string", required: false}
+
+      # --- 3. ÉVÉNEMENTS ---
       - name: "events"
         label: "Page Événements"
         file: "content/events.json"
@@ -33,13 +45,14 @@ collections:
             widget: "list"
             fields:
               - { name: "title", label: "Titre", widget: "string" }
+              - { name: "image", label: "Image de couverture", widget: "image", required: false } 
               - { name: "cat", label: "Catégorie", widget: "select", options: ["cafe-debat","visite","simulation","rencontre"] }
               - { name: "date", label: "Date (texte)", widget: "string" }
               - { name: "lieu", label: "Lieu", widget: "string" }
               - { name: "desc", label: "Description", widget: "text" }
               - { name: "form", label: "Lien Google Form (inscription)", widget: "string", required: false }
 
-      # --- 3. POLICY BRIEFS ---
+      # --- 4. POLICY BRIEFS ---
       - name: "briefs"
         label: "Page Policy Briefs"
         file: "content/briefs.json"
@@ -54,12 +67,11 @@ collections:
               - { name: "reco", label: "Recommandation", widget: "text" }
               - { name: "pdf", label: "Lien PDF (optionnel)", widget: "string", required: false }
 
-      # --- 4. ÉQUIPE (NOUVELLE VERSION) ---
+      # --- 5. ÉQUIPE ---
       - name: "team"
         label: "Page Équipe"
         file: "content/team.json"
         fields:
-          # A. LE BUREAU
           - name: "bureau"
             label: "1. Le Bureau"
             widget: "list"
@@ -69,7 +81,6 @@ collections:
               - {label: "Photo", name: "photo", widget: "image", required: false}
               - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
 
-          # B. RESPONSABLES
           - name: "responsables"
             label: "2. Responsables de Pôles"
             widget: "list"
@@ -79,7 +90,6 @@ collections:
               - {label: "Photo", name: "photo", widget: "image", required: false}
               - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
 
-          # C. MEMBRES
           - name: "membres"
             label: "3. Tous les membres"
             widget: "list"
