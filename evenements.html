@@ -18,9 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
@@ -97,7 +97,6 @@
     </section>
   </main>
 
-  <!-- Modal -->
   <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal" role="dialog" aria-modal="true" aria-label="Détail événement">
       <div class="modal-header">
@@ -178,6 +177,8 @@
         const lieu = ev.lieu || "";
         const desc = ev.desc || "";
         const form = ev.form || "";
+        // NOUVEAU : Récupération de l'image
+        const image = ev.image || ""; 
 
         const actionsHtml = form
           ? `
@@ -208,17 +209,36 @@
 
         const card = document.createElement("div");
         card.className = "card";
+        // On retire le padding par défaut si on met une image, pour qu'elle colle aux bords
+        if(image) {
+            card.style.padding = "0";
+            card.style.overflow = "hidden"; // pour que l'image respecte le border-radius
+        }
+
+        // Construction du HTML de la carte
+        let imageHtml = "";
+        if (image) {
+            imageHtml = `<img src="${escapeHtml(image)}" class="event-card-img" alt="Couverture événement">`;
+        }
+
+        // Si y a une image, on ajoute du padding au contenu texte en dessous
+        const contentStyle = image ? 'padding:18px;' : '';
 
         card.innerHTML = `
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-            <div>
-              <span class="pill">${escapeHtml(cat || "événement")}</span>
-              <h3 style="margin-top:10px;">${escapeHtml(title)}</h3>
-              <p class="sub" style="margin-top:8px;">
-                ${escapeHtml(date)}${date && lieu ? " • " : ""}${escapeHtml(lieu)}
-              </p>
-            </div>
-            ${actionsHtml}
+          ${imageHtml}
+          <div style="${contentStyle}">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+                <div>
+                  <span class="pill">${escapeHtml(cat || "événement")}</span>
+                  <h3 style="margin-top:10px;">${escapeHtml(title)}</h3>
+                  <p class="sub" style="margin-top:8px;">
+                    ${escapeHtml(date)}${date && lieu ? " • " : ""}${escapeHtml(lieu)}
+                  </p>
+                </div>
+                <div style="margin-top:10px;">
+                    ${actionsHtml}
+                </div>
+              </div>
           </div>
         `;
 
@@ -244,7 +264,7 @@
     qEl.addEventListener("input", applyFilter);
     catEl.addEventListener("change", applyFilter);
 
-    // Ouvre la modal
+    // Ouvre la modal (inchangé)
     document.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-event-open]");
       if (!btn) return;
@@ -284,7 +304,7 @@
       `);
     });
 
-    // Charge les événements depuis Decap JSON
+    // Charge les événements
     (async function loadEvents() {
       try {
         const res = await fetch("/content/events.json");
@@ -307,17 +327,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
