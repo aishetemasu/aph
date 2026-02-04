@@ -15,6 +15,14 @@
       "lieu": "test",
       "desc": "test",
       "image": "/assets/uploads/whatsapp-image-2026-02-04-at-02.11.30.jpeg"
+    },
+    {
+      "title": "test",
+      "cat": "cafe-debat",
+      "date": "09/02/2006",
+      "lieu": "test",
+      "desc": "test",
+      "form": "test"
     }
   ]
 }
