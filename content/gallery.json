@@ -1,7 +1,8 @@
 {
   "photos": [
     {
-      "image": "/assets/uploads/whatsapp-image-2026-02-04-at-02.11.30.jpeg"
+      "image": "/assets/uploads/whatsapp-image-2026-02-04-at-02.11.30.jpeg",
+      "caption": "tes test "
     }
   ]
 }
