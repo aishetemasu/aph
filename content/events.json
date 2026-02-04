@@ -22,7 +22,8 @@
       "date": "09/02/2006",
       "lieu": "test",
       "desc": "test",
-      "form": "test"
+      "form": "test",
+      "image": "/assets/uploads/logo.png"
     }
   ]
 }
