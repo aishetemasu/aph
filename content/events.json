@@ -7,6 +7,14 @@
       "lieu": "HEIP",
       "desc": "Theatrum Mundi, en collaboration avec APH, vous propose de participer à une simulation parlementaire immersive.\n\nAu programme : formation, débats en séance, négociations, prises de parole et compréhension concrète du fonctionnement des institutions.\n\n📅 Jeudi 05 février 2026\n📍 Salle communiquée prochainement\n⏰ 15h - 18h45",
       "form": "https://forms.gle/TgwBcAC8PbifDPKB9"
+    },
+    {
+      "title": "test",
+      "cat": "visite",
+      "date": "09/02/2006",
+      "lieu": "test",
+      "desc": "test",
+      "image": "/assets/uploads/whatsapp-image-2026-02-04-at-02.11.30.jpeg"
     }
   ]
 }
