@@ -108,9 +108,8 @@
 
     <section id="gallerySection" style="display:none;">
       <div class="wrap">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;">
+        <div style="margin-bottom:14px;">
            <h2>Retour en images</h2>
-           <p class="sub desktop-only">Glisser pour voir plus →</p>
         </div>
         
         <div class="gallery-scroll" id="galleryContainer">
@@ -233,7 +232,7 @@
       }
     })();
 
-    // 2. CHARGEMENT GALERIE PHOTO (NOUVEAU)
+    // 2. CHARGEMENT GALERIE PHOTO
     (async function loadGallery() {
         const section = document.getElementById("gallerySection");
         const container = document.getElementById("galleryContainer");
@@ -267,7 +266,7 @@
             });
 
         } catch (err) {
-            console.warn("Pas de galerie chargée (c'est normal si vous n'avez pas encore mis de photos).");
+            console.warn("Pas de galerie chargée.");
         }
     })();
   </script>
