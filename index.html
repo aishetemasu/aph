@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -186,7 +186,7 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=6"></script>
 
   <script>
     // 1. CHARGEMENT INFOS "À LA UNE"
@@ -232,25 +232,40 @@
       }
     })();
 
-    // 2. CHARGEMENT GALERIE PHOTO
+    // 2. CHARGEMENT GALERIE PHOTO (Nouveau script compatible Groupes)
     (async function loadGallery() {
         const section = document.getElementById("gallerySection");
         const container = document.getElementById("galleryContainer");
         
         try {
             const res = await fetch("/content/gallery.json");
-            if (!res.ok) return; // Si pas de fichier, on ne montre rien
+            if (!res.ok) return;
             
             const data = await res.json();
-            const photos = Array.isArray(data.photos) ? data.photos : [];
             
-            if (photos.length === 0) return; // Si liste vide, on cache
+            // On récupère toutes les photos, qu'elles soient en groupes ou en liste simple
+            let allPhotos = [];
 
-            // Si on a des photos, on affiche la section
+            // Cas 1 : Structure par Groupes (Nouveau)
+            if (data.photo_groups && Array.isArray(data.photo_groups)) {
+                data.photo_groups.forEach(group => {
+                    if (group.images && Array.isArray(group.images)) {
+                        allPhotos = allPhotos.concat(group.images);
+                    }
+                });
+            } 
+            // Cas 2 : Ancienne structure (Liste simple) - Rétrocompatibilité
+            else if (data.photos && Array.isArray(data.photos)) {
+                allPhotos = data.photos;
+            }
+            
+            if (allPhotos.length === 0) return;
+
+            // Affichage
             section.style.display = "block";
             container.innerHTML = "";
 
-            photos.forEach(p => {
+            allPhotos.forEach(p => {
                 if(!p.image) return;
                 const captionHTML = p.caption 
                     ? `<div class="gallery-caption">${String(p.caption).replaceAll('<','&lt;')}</div>` 
@@ -272,4 +287,3 @@
   </script>
 </body>
 </html>
-
