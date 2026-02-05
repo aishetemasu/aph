@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="styles.css" />
 
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -122,7 +123,7 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=6"></script>
 
   <script>
     const listEl = document.getElementById("eventsList");
@@ -177,53 +178,48 @@
         const lieu = ev.lieu || "";
         const desc = ev.desc || "";
         const form = ev.form || "";
-        // NOUVEAU : Récupération de l'image
         const image = ev.image || ""; 
+        const photos = ev.photos_link || ""; // Nouveau champ Drive
 
-        const actionsHtml = form
-          ? `
-            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
-              <a class="btn primary" href="${escapeHtml(form)}" target="_blank" rel="noopener">S’inscrire</a>
-              <a class="btn" href="#"
-                 data-event-open="1"
-                 data-title="${escapeHtml(title)}"
-                 data-date="${escapeHtml(date)}"
-                 data-lieu="${escapeHtml(lieu)}"
-                 data-desc="${escapeHtml(desc)}"
-                 data-form="${escapeHtml(form)}">
-                Détails
-              </a>
-            </div>
-          `
-          : `
+        // Bouton Inscription (si lien form)
+        const btnForm = form 
+            ? `<a class="btn primary" href="${escapeHtml(form)}" target="_blank" rel="noopener">S’inscrire</a>` 
+            : "";
+        
+        // Bouton Photos (si lien photos)
+        const btnPhotos = photos
+            ? `<a class="btn" href="${escapeHtml(photos)}" target="_blank" rel="noopener" style="border-color:rgba(255,255,255,0.4);">📂 Photos</a>`
+            : "";
+
+        // Bouton Détails (toujours là)
+        const btnDetails = `
             <a class="btn" href="#"
                data-event-open="1"
                data-title="${escapeHtml(title)}"
                data-date="${escapeHtml(date)}"
                data-lieu="${escapeHtml(lieu)}"
                data-desc="${escapeHtml(desc)}"
-               data-form="">
+               data-form="${escapeHtml(form)}"
+               data-photos="${escapeHtml(photos)}">
               Détails
             </a>
-          `;
+        `;
 
         const card = document.createElement("div");
         card.className = "card";
-        // On retire le padding par défaut si on met une image, pour qu'elle colle aux bords
         if(image) {
             card.style.padding = "0";
-            card.style.overflow = "hidden"; // pour que l'image respecte le border-radius
+            card.style.overflow = "hidden";
         }
 
-        // Construction du HTML de la carte
         let imageHtml = "";
         if (image) {
             imageHtml = `<img src="${escapeHtml(image)}" class="event-card-img" alt="Couverture événement">`;
         }
 
-        // Si y a une image, on ajoute du padding au contenu texte en dessous
         const contentStyle = image ? 'padding:18px;' : '';
 
+        // On affiche les boutons dans l'ordre : Photos - Détails - Inscription
         card.innerHTML = `
           ${imageHtml}
           <div style="${contentStyle}">
@@ -236,7 +232,11 @@
                   </p>
                 </div>
                 <div style="margin-top:10px;">
-                    ${actionsHtml}
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+                      ${btnPhotos}
+                      ${btnDetails}
+                      ${btnForm}
+                    </div>
                 </div>
               </div>
           </div>
@@ -264,7 +264,7 @@
     qEl.addEventListener("input", applyFilter);
     catEl.addEventListener("change", applyFilter);
 
-    // Ouvre la modal (inchangé)
+    // Ouvre la modal
     document.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-event-open]");
       if (!btn) return;
@@ -275,10 +275,16 @@
       const lieu = btn.getAttribute("data-lieu") || "";
       const desc = btn.getAttribute("data-desc") || "";
       const form = btn.getAttribute("data-form") || "";
+      const photos = btn.getAttribute("data-photos") || "";
 
-      const formBtn = form
+      // Boutons dans la modal
+      const modalBtnForm = form
         ? `<a class="btn primary" href="${escapeHtml(form)}" target="_blank" rel="noopener">S’inscrire (Google Form)</a>`
-        : `<a class="btn primary" href="rejoindre.html">Rejoindre</a>`;
+        : "";
+      
+      const modalBtnPhotos = photos
+        ? `<a class="btn" href="${escapeHtml(photos)}" target="_blank" rel="noopener">📂 Voir l'album photos</a>`
+        : "";
 
       openModal(title, `
         <div class="split" style="gap:12px;">
@@ -298,7 +304,8 @@
         <div style="height:14px"></div>
 
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-          ${formBtn}
+          ${modalBtnForm}
+          ${modalBtnPhotos}
           <a class="btn" href="rejoindre.html">Contacter APH</a>
         </div>
       `);
@@ -327,4 +334,3 @@
   </script>
 </body>
 </html>
-
