@@ -1,3 +1,31 @@
 {
-  "photos": []
+  "photos": [],
+  "photo_groups": [
+    {
+      "album_name": "Simulation 05/02/2026 - HEIP",
+      "images": [
+        {
+          "image": "/assets/uploads/p1103787.jpg"
+        },
+        {
+          "image": "/assets/uploads/p1103551.jpg"
+        },
+        {
+          "image": "/assets/uploads/p1103796.jpg"
+        },
+        {
+          "image": "/assets/uploads/p1103637.jpg"
+        },
+        {
+          "image": "/assets/uploads/p1103727.jpg"
+        },
+        {
+          "image": "/assets/uploads/p1103808.jpg"
+        },
+        {
+          "image": "/assets/uploads/p1103520.jpg"
+        }
+      ]
+    }
+  ]
 }
