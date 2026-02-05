@@ -23,17 +23,22 @@ collections:
               - { name: "sub", label: "Sous-texte (Gris)", widget: "string", required: false }
               - { name: "link", label: "Lien (optionnel)", widget: "string", required: false }
 
-      # --- 2. ACCUEIL - GALERIE PHOTO (NOUVEAU) ---
+      # --- 2. ACCUEIL - GALERIE PHOTO (NOUVEAU SYSTÈME DE GROUPES) ---
       - name: "gallery"
         label: "Accueil - Galerie Photos"
         file: "content/gallery.json"
         fields:
-          - name: "photos"
-            label: "Liste des photos"
+          - name: "photo_groups"
+            label: "Albums / Événements"
             widget: "list"
             fields:
-              - {label: "Photo", name: "image", widget: "image"}
-              - {label: "Légende (optionnel)", name: "caption", widget: "string", required: false}
+              - {label: "Nom de l'album (ex: Conférence Climat)", name: "album_name", widget: "string"}
+              - name: "images"
+                label: "Photos de cet album"
+                widget: "list"
+                fields:
+                   - {label: "Photo", name: "image", widget: "image"}
+                   - {label: "Légende (optionnel)", name: "caption", widget: "string", required: false}
 
       # --- 3. ÉVÉNEMENTS ---
       - name: "events"
@@ -50,7 +55,8 @@ collections:
               - { name: "date", label: "Date (texte)", widget: "string" }
               - { name: "lieu", label: "Lieu", widget: "string" }
               - { name: "desc", label: "Description", widget: "text" }
-              - { name: "form", label: "Lien Google Form (inscription)", widget: "string", required: false }
+              - { name: "form", label: "Lien Inscription (Google Form)", widget: "string", required: false }
+              - { name: "photos_link", label: "Lien Album Photos (Drive)", widget: "string", required: false }
 
       # --- 4. POLICY BRIEFS ---
       - name: "briefs"
