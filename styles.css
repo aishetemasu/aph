@@ -1,6 +1,6 @@
 /* =========================================================
    APH — styles.css
-   (VERSION FINALE : ORBES + GALERIE + FIX MOBILE ALIGNEMENT)
+   (CORRECTION MOBILE : Boutons Hero espacés)
    ========================================================= */
 
 /* ---------- Variables ---------- */
@@ -66,15 +66,15 @@ a{ color:inherit; text-decoration:none; transition: color .2s ease; }
 .btn.primary:hover{ background: var(--aph-red-dark); }
 
 /* Zone Droite du Header (Bouton + Burger) */
-.nav-actions {
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+.nav-actions .btn, .nav-actions .burger { flex-shrink: 0; }
+
+/* NOUVEAU : Zone Hero (Boutons principaux) */
+.hero-actions {
   display: flex;
-  align-items: center;
-  gap: 16px; /* Espace confortable entre le bouton et le burger */
-}
-/* Empêche les éléments de s'écraser */
-.nav-actions .btn, 
-.nav-actions .burger {
-  flex-shrink: 0;
+  flex-wrap: wrap; /* Permet le passage à la ligne */
+  gap: 14px;       /* Espace horizontal ET vertical */
+  margin-top: 24px;
 }
 
 /* ---------- Cards / Pills ---------- */
@@ -127,31 +127,25 @@ footer{ padding:26px 0 40px; border-top: 1px solid rgba(255,255,255,.12); color:
   .mobile-only{ display:flex; } 
   h1{ font-size:36px; } 
 
-  /* Ajustement spécifique mobile pour le bouton Rejoindre */
-  .nav-actions .btn {
-    padding: 10px 14px; 
-    font-size: 13px; /* Un peu plus petit pour laisser place au burger */
-  }
+  .nav-actions .btn { padding: 10px 14px; font-size: 13px; }
+  
+  /* Centre les boutons sur mobile */
+  .hero-actions { justify-content: center; }
 }
 
 /* ================= GALERIE & ÉVÉNEMENTS IMAGES ================= */
 
 /* Galerie Scroll Horizontal */
 .gallery-scroll {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding-bottom: 14px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch; 
+  display: flex; gap: 16px; overflow-x: auto; padding-bottom: 14px;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; 
 }
 .gallery-scroll::-webkit-scrollbar { height: 6px; }
 .gallery-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
 .gallery-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
 
 .gallery-item {
-  min-width: 280px; height: 200px;
-  border-radius: 14px; overflow: hidden;
+  min-width: 280px; height: 200px; border-radius: 14px; overflow: hidden;
   scroll-snap-align: start; position: relative;
   border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2);
 }
