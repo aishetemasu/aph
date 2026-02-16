@@ -9,6 +9,8 @@ collections:
   - name: "content"
     label: "Contenus du site"
     files:
+      # ... (Tes autres rubriques Accueil, Events, Briefs, Equipe restent ici) ...
+      
       # --- 1. ACCUEIL - À LA UNE ---
       - name: "featured"
         label: "Accueil - À la une (Texte)"
@@ -23,7 +25,7 @@ collections:
               - { name: "sub", label: "Sous-texte (Gris)", widget: "string", required: false }
               - { name: "link", label: "Lien (optionnel)", widget: "string", required: false }
 
-      # --- 2. ACCUEIL - GALERIE PHOTO (NOUVEAU SYSTÈME DE GROUPES) ---
+      # --- 2. ACCUEIL - GALERIE ---
       - name: "gallery"
         label: "Accueil - Galerie Photos"
         file: "content/gallery.json"
@@ -32,13 +34,13 @@ collections:
             label: "Albums / Événements"
             widget: "list"
             fields:
-              - {label: "Nom de l'album (ex: Conférence Climat)", name: "album_name", widget: "string"}
+              - {label: "Nom de l'album", name: "album_name", widget: "string"}
               - name: "images"
-                label: "Photos de cet album"
+                label: "Photos"
                 widget: "list"
                 fields:
                    - {label: "Photo", name: "image", widget: "image"}
-                   - {label: "Légende (optionnel)", name: "caption", widget: "string", required: false}
+                   - {label: "Légende", name: "caption", widget: "string", required: false}
 
       # --- 3. ÉVÉNEMENTS ---
       - name: "events"
@@ -52,13 +54,38 @@ collections:
               - { name: "title", label: "Titre", widget: "string" }
               - { name: "image", label: "Image de couverture", widget: "image", required: false } 
               - { name: "cat", label: "Catégorie", widget: "select", options: ["cafe-debat","visite","simulation","rencontre"] }
-              - { name: "date", label: "Date (texte)", widget: "string" }
+              - { name: "date", label: "Date", widget: "string" }
               - { name: "lieu", label: "Lieu", widget: "string" }
               - { name: "desc", label: "Description", widget: "text" }
-              - { name: "form", label: "Lien Inscription (Google Form)", widget: "string", required: false }
-              - { name: "photos_link", label: "Lien Album Photos (Drive)", widget: "string", required: false }
+              - { name: "form", label: "Lien Inscription", widget: "string", required: false }
+              - { name: "photos_link", label: "Lien Photos (Drive)", widget: "string", required: false }
 
-      # --- 4. POLICY BRIEFS ---
+      # --- 4. SIMULATIONS (NOUVEAU & COMPLET) ---
+      - name: "simulations"
+        label: "Page Simulations"
+        file: "content/simulations.json"
+        fields:
+          - name: "sims"
+            label: "Liste des Simulations"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Nom de la Simulation (ex: Loi Constitutionnelle)", widget: "string" }
+              - { name: "date", label: "Date", widget: "string" }
+              - { name: "desc", label: "Contexte / Description", widget: "text" }
+              - { name: "total_seats", label: "Nombre TOTAL de sièges (ex: 36)", widget: "number", value_type: "int" }
+              
+              - name: "groups"
+                label: "Groupes Parlementaires & Votes"
+                widget: "list"
+                summary: "{{fields.name}} ({{fields.seats}} sièges)"
+                fields:
+                  - { name: "name", label: "Nom du Groupe (ex: Les Rouges)", widget: "string" }
+                  - { name: "seats", label: "Nombre de sièges obtenus", widget: "number", value_type: "int" }
+                  - { name: "color", label: "Couleur du groupe", widget: "color" }
+                  - { name: "label", label: "Sigle court (ex: ROUGES)", widget: "string" }
+                  - { name: "vote_detail", label: "Détail du vote (ex: Contre: 7)", widget: "string" }
+
+      # --- 5. POLICY BRIEFS ---
       - name: "briefs"
         label: "Page Policy Briefs"
         file: "content/briefs.json"
@@ -71,34 +98,32 @@ collections:
               - { name: "tag", label: "Type", widget: "select", options: ["brief","note","research"], required: false }
               - { name: "summary", label: "Résumé", widget: "text" }
               - { name: "reco", label: "Recommandation", widget: "text" }
-              - { name: "pdf", label: "Lien PDF (optionnel)", widget: "string", required: false }
+              - { name: "pdf", label: "Lien PDF", widget: "string", required: false }
 
-      # --- 5. ÉQUIPE ---
+      # --- 6. ÉQUIPE ---
       - name: "team"
         label: "Page Équipe"
         file: "content/team.json"
         fields:
           - name: "bureau"
-            label: "1. Le Bureau"
+            label: "Le Bureau"
             widget: "list"
             fields:
-              - {label: "Nom & Prénom", name: "name", widget: "string"}
-              - {label: "Rôle (ex: Président)", name: "role", widget: "string"}
+              - {label: "Nom", name: "name", widget: "string"}
+              - {label: "Rôle", name: "role", widget: "string"}
               - {label: "Photo", name: "photo", widget: "image", required: false}
-              - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
-
+              - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
           - name: "responsables"
-            label: "2. Responsables de Pôles"
+            label: "Responsables"
             widget: "list"
             fields:
-              - {label: "Nom & Prénom", name: "name", widget: "string"}
-              - {label: "Pôle dirigé", name: "role", widget: "string"}
+              - {label: "Nom", name: "name", widget: "string"}
+              - {label: "Rôle", name: "role", widget: "string"}
               - {label: "Photo", name: "photo", widget: "image", required: false}
-              - {label: "Lien LinkedIn", name: "linkedin", widget: "string", required: false}
-
+              - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
           - name: "membres"
-            label: "3. Tous les membres"
+            label: "Membres"
             widget: "list"
             fields:
-              - {label: "Nom & Prénom", name: "name", widget: "string"}
-              - {label: "Pôle / Rôle", name: "role", widget: "string"}
+              - {label: "Nom", name: "name", widget: "string"}
+              - {label: "Rôle", name: "role", widget: "string"}
