@@ -60,7 +60,7 @@ collections:
               - { name: "form", label: "Lien Inscription", widget: "string", required: false }
               - { name: "photos_link", label: "Lien Photos (Drive)", widget: "string", required: false }
 
-      # --- 4. SIMULATIONS (NOUVEAU & COMPLET) ---
+   # --- 4. SIMULATIONS (AMÉLIORÉ) ---
       - name: "simulations"
         label: "Page Simulations"
         file: "content/simulations.json"
@@ -69,21 +69,26 @@ collections:
             label: "Liste des Simulations"
             widget: "list"
             fields:
-              - { name: "title", label: "Nom de la Simulation (ex: Loi Constitutionnelle)", widget: "string" }
+              - { name: "title", label: "Nom de la Simulation", widget: "string" }
               - { name: "date", label: "Date", widget: "string" }
+              - { name: "status", label: "Résultat du vote", widget: "select", options: ["Texte Adopté", "Texte Rejeté", "En cours"], required: false }
               - { name: "desc", label: "Contexte / Description", widget: "text" }
-              - { name: "total_seats", label: "Nombre TOTAL de sièges (ex: 36)", widget: "number", value_type: "int" }
+              - { name: "total_seats", label: "Nombre TOTAL de sièges", widget: "number", value_type: "int" }
               
+              # LES NOUVEAUX LIENS
+              - { name: "photos_link", label: "Lien Album Photos (Drive)", widget: "string", required: false }
+              - { name: "pdf_link", label: "Lien PDF (Texte final)", widget: "string", required: false }
+
               - name: "groups"
                 label: "Groupes Parlementaires & Votes"
                 widget: "list"
                 summary: "{{fields.name}} ({{fields.seats}} sièges)"
                 fields:
-                  - { name: "name", label: "Nom du Groupe (ex: Les Rouges)", widget: "string" }
-                  - { name: "seats", label: "Nombre de sièges obtenus", widget: "number", value_type: "int" }
-                  - { name: "color", label: "Couleur du groupe", widget: "color" }
-                  - { name: "label", label: "Sigle court (ex: ROUGES)", widget: "string" }
-                  - { name: "vote_detail", label: "Détail du vote (ex: Contre: 7)", widget: "string" }
+                  - { name: "name", label: "Nom du Groupe", widget: "string" }
+                  - { name: "seats", label: "Sièges", widget: "number", value_type: "int" }
+                  - { name: "color", label: "Couleur", widget: "color" }
+                  - { name: "label", label: "Sigle court", widget: "string" }
+                  - { name: "vote_detail", label: "Détail vote", widget: "string" }
 
       # --- 5. POLICY BRIEFS ---
       - name: "briefs"
@@ -127,3 +132,4 @@ collections:
             fields:
               - {label: "Nom", name: "name", widget: "string"}
               - {label: "Rôle", name: "role", widget: "string"}
+
