@@ -4,21 +4,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <title>APH – Association Affaires Publiques HEIP</title>
-  <meta name="description" content="Site officiel de l'association APH (Affaires Publiques HEIP). Conférences, simulations parlementaires, policy briefs et vie étudiante à HEIP." />
-  <meta name="keywords" content="APH, HEIP, Association, Affaires Publiques, Étudiants, Politique, Paris, Simulations, Conférences" />
+  <title>APH HEIP – Association Affaires Publiques & Simulations</title>
+  
+  <meta name="description" content="Site officiel de l'association APH (Affaires Publiques HEIP). Simulations parlementaires, conférences, débats et politique étudiante à HEIP." />
+  
+  <meta name="keywords" content="APH, HEIP, APH HEIP, Association APH, Affaires Publiques, Étudiants, Politique, Paris, Simulations, Conférences" />
   <meta name="author" content="APH HEIP" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="APH – Affaires Publiques HEIP" />
-  <meta property="og:description" content="Rejoignez la dynamique des affaires publiques à HEIP : débats, visites et simulations." />
+  <meta property="og:title" content="APH – L'Association Affaires Publiques HEIP" />
+  <meta property="og:description" content="Simulations parlementaires, débats et conférences. Rejoignez la dynamique APH HEIP." />
   <meta property="og:url" content="https://apheip.fr/" />
   <meta property="og:image" content="/logo.png" /> 
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "APH HEIP",
+    "alternateName": ["APH", "Association APH", "Affaires Publiques HEIP", "Association Affaires Publiques"],
+    "url": "https://apheip.fr",
+    "logo": "https://apheip.fr/logo.png",
+    "description": "L'association étudiante de référence pour les affaires publiques et simulations parlementaires à HEIP."
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -29,8 +44,8 @@
 <body>
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="index.html" aria-label="Accueil">
-      <div class="logo" aria-hidden="true"><img src="logo.png" alt="" /></div>
+    <a class="brand" href="index.html" aria-label="Accueil APH HEIP">
+      <div class="logo" aria-hidden="true"><img src="logo.png" alt="Logo APH" /></div>
       <div>
         <strong>APH</strong>
         <small>Affaires Publiques HEIP</small>
@@ -38,13 +53,13 @@
     </a>
 
     <nav class="nav-links" aria-label="Navigation principale">
-      <a data-nav href="index.html">Accueil</a>
+      <a data-nav href="index.html" class="active">Accueil</a>
       <a data-nav href="evenements.html">Événements</a>
       <a data-nav href="simulations.html">Simulations</a>
       <a data-nav href="briefs.html">Policy Briefs</a>
       <a data-nav href="equipe.html">Équipe</a>
       <a data-nav href="apropos.html">À Propos</a>
-      </nav>
+    </nav>
 
     <div class="nav-actions">
       <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
@@ -58,7 +73,7 @@
   <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
     <a data-nav href="index.html">Accueil</a>
     <a data-nav href="evenements.html">Événements</a>
-    <a href="simulations.html">Simulations</a>
+    <a data-nav href="simulations.html">Simulations</a>
     <a data-nav href="briefs.html">Policy Briefs</a>
     <a data-nav href="equipe.html">Équipe</a>
     <a data-nav href="apropos.html">À Propos</a>
@@ -72,9 +87,10 @@
         <div>
           <div class="kicker">Penser • Débattre • Agir </div>
           <h1>Comprendre les décisions politiques.<br/>Former à l’analyse.<br/>Agir dans le débat.</h1>
+          
           <p class="lead">
-            <b>APH</b> est une association étudiante dédiée aux affaires publiques.
-            Nous créons des passerelles entre étudiants, institutions et professionnels à travers des formats exigeants, concrets et accessibles.
+            <b>APH (Association Affaires Publiques HEIP)</b> est l'association étudiante de référence dédiée à la politique et aux affaires publiques.
+            Nous créons des passerelles entre étudiants, institutions et professionnels à travers des formats exigeants.
           </p>
           <div style="height:35px"></div>
 
@@ -122,8 +138,8 @@
       <div class="wrap">
         <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;">
           <div>
-            <h2>Nos formats</h2>
-            <p class="sub">Des événements pensés pour être clairs, utiles et institutionnels.</p>
+            <h2>Nos formats APH</h2>
+            <p class="sub">Des événements pensés pour les étudiants HEIP : clairs, utiles et institutionnels.</p>
           </div>
           <a class="btn" href="evenements.html">Tous nos événements</a>
         </div>
@@ -136,9 +152,9 @@
           </div>
 
           <div class="card">
-            <span class="pill">Visites</span>
-            <h3 style="margin:12px 0 8px;">Voir la décision</h3>
-            <p class="sub">Institutions, administrations, lieux du débat démocratique : comprendre “où” et “comment”.</p>
+            <span class="pill">Simulations</span>
+            <h3 style="margin:12px 0 8px;">Vivre la loi</h3>
+            <p class="sub">Nos simulations parlementaires plongent les étudiants au cœur de l'Assemblée et du Sénat.</p>
           </div>
 
           <div class="card">
@@ -156,7 +172,7 @@
           <div class="split">
             <div>
               <span class="pill">Rejoindre</span>
-              <h2 style="margin-top:12px;">Construire APH avec nous</h2>
+              <h2 style="margin-top:12px;">Construire l'association APH</h2>
               <p class="lead" style="margin-top:10px;">
                 Communication • Événementiel • Rédaction • Partenariats • Relations institutionnelles
               </p>
@@ -180,7 +196,7 @@
 
   <footer>
     <div class="wrap foot">
-      <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
+      <div>© <span id="year"></span> APH – Association Affaires Publiques HEIP</div>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>
@@ -188,7 +204,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=9"></script>
 
   <script>
     // 1. CHARGEMENT INFOS "À LA UNE"
@@ -234,7 +250,7 @@
       }
     })();
 
-    // 2. CHARGEMENT GALERIE PHOTO (Nouveau script compatible Groupes)
+    // 2. CHARGEMENT GALERIE PHOTO
     (async function loadGallery() {
         const section = document.getElementById("gallerySection");
         const container = document.getElementById("galleryContainer");
@@ -244,26 +260,20 @@
             if (!res.ok) return;
             
             const data = await res.json();
-            
-            // On récupère toutes les photos, qu'elles soient en groupes ou en liste simple
             let allPhotos = [];
 
-            // Cas 1 : Structure par Groupes (Nouveau)
             if (data.photo_groups && Array.isArray(data.photo_groups)) {
                 data.photo_groups.forEach(group => {
                     if (group.images && Array.isArray(group.images)) {
                         allPhotos = allPhotos.concat(group.images);
                     }
                 });
-            } 
-            // Cas 2 : Ancienne structure (Liste simple) - Rétrocompatibilité
-            else if (data.photos && Array.isArray(data.photos)) {
+            } else if (data.photos && Array.isArray(data.photos)) {
                 allPhotos = data.photos;
             }
             
             if (allPhotos.length === 0) return;
 
-            // Affichage
             section.style.display = "block";
             container.innerHTML = "";
 
@@ -275,7 +285,7 @@
                 
                 const html = `
                 <div class="gallery-item">
-                    <img src="${p.image}" alt="Photo APH" loading="lazy">
+                    <img src="${p.image}" alt="Photo APH HEIP" loading="lazy">
                     ${captionHTML}
                 </div>
                 `;
@@ -289,5 +299,3 @@
   </script>
 </body>
 </html>
-
-
