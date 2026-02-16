@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css" />
 
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -108,7 +108,7 @@
   </div>
 </footer>
 
-<script src="script.js?v=8"></script>
+<script src="script.js?v=9"></script>
 
 <script>
 // --- LOGIQUE SIMULATIONS ---
@@ -135,7 +135,7 @@ let allSims = [];
     }
 })();
 
-// 2. Afficher la liste des cartes
+// 2. Afficher la liste des cartes (Version Corrigée Mobile & Typo)
 function renderList() {
     const listEl = document.getElementById("simulationsList");
     listEl.innerHTML = "";
@@ -147,8 +147,10 @@ function renderList() {
         
         const card = document.createElement("div");
         card.className = "card";
+        
+        // Structure compatible mobile définie dans le CSS v9
         card.innerHTML = `
-            <div class="split" style="align-items:center;">
+            <div class="sim-card-inner">
                 <div>
                     <span class="pill">Simulation</span>
                     <h3 style="margin-top:12px;">${title}</h3>
@@ -157,9 +159,9 @@ function renderList() {
                         ${desc}
                     </p>
                 </div>
-                <div style="text-align:right;">
+                <div class="sim-card-actions">
                     <button class="btn primary" onclick="openSimulation(${index})">
-                       Voir l'Hémicycle & Résultats
+                       Voir les Résultats
                     </button>
                 </div>
             </div>
@@ -183,7 +185,6 @@ function openSimulation(index) {
     document.body.style.overflow = "hidden";
 
     // Préparer les données pour Highcharts
-    // Format attendu par Highcharts: ['Nom', Val, 'Color', 'Label', 'Detail']
     const seriesData = [];
     if(sim.groups && Array.isArray(sim.groups)) {
         sim.groups.forEach(g => {
@@ -197,7 +198,7 @@ function openSimulation(index) {
         });
     }
 
-    // Dessiner le graphique (avec un petit délai pour que la modal soit bien ouverte)
+    // Dessiner le graphique
     setTimeout(() => {
         Highcharts.chart('chartContainer', {
             chart: {
@@ -205,7 +206,7 @@ function openSimulation(index) {
                 backgroundColor: 'transparent',
                 style: { fontFamily: 'Unbounded, sans-serif' }
             },
-            title: { text: '' }, // Pas de titre dans le graph, on l'a déjà dans la modal
+            title: { text: '' }, 
             subtitle: {
                 text: `Total des sièges : ${sim.total_seats || 0}`,
                 style: { color: 'rgba(255,255,255,0.7)', fontSize: '14px' }
