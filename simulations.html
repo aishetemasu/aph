@@ -144,25 +144,47 @@ function renderList() {
         const title = escapeHtml(sim.title);
         const date = escapeHtml(sim.date);
         const desc = escapeHtml(sim.desc);
+        const status = escapeHtml(sim.status || "Simulation");
+        const photosLink = sim.photos_link || "";
+        const pdfLink = sim.pdf_link || "";
         
+        // Définir la couleur du badge selon le statut
+        let badgeColor = "rgba(255,255,255,.16)"; // Gris par défaut
+        if(status.includes("Adopté")) badgeColor = "#50B300"; // Vert
+        if(status.includes("Rejeté")) badgeColor = "#DD0000"; // Rouge
+
+        // Création des boutons optionnels
+        let buttonsHtml = "";
+        
+        // Bouton Photos (si lien présent)
+        if(photosLink) {
+             buttonsHtml += `<a class="btn" href="${escapeHtml(photosLink)}" target="_blank" style="font-size:13px; padding:10px 14px;">📂 Photos</a>`;
+        }
+        
+        // Bouton PDF (si lien présent)
+        if(pdfLink) {
+             buttonsHtml += `<a class="btn" href="${escapeHtml(pdfLink)}" target="_blank" style="font-size:13px; padding:10px 14px;">📜 Lire le texte</a>`;
+        }
+        
+        // Bouton Résultats (toujours présent)
+        buttonsHtml += `<button class="btn primary" onclick="openSimulation(${index})" style="font-size:13px; padding:10px 14px;">Voir les Résultats</button>`;
+
         const card = document.createElement("div");
         card.className = "card";
         
-        // Structure compatible mobile
+        // Structure compatible mobile avec flex-wrap pour les boutons
         card.innerHTML = `
             <div class="sim-card-inner">
-                <div>
-                    <span class="pill">Simulation</span>
+                <div style="flex:1;">
+                    <span class="pill" style="border-color:${badgeColor}; background:${badgeColor}20;">${status}</span>
                     <h3 style="margin-top:12px;">${title}</h3>
                     <p class="sub" style="margin-top:8px;">${date}</p>
                     <p class="sub" style="margin-top:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
                         ${desc}
                     </p>
                 </div>
-                <div class="sim-card-actions">
-                    <button class="btn primary" onclick="openSimulation(${index})">
-                       Voir les Résultats
-                    </button>
+                <div class="sim-card-actions" style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+                    ${buttonsHtml}
                 </div>
             </div>
         `;
@@ -202,7 +224,6 @@ function openSimulation(index) {
                 type: 'item',
                 backgroundColor: 'transparent',
                 style: { fontFamily: 'Unbounded, sans-serif' },
-                // Ajout de marges pour éviter que ça colle aux bords
                 spacingTop: 20,
                 spacingBottom: 20
             },
@@ -210,7 +231,7 @@ function openSimulation(index) {
             subtitle: {
                 text: `Total des sièges : ${sim.total_seats || 0}`,
                 style: { color: 'rgba(255,255,255,0.7)', fontSize: '14px' },
-                y: 40 // On descend un peu le sous-titre
+                y: 40 
             },
             legend: {
                 labelFormat: '{name} <span style="opacity: 0.4">{y}</span>',
@@ -234,7 +255,7 @@ function openSimulation(index) {
                     enabled: true,
                     format: '{point.label}',
                     style: { textOutline: 'none', color: '#ffffff', fontSize: '11px' },
-                    distance: -30 // Par défaut sur PC, les étiquettes sont à l'intérieur
+                    distance: -30 
                 },
                 // REGLAGES PC (Grand écran)
                 center: ['50%', '88%'],
@@ -243,21 +264,21 @@ function openSimulation(index) {
                 endAngle: 100
             }],
             
-            // --- REGLAGES MOBILE (C'est ici que tout se joue) ---
+            // --- REGLAGES MOBILE (ANTI-ZOOM) ---
             responsive: {
                 rules: [{
-                    condition: { maxWidth: 600 }, // Si écran < 600px
+                    condition: { maxWidth: 600 }, 
                     chartOptions: {
                         chart: {
-                            height: 350, // On force une hauteur plus petite
+                            height: 350, 
                             spacingTop: 10,
                         },
                         series: [{
-                            size: '85%', // ON RÉDUIT FORTEMENT LA TAILLE pour que ça rentre
-                            center: ['50%', '75%'], // On remonte un peu le centre
+                            size: '85%', 
+                            center: ['50%', '75%'], 
                             dataLabels: {
-                                distance: -15, // On rapproche les textes du centre
-                                style: { fontSize: '9px' } // Texte plus petit
+                                distance: -15, 
+                                style: { fontSize: '9px' } 
                             }
                         }]
                     }
@@ -267,4 +288,21 @@ function openSimulation(index) {
     }, 50);
 }
 
-document.getElementById("modalClose").addEventListener("click", () =>
+document.getElementById("modalClose").addEventListener("click", () => {
+    document.getElementById("modalBackdrop").style.display = "none";
+    document.body.style.overflow = "";
+});
+document.getElementById("modalBackdrop").addEventListener("click", (e) => {
+    if(e.target === document.getElementById("modalBackdrop")) {
+        document.getElementById("modalBackdrop").style.display = "none";
+        document.body.style.overflow = "";
+    }
+});
+
+function escapeHtml(str) {
+    return String(str ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+}
+</script>
+
+</body>
+</html>
