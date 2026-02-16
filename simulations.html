@@ -135,7 +135,7 @@ let allSims = [];
     }
 })();
 
-// 2. Afficher la liste des cartes (Version Corrigée Mobile & Typo)
+// 2. Afficher la liste des cartes
 function renderList() {
     const listEl = document.getElementById("simulationsList");
     listEl.innerHTML = "";
@@ -148,7 +148,7 @@ function renderList() {
         const card = document.createElement("div");
         card.className = "card";
         
-        // Structure compatible mobile définie dans le CSS v9
+        // Structure compatible mobile
         card.innerHTML = `
             <div class="sim-card-inner">
                 <div>
@@ -234,15 +234,23 @@ function openSimulation(index) {
                     style: { textOutline: 'none', color: '#ffffff', fontSize: '11px' }
                 },
                 center: ['50%', '88%'],
-                size: '170%',
+                size: '170%', // Taille par défaut (Desktop)
                 startAngle: -100,
                 endAngle: 100
             }],
+            
+            // --- C'EST ICI QUE SE FAIT LA CORRECTION MOBILE ---
             responsive: {
                 rules: [{
-                    condition: { maxWidth: 600 },
+                    condition: { maxWidth: 600 }, // Si l'écran fait moins de 600px
                     chartOptions: {
-                        series: [{ dataLabels: { distance: -30 } }]
+                        series: [{
+                            size: '100%', // On réduit la taille pour que ça rentre ! (Avant c'était 170%)
+                            dataLabels: {
+                                distance: -20, // On rapproche le texte des points
+                                style: { fontSize: '9px' } // On réduit un peu la police
+                            }
+                        }]
                     }
                 }]
             }
