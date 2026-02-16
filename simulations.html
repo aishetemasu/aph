@@ -175,16 +175,13 @@ function openSimulation(index) {
     const sim = allSims[index];
     if(!sim) return;
 
-    // Remplir les textes
     document.getElementById("modalTitle").textContent = sim.title || "Détails Simulation";
     document.getElementById("modalDesc").textContent = sim.desc || "";
     
-    // Afficher la modal
     const backdrop = document.getElementById("modalBackdrop");
     backdrop.style.display = "flex";
     document.body.style.overflow = "hidden";
 
-    // Préparer les données pour Highcharts
     const seriesData = [];
     if(sim.groups && Array.isArray(sim.groups)) {
         sim.groups.forEach(g => {
@@ -204,17 +201,22 @@ function openSimulation(index) {
             chart: {
                 type: 'item',
                 backgroundColor: 'transparent',
-                style: { fontFamily: 'Unbounded, sans-serif' }
+                style: { fontFamily: 'Unbounded, sans-serif' },
+                // Ajout de marges pour éviter que ça colle aux bords
+                spacingTop: 20,
+                spacingBottom: 20
             },
             title: { text: '' }, 
             subtitle: {
                 text: `Total des sièges : ${sim.total_seats || 0}`,
-                style: { color: 'rgba(255,255,255,0.7)', fontSize: '14px' }
+                style: { color: 'rgba(255,255,255,0.7)', fontSize: '14px' },
+                y: 40 // On descend un peu le sous-titre
             },
             legend: {
                 labelFormat: '{name} <span style="opacity: 0.4">{y}</span>',
                 itemStyle: { color: '#ffffff', fontWeight: '400' },
-                itemHoverStyle: { color: '#cccccc' }
+                itemHoverStyle: { color: '#cccccc' },
+                padding: 20
             },
             tooltip: {
                 backgroundColor: '#2b2d31',
@@ -231,24 +233,31 @@ function openSimulation(index) {
                 dataLabels: {
                     enabled: true,
                     format: '{point.label}',
-                    style: { textOutline: 'none', color: '#ffffff', fontSize: '11px' }
+                    style: { textOutline: 'none', color: '#ffffff', fontSize: '11px' },
+                    distance: -30 // Par défaut sur PC, les étiquettes sont à l'intérieur
                 },
+                // REGLAGES PC (Grand écran)
                 center: ['50%', '88%'],
-                size: '170%', // Taille par défaut (Desktop)
+                size: '170%', 
                 startAngle: -100,
                 endAngle: 100
             }],
             
-            // --- C'EST ICI QUE SE FAIT LA CORRECTION MOBILE ---
+            // --- REGLAGES MOBILE (C'est ici que tout se joue) ---
             responsive: {
                 rules: [{
-                    condition: { maxWidth: 600 }, // Si l'écran fait moins de 600px
+                    condition: { maxWidth: 600 }, // Si écran < 600px
                     chartOptions: {
+                        chart: {
+                            height: 350, // On force une hauteur plus petite
+                            spacingTop: 10,
+                        },
                         series: [{
-                            size: '100%', // On réduit la taille pour que ça rentre ! (Avant c'était 170%)
+                            size: '85%', // ON RÉDUIT FORTEMENT LA TAILLE pour que ça rentre
+                            center: ['50%', '75%'], // On remonte un peu le centre
                             dataLabels: {
-                                distance: -20, // On rapproche le texte des points
-                                style: { fontSize: '9px' } // On réduit un peu la police
+                                distance: -15, // On rapproche les textes du centre
+                                style: { fontSize: '9px' } // Texte plus petit
                             }
                         }]
                     }
@@ -258,22 +267,4 @@ function openSimulation(index) {
     }, 50);
 }
 
-// Fermeture Modal
-document.getElementById("modalClose").addEventListener("click", () => {
-    document.getElementById("modalBackdrop").style.display = "none";
-    document.body.style.overflow = "";
-});
-document.getElementById("modalBackdrop").addEventListener("click", (e) => {
-    if(e.target === document.getElementById("modalBackdrop")) {
-        document.getElementById("modalBackdrop").style.display = "none";
-        document.body.style.overflow = "";
-    }
-});
-
-function escapeHtml(str) {
-    return String(str ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
-}
-</script>
-
-</body>
-</html>
+document.getElementById("modalClose").addEventListener("click", () =>
