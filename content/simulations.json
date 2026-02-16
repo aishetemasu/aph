@@ -1,0 +1,47 @@
+{
+  "sims": [
+    {
+      "title": "Simulation : Régulation des réseaux sociaux.",
+      "date": "05/02/2026",
+      "desc": "tes",
+      "total_seats": 36,
+      "groups": [
+        {
+          "name": "Les Rouges",
+          "seats": 7,
+          "color": "#b73b38",
+          "label": "ROUGES",
+          "vote_detail": "Contre : 7"
+        },
+        {
+          "name": "Soc'Vert",
+          "seats": 7,
+          "color": "#68a382",
+          "label": "Socialistes Verts",
+          "vote_detail": "Contre : 5 "
+        },
+        {
+          "name": "Li'Dem",
+          "seats": 10,
+          "color": "#007bd1",
+          "label": "Liberté Démocratie",
+          "vote_detail": "Pour : 10"
+        },
+        {
+          "name": "UDR",
+          "seats": 5,
+          "color": "#004893",
+          "label": "Union Démocratique et Républicaine",
+          "vote_detail": "Pour : 5"
+        },
+        {
+          "name": "Conquête nationale",
+          "seats": 7,
+          "color": "#000a54",
+          "label": "Conquête nationale",
+          "vote_detail": "Pour : 7"
+        }
+      ]
+    }
+  ]
+}
