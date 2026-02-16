@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>Simulations Parlementaires – APH HEIP</title>
+  <meta name="description" content="Découvrez les résultats et la composition de nos simulations parlementaires." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=8" />
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/item-series.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <div class="logo"><img src="logo.png" alt="" /></div>
+      <div><strong>APH</strong><small>Affaires Publiques HEIP</small></div>
+    </a>
+
+    <nav class="nav-links">
+      <a data-nav href="index.html">Accueil</a>
+      <a data-nav href="evenements.html">Événements</a>
+      <a data-nav href="simulations.html" class="active">Simulations</a>
+      <a data-nav href="briefs.html">Policy Briefs</a>
+      <a data-nav href="equipe.html">Équipe</a>
+      <a data-nav href="apropos.html">À Propos</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
+      <button class="burger mobile-only" id="navToggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  
+  <div class="mobile-menu" id="mobileMenu">
+    <a data-nav href="index.html">Accueil</a>
+    <a data-nav href="evenements.html">Événements</a>
+    <a data-nav href="simulations.html">Simulations</a>
+    <a data-nav href="briefs.html">Policy Briefs</a>
+    <a data-nav href="equipe.html">Équipe</a>
+    <a data-nav href="apropos.html">À Propos</a>
+    <a class="btn primary" href="rejoindre.html" style="width:100%; margin-top:10px;justify-content:center;">Rejoindre</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">Immersion</div>
+      <h1>Nos Simulations<br/>Parlementaires</h1>
+      <p class="lead">
+        Plongez au cœur du processus législatif. Retrouvez ici l'historique de nos simulations, la composition des hémicycles et les résultats des votes.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="stack" id="simulationsList">
+        <div class="card"><span class="pill">Chargement...</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" style="max-width:900px;">
+    <div class="modal-header">
+      <div>
+        <span class="pill">Résultats</span>
+        <h2 id="modalTitle" style="margin-top:10px;">Simulation</h2>
+      </div>
+      <button class="icon-btn" id="modalClose">✕</button>
+    </div>
+    
+    <div style="height:20px;"></div>
+    
+    <div id="chartContainer" style="width:100%; height:450px; margin:0 auto;"></div>
+
+    <div style="text-align:center; margin-top:10px;">
+        <p class="sub" id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <div>© <span id="year"></span> APH – Affaires Publiques HEIP</div>
+    <div style="display:flex;gap:14px;">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js?v=8"></script>
+
+<script>
+// --- LOGIQUE SIMULATIONS ---
+
+let allSims = [];
+
+// 1. Charger les données
+(async function loadSimulations() {
+    const listEl = document.getElementById("simulationsList");
+    try {
+        const res = await fetch("/content/simulations.json");
+        if (!res.ok) throw new Error("Fichier introuvable");
+        const data = await res.json();
+        allSims = Array.isArray(data.sims) ? data.sims : [];
+
+        if (allSims.length === 0) {
+            listEl.innerHTML = `<div class="card"><p class="sub">Aucune simulation publiée pour l'instant.</p></div>`;
+            return;
+        }
+
+        renderList();
+    } catch (err) {
+        listEl.innerHTML = `<div class="card"><p class="sub">Pas encore de simulations (ou erreur de chargement).</p></div>`;
+    }
+})();
+
+// 2. Afficher la liste des cartes
+function renderList() {
+    const listEl = document.getElementById("simulationsList");
+    listEl.innerHTML = "";
+
+    allSims.forEach((sim, index) => {
+        const title = escapeHtml(sim.title);
+        const date = escapeHtml(sim.date);
+        const desc = escapeHtml(sim.desc);
+        
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <div class="split" style="align-items:center;">
+                <div>
+                    <span class="pill">Simulation</span>
+                    <h3 style="margin-top:12px;">${title}</h3>
+                    <p class="sub" style="margin-top:8px;">${date}</p>
+                    <p class="sub" style="margin-top:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+                        ${desc}
+                    </p>
+                </div>
+                <div style="text-align:right;">
+                    <button class="btn primary" onclick="openSimulation(${index})">
+                       Voir l'Hémicycle & Résultats
+                    </button>
+                </div>
+            </div>
+        `;
+        listEl.appendChild(card);
+    });
+}
+
+// 3. Ouvrir la Modal et Dessiner le Graphique
+function openSimulation(index) {
+    const sim = allSims[index];
+    if(!sim) return;
+
+    // Remplir les textes
+    document.getElementById("modalTitle").textContent = sim.title || "Détails Simulation";
+    document.getElementById("modalDesc").textContent = sim.desc || "";
+    
+    // Afficher la modal
+    const backdrop = document.getElementById("modalBackdrop");
+    backdrop.style.display = "flex";
+    document.body.style.overflow = "hidden";
+
+    // Préparer les données pour Highcharts
+    // Format attendu par Highcharts: ['Nom', Val, 'Color', 'Label', 'Detail']
+    const seriesData = [];
+    if(sim.groups && Array.isArray(sim.groups)) {
+        sim.groups.forEach(g => {
+            seriesData.push([
+                g.name || "Groupe",
+                parseInt(g.seats || 0),
+                g.color || "#cccccc",
+                g.label || g.name,
+                g.vote_detail || ""
+            ]);
+        });
+    }
+
+    // Dessiner le graphique (avec un petit délai pour que la modal soit bien ouverte)
+    setTimeout(() => {
+        Highcharts.chart('chartContainer', {
+            chart: {
+                type: 'item',
+                backgroundColor: 'transparent',
+                style: { fontFamily: 'Unbounded, sans-serif' }
+            },
+            title: { text: '' }, // Pas de titre dans le graph, on l'a déjà dans la modal
+            subtitle: {
+                text: `Total des sièges : ${sim.total_seats || 0}`,
+                style: { color: 'rgba(255,255,255,0.7)', fontSize: '14px' }
+            },
+            legend: {
+                labelFormat: '{name} <span style="opacity: 0.4">{y}</span>',
+                itemStyle: { color: '#ffffff', fontWeight: '400' },
+                itemHoverStyle: { color: '#cccccc' }
+            },
+            tooltip: {
+                backgroundColor: '#2b2d31',
+                borderColor: 'rgba(255,255,255,0.2)',
+                style: { color: '#ffffff' },
+                pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>' +
+                             '{point.voteDetail}'
+            },
+            credits: { enabled: false },
+            series: [{
+                name: 'Sièges',
+                keys: ['name', 'y', 'color', 'label', 'voteDetail'],
+                data: seriesData,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.label}',
+                    style: { textOutline: 'none', color: '#ffffff', fontSize: '11px' }
+                },
+                center: ['50%', '88%'],
+                size: '170%',
+                startAngle: -100,
+                endAngle: 100
+            }],
+            responsive: {
+                rules: [{
+                    condition: { maxWidth: 600 },
+                    chartOptions: {
+                        series: [{ dataLabels: { distance: -30 } }]
+                    }
+                }]
+            }
+        });
+    }, 50);
+}
+
+// Fermeture Modal
+document.getElementById("modalClose").addEventListener("click", () => {
+    document.getElementById("modalBackdrop").style.display = "none";
+    document.body.style.overflow = "";
+});
+document.getElementById("modalBackdrop").addEventListener("click", (e) => {
+    if(e.target === document.getElementById("modalBackdrop")) {
+        document.getElementById("modalBackdrop").style.display = "none";
+        document.body.style.overflow = "";
+    }
+});
+
+function escapeHtml(str) {
+    return String(str ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+}
+</script>
+
+</body>
+</html>
