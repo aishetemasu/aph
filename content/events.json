@@ -1,13 +1,15 @@
 {
   "events": [
     {
+      "form": "https://forms.gle/NTVHD7vQT6uwP2uP7",
+      "lieu": "8 boulevard victor hugo, 93400 - saint-ouen-sur-seine",
+      "date": "Mercredi 25 mars",
+      "desc": "Valérie Pécresse, présidente de la région île de France et APH ont le plaisir de vous convier à une simulation parlementaire au coeur du conseil régional d'ile De France, au sein l'hémicycle Simone Veil, mercredi 25 mars de 15h à 20h.\nPlongez vous dans la peau d'un député et débattez avec conviction dans un lieu emblématique",
+      "cat": "simulation",
+      "photos_link": "https://drive.google.com/drive/folders/14a9SVEGAqUEhUOT7qY8KMc9ryE71tuPO?usp=sharing",
       "title": "Simulation Parlementaire",
       "image": "/assets/uploads/img_5466.jpeg",
-      "cat": "simulation",
-      "date": "Mercredi 25 mars",
-      "lieu": "8 boulevard victor hugo, 93400 - saint-ouen-sur-seine",
-      "desc": "Valérie Pécresse, présidente de la région île de France et APH ont le plaisir de vous convier à une simulation parlementaire au coeur du conseil régional d'ile De France, au sein l'hémicycle Simone Veil, mercredi 25 mars de 15h à 20h.\nPlongez vous dans la peau d'un député et débattez avec conviction dans un lieu emblématique",
-      "form": "https://forms.gle/NTVHD7vQT6uwP2uP7"
+      "video_link": "https://youtu.be/nFgRV4XKcp8?si=a9wlekrCRfSaqlDy"
     },
     {
       "title": "Visite du sénat avec le parrainage de Mme Marie-Claude LERMYTTE",
