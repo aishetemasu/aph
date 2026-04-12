@@ -9,8 +9,6 @@ collections:
   - name: "content"
     label: "Contenus du site"
     files:
-      # ... (Tes autres rubriques Accueil, Events, Briefs, Equipe restent ici) ...
-      
       # --- 1. ACCUEIL - À LA UNE ---
       - name: "featured"
         label: "Accueil - À la une (Texte)"
@@ -59,8 +57,9 @@ collections:
               - { name: "desc", label: "Description", widget: "text" }
               - { name: "form", label: "Lien Inscription", widget: "string", required: false }
               - { name: "photos_link", label: "Lien Photos (Drive)", widget: "string", required: false }
+              - { name: "video_link", label: "Lien Vidéo YouTube", widget: "string", required: false }
 
-   # --- 4. SIMULATIONS (AMÉLIORÉ) ---
+      # --- 4. SIMULATIONS (AMÉLIORÉ) ---
       - name: "simulations"
         label: "Page Simulations"
         file: "content/simulations.json"
@@ -74,11 +73,9 @@ collections:
               - { name: "status", label: "Résultat du vote", widget: "select", options: ["Texte Adopté", "Texte Rejeté", "En cours"], required: false }
               - { name: "desc", label: "Contexte / Description", widget: "text" }
               - { name: "total_seats", label: "Nombre TOTAL de sièges", widget: "number", value_type: "int" }
-              
-              # LES NOUVEAUX LIENS
               - { name: "photos_link", label: "Lien Album Photos (Drive)", widget: "string", required: false }
               - { name: "pdf_link", label: "Lien PDF (Texte final)", widget: "string", required: false }
-
+              - { name: "video_link", label: "Lien Vidéo YouTube", widget: "string", required: false }
               - name: "groups"
                 label: "Groupes Parlementaires & Votes"
                 widget: "list"
@@ -132,4 +129,3 @@ collections:
             fields:
               - {label: "Nom", name: "name", widget: "string"}
               - {label: "Rôle", name: "role", widget: "string"}
-
