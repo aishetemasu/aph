@@ -82,7 +82,7 @@
   <div class="modal" style="max-width:900px;">
     <div class="modal-header">
       <div>
-        <span class="pill">Résultats</span>
+        <span class="pill" id="modalPill">Résultats</span>
         <h2 id="modalTitle" style="margin-top:10px;">Simulation</h2>
       </div>
       <button class="icon-btn" id="modalClose">✕</button>
@@ -114,6 +114,14 @@
 // --- LOGIQUE SIMULATIONS ---
 
 let allSims = [];
+
+// Fonction pour transformer le lien YouTube
+function getYoutubeEmbedUrl(url) {
+    if (!url) return "";
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : url;
+}
 
 // 1. Charger les données
 (async function loadSimulations() {
@@ -147,6 +155,7 @@ function renderList() {
         const status = escapeHtml(sim.status || "Simulation");
         const photosLink = sim.photos_link || "";
         const pdfLink = sim.pdf_link || "";
+        const videoLink = sim.video_link || "";
         
         // Définir la couleur du badge selon le statut
         let badgeColor = "rgba(255,255,255,.16)"; // Gris par défaut
@@ -155,6 +164,11 @@ function renderList() {
 
         // Création des boutons optionnels
         let buttonsHtml = "";
+
+        // Bouton Vidéo (si lien présent)
+        if(videoLink) {
+             buttonsHtml += `<button class="btn" onclick="openVideoModal('${escapeHtml(sim.title)}', '${escapeHtml(videoLink)}')" style="font-size:13px; padding:10px 14px;">🎬 Vidéo</button>`;
+        }
         
         // Bouton Photos (si lien présent)
         if(photosLink) {
@@ -192,14 +206,36 @@ function renderList() {
     });
 }
 
-// 3. Ouvrir la Modal et Dessiner le Graphique
+// 3. Ouvrir la modal de la vidéo
+function openVideoModal(title, url) {
+    const embedUrl = getYoutubeEmbedUrl(url);
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalPill").textContent = "Vidéo";
+    document.getElementById("modalDesc").textContent = "Captation de la simulation.";
+    
+    // Remplacer le contenu du conteneur par l'iframe
+    document.getElementById("chartContainer").innerHTML = `
+        <div class="video-responsive">
+            <iframe src="${embedUrl}" allowfullscreen></iframe>
+        </div>
+    `;
+    
+    document.getElementById("modalBackdrop").style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+// 4. Ouvrir la Modal et Dessiner le Graphique
 function openSimulation(index) {
     const sim = allSims[index];
     if(!sim) return;
 
     document.getElementById("modalTitle").textContent = sim.title || "Détails Simulation";
+    document.getElementById("modalPill").textContent = "Résultats";
     document.getElementById("modalDesc").textContent = sim.desc || "";
     
+    // Vider le conteneur avant de laisser Highcharts dessiner (pour enlever l'iframe vidéo si elle était là)
+    document.getElementById("chartContainer").innerHTML = "";
+
     const backdrop = document.getElementById("modalBackdrop");
     backdrop.style.display = "flex";
     document.body.style.overflow = "hidden";
@@ -291,11 +327,15 @@ function openSimulation(index) {
 document.getElementById("modalClose").addEventListener("click", () => {
     document.getElementById("modalBackdrop").style.display = "none";
     document.body.style.overflow = "";
+    // Vider l'iframe quand on ferme pour couper le son
+    document.getElementById("chartContainer").innerHTML = "";
 });
 document.getElementById("modalBackdrop").addEventListener("click", (e) => {
     if(e.target === document.getElementById("modalBackdrop")) {
         document.getElementById("modalBackdrop").style.display = "none";
         document.body.style.overflow = "";
+        // Vider l'iframe quand on ferme pour couper le son
+        document.getElementById("chartContainer").innerHTML = "";
     }
 });
 
