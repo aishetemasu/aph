@@ -1,12 +1,11 @@
 {
   "sims": [
     {
-      "title": "Simulation : Le renforcement de l’autorité éducative et à l’instauration d’une tenue scolaire dans les collèges et lycées publics",
+      "pdf_link": "assets/uploads/pjl-renforcement-autorité-et-instauration-tenue-scolaire.pdf",
       "date": "25/03/2026",
+      "desc": "PORTANT SUR : Le renforcement de l’autorité éducative et à\nl’instauration d’une tenue scolaire dans les\ncollèges et lycées publics",
       "status": "Texte Adopté",
       "total_seats": 60,
-      "desc": "PORTANT SUR : Le renforcement de l’autorité éducative et à\nl’instauration d’une tenue scolaire dans les\ncollèges et lycées publics",
-      "photos_link": "https://drive.google.com/drive/folders/14a9SVEGAqUEhUOT7qY8KMc9ryE71tuPO?usp=sharing",
       "groups": [
         {
           "name": "Les Rouges",
@@ -44,7 +43,9 @@
           "vote_detail": "Contre : 4 Pour : 13"
         }
       ],
-      "pdf_link": "assets/uploads/pjl-renforcement-autorité-et-instauration-tenue-scolaire.pdf"
+      "photos_link": "https://drive.google.com/drive/folders/14a9SVEGAqUEhUOT7qY8KMc9ryE71tuPO?usp=sharing",
+      "title": "Simulation : Le renforcement de l’autorité éducative et à l’instauration d’une tenue scolaire dans les collèges et lycées publics",
+      "video_link": "https://youtu.be/nFgRV4XKcp8?si=a9wlekrCRfSaqlDy"
     },
     {
       "title": "Simulation : Régulation des réseaux sociaux.",
