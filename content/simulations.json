@@ -45,6 +45,51 @@
       "status": "Texte Adopté",
       "photos_link": "https://drive.google.com/drive/folders/1OwSDqbwcDbSvRIgSuwLIVpTw375gdfSs?usp=share_link",
       "pdf_link": "assets/uploads/ppl-05_02_2026.pdf"
+    },
+    {
+      "title": "Simulation : Le renforcement de l’autorité éducative et à l’instauration d’une tenue scolaire dans les collèges et lycées publics",
+      "date": "25/03/2026",
+      "status": "Texte Adopté",
+      "total_seats": 60,
+      "desc": "PORTANT SUR : Le renforcement de l’autorité éducative et à\nl’instauration d’une tenue scolaire dans les\ncollèges et lycées publics",
+      "photos_link": "https://drive.google.com/drive/folders/14a9SVEGAqUEhUOT7qY8KMc9ryE71tuPO?usp=sharing",
+      "groups": [
+        {
+          "name": "Les Rouges",
+          "seats": 17,
+          "color": "#ff0000",
+          "label": "ROUGE",
+          "vote_detail": "POUR"
+        },
+        {
+          "name": "Soc'Vert",
+          "seats": 17,
+          "color": "#68a382",
+          "label": "Socialistes Verts",
+          "vote_detail": "Contre : 4 Pour : 13"
+        },
+        {
+          "name": "Li'Dem",
+          "seats": 18,
+          "color": "#007bd1",
+          "label": "Liberté Démocratie",
+          "vote_detail": "Contre : 4 Pour : 14"
+        },
+        {
+          "name": "UDR",
+          "seats": 18,
+          "color": "#004893",
+          "label": "Union Démocratique et Républicaine",
+          "vote_detail": "POUR"
+        },
+        {
+          "name": "Conquête nationale",
+          "label": "Conquête nationale",
+          "color": "#000a54",
+          "seats": 17,
+          "vote_detail": "Contre : 4 Pour : 13"
+        }
+      ]
     }
   ]
 }
