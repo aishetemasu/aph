@@ -146,6 +146,7 @@
     function closeModal() {
       backdrop.style.display = "none";
       document.body.style.overflow = "";
+      modalBody.innerHTML = ""; // Coupe la vidéo si elle tourne
     }
     modalClose.addEventListener("click", closeModal);
     backdrop.addEventListener("click", (e) => {
@@ -159,6 +160,14 @@
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+    }
+
+    // Convertisseur YouTube
+    function getYoutubeEmbedUrl(url) {
+        if (!url) return "";
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : url;
     }
 
     let allEvents = [];
@@ -180,18 +189,24 @@
         const desc = ev.desc || "";
         const form = ev.form || "";
         const image = ev.image || ""; 
-        const photos = ev.photos_link || ""; // Nouveau champ Drive
+        const photos = ev.photos_link || "";
+        const video = ev.video_link || "";
+
+        // Bouton Vidéo (si lien présent)
+        const btnVideo = video 
+            ? `<button class="btn" onclick="openVideoEvent('${escapeHtml(title)}', '${escapeHtml(video)}')" style="border-color:rgba(255,255,255,0.4);">🎬 Vidéo</button>` 
+            : "";
+
+        // Bouton Photos (si lien photos)
+        const btnPhotos = photos
+            ? `<a class="btn" href="${escapeHtml(photos)}" target="_blank" rel="noopener" style="border-color:rgba(255,255,255,0.4);">📂 Photos</a>`
+            : "";
 
         // Bouton Inscription (si lien form)
         const btnForm = form 
             ? `<a class="btn primary" href="${escapeHtml(form)}" target="_blank" rel="noopener">S’inscrire</a>` 
             : "";
         
-        // Bouton Photos (si lien photos)
-        const btnPhotos = photos
-            ? `<a class="btn" href="${escapeHtml(photos)}" target="_blank" rel="noopener" style="border-color:rgba(255,255,255,0.4);">📂 Photos</a>`
-            : "";
-
         // Bouton Détails (toujours là)
         const btnDetails = `
             <a class="btn" href="#"
@@ -220,7 +235,7 @@
 
         const contentStyle = image ? 'padding:18px;' : '';
 
-        // On affiche les boutons dans l'ordre : Photos - Détails - Inscription
+        // On affiche les boutons dans l'ordre : Vidéo - Photos - Détails - Inscription
         card.innerHTML = `
           ${imageHtml}
           <div style="${contentStyle}">
@@ -234,6 +249,7 @@
                 </div>
                 <div style="margin-top:10px;">
                     <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+                      ${btnVideo}
                       ${btnPhotos}
                       ${btnDetails}
                       ${btnForm}
@@ -245,6 +261,20 @@
 
         listEl.appendChild(card);
       }
+    }
+
+    // Ouverture dédiée à la vidéo YouTube
+    function openVideoEvent(title, url) {
+        const embedUrl = getYoutubeEmbedUrl(url);
+        openModal(title, `
+            <div class="video-responsive">
+                <iframe src="${embedUrl}" allowfullscreen></iframe>
+            </div>
+            <div style="height:14px"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+              <a class="btn" href="rejoindre.html">Contacter APH</a>
+            </div>
+        `);
     }
 
     function applyFilter() {
@@ -265,7 +295,7 @@
     qEl.addEventListener("input", applyFilter);
     catEl.addEventListener("change", applyFilter);
 
-    // Ouvre la modal
+    // Ouvre la modal standard (Détails)
     document.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-event-open]");
       if (!btn) return;
@@ -335,4 +365,3 @@
   </script>
 </body>
 </html>
-
