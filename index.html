@@ -24,9 +24,8 @@
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--aph-white) 0%, #ff8a80 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ffffff; /* Texte en blanc pur */
+      text-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Ombre douce pour le volume */
       letter-spacing: -2px;
       text-transform: uppercase;
     }
@@ -45,6 +44,7 @@
       line-height: 1.8;
       position: relative;
       overflow: hidden;
+      text-align: justify;
     }
 
     .letter-card::before {
@@ -65,31 +65,80 @@
       color: var(--aph-white);
     }
 
-    /* Grille interactive pour les prénoms */
-    .names-container {
+    /* Grille interactive pour l'équipe (Photos) */
+    .team-gallery {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
       justify-content: center;
-      margin-top: 30px;
+      gap: 34px;
+      margin-top: 40px;
     }
 
-    .name-bubble {
-      padding: 14px 28px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 999px;
-      font-size: 16px;
-      font-weight: 600;
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: default;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .name-bubble:hover {
-      transform: translateY(-8px) scale(1.1);
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+
+    .member-photo-merci {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    /* Le placeholder pour Flore (pas de photo) */
+    .member-placeholder-merci {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .team-member:hover .member-photo-merci,
+    .team-member:hover .member-placeholder-merci {
+      border-color: var(--aph-red);
+      box-shadow: 0 15px 35px rgba(94, 10, 2, 0.5);
+    }
+    
+    .team-member:hover .member-placeholder-merci {
+      color: var(--aph-red);
+      background: rgba(94, 10, 2, 0.1);
+    }
+
+    .member-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .team-member:hover .member-name {
       background: var(--aph-red);
       border-color: var(--aph-red);
-      box-shadow: 0 15px 30px rgba(94, 10, 2, 0.5);
       color: white;
     }
 
@@ -135,6 +184,10 @@
       font-size: 16px;
     }
 
+    @media (max-width: 768px) {
+      .event-line { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -145,13 +198,13 @@
 <body>
   <header class="nav">
     <div class="wrap nav-inner" style="justify-content: center;">
-      <a class="brand" href="index.html" aria-label="Accueil APH HEIP">
+      <div class="brand">
         <div class="logo" aria-hidden="true"><img src="logo.png" alt="Logo APH" /></div>
         <div>
           <strong>APH</strong>
           <small>Affaires Publiques HEIP</small>
         </div>
-      </a>
+      </div>
     </div>
   </header>
 
@@ -177,18 +230,45 @@
       <h2 style="text-align: center; margin-bottom: 10px;">À notre équipe exceptionnelle</h2>
       <p class="sub" style="text-align: center; margin: 0 auto;">Sans vous, rien de tout cela n'aurait été possible.</p>
       
-      <div class="names-container">
-        <div class="name-bubble">Pauline</div>
-        <div class="name-bubble">Erwan</div>
-        <div class="name-bubble">Yahvi</div>
-        <div class="name-bubble">Noah</div>
-        <div class="name-bubble">Antoine</div>
-        <div class="name-bubble">Sarah</div>
-        <div class="name-bubble">Flore</div>
+      <div class="team-gallery">
+        <div class="team-member">
+          <img src="/assets/uploads/whatsapp-image-2026-03-05-at-17.18.28.jpeg" alt="Pauline" class="member-photo-merci">
+          <span class="member-name">Pauline</span>
+        </div>
+        
+        <div class="team-member">
+          <img src="/assets/uploads/p1114957.jpg" alt="Erwan" class="member-photo-merci">
+          <span class="member-name">Erwan</span>
+        </div>
+        
+        <div class="team-member">
+          <img src="/assets/uploads/yahvi.jpg" alt="Yahvi" class="member-photo-merci">
+          <span class="member-name">Yahvi</span>
+        </div>
+        
+        <div class="team-member">
+          <img src="/assets/uploads/noah.jpg" alt="Noah" class="member-photo-merci">
+          <span class="member-name">Noah</span>
+        </div>
+        
+        <div class="team-member">
+          <img src="/assets/uploads/whatsapp-image-2026-03-05-at-04.17.03-1-.jpeg" alt="Antoine" class="member-photo-merci">
+          <span class="member-name">Antoine</span>
+        </div>
+        
+        <div class="team-member">
+          <img src="/assets/uploads/whatsapp-image-2026-03-05-at-04.17.03.jpeg" alt="Sarah" class="member-photo-merci">
+          <span class="member-name">Sarah</span>
+        </div>
+        
+        <div class="team-member">
+          <div class="member-placeholder-merci">FC</div>
+          <span class="member-name">Flore</span>
+        </div>
       </div>
     </section>
 
-    <section class="wrap" style="padding-top: 60px; padding-bottom: 80px;">
+    <section class="wrap" style="padding-top: 80px; padding-bottom: 80px;">
       <h2 style="margin-bottom: 24px;">Ce que nous avons construit ensemble</h2>
       
       <div class="stack">
@@ -231,10 +311,6 @@
           </div>
           <span class="pill">Adopté</span>
         </div>
-      </div>
-      
-      <div style="margin-top: 40px; text-align: center;">
-        <a href="index.html" class="btn primary">Retour à l'accueil</a>
       </div>
     </section>
   </main>
