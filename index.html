@@ -12,64 +12,57 @@
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Styles spécifiques pour la page de remerciements */
+    /* Configurations & Animations Spécifiques */
     .hero-merci {
       text-align: center;
-      padding: 10vh 20px 5vh;
-      animation: fadeInDown 1.2s ease-out;
+      padding: 12vh 20px 6vh;
+      animation: fadeIn 1.5s ease-out;
     }
 
     .huge-text {
-      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-size: clamp(3.2rem, 9vw, 7rem);
       font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      color: #ffffff; /* Blanc pur */
-      text-shadow: 0 10px 35px rgba(0, 0, 0, 0.6); /* Profondeur accrue */
+      line-height: 1.05;
+      margin-bottom: 25px;
+      color: #ffffff;
+      text-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
       letter-spacing: -2px;
       text-transform: uppercase;
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+      100% { text-shadow: 0 15px 50px rgba(94, 10, 2, 0.5), 0 0 20px rgba(255,255,255,0.2); }
     }
 
     .subtitle-merci {
-      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
       color: var(--muted);
       font-weight: 500;
+      letter-spacing: 2px;
     }
 
     .letter-card {
-      background: rgba(0, 0, 0, 0.2);
-      border-left: 4px solid var(--aph-red);
-      padding: 40px;
+      background: rgba(0, 0, 0, 0.25);
+      border-left: 5px solid var(--aph-red);
+      padding: 45px;
       font-size: 17px;
-      line-height: 1.8;
+      line-height: 1.85;
       position: relative;
       overflow: hidden;
-      text-align: justify;
     }
 
-    .letter-card p {
-      margin-bottom: 20px;
-    }
-
-    .letter-card::before {
-      content: '"';
-      position: absolute;
-      top: -20px;
-      right: 20px;
-      font-size: 120px;
-      color: rgba(255, 255, 255, 0.03);
-      font-family: serif;
-    }
+    .letter-card p { margin-bottom: 22px; text-align: justify; }
 
     .signature {
-      margin-top: 30px;
+      margin-top: 35px;
       text-align: right;
       font-size: 20px;
       font-weight: 700;
       color: var(--aph-white);
     }
 
-    /* Bloc Photo du Président */
     .president-profile {
       display: flex;
       justify-content: center;
@@ -77,86 +70,77 @@
     }
     
     .president-photo-large {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
     
     .president-photo-large:hover {
-      transform: scale(1.05);
+      transform: scale(1.08) rotate(2deg);
       border-color: var(--aph-red);
-      box-shadow: 0 15px 35px rgba(94, 10, 2, 0.6);
+      box-shadow: 0 20px 40px rgba(94, 10, 2, 0.6);
     }
 
-    /* Grille pour l'équipe */
+    /* Grille de l'Équipe */
     .team-gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 34px;
-      margin-top: 40px;
+      gap: 35px;
+      margin-top: 45px;
     }
 
     .team-member {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: default;
     }
 
-    .team-member:hover {
-      transform: translateY(-10px);
-    }
+    .team-member:hover { transform: translateY(-12px); }
 
     .member-photo-merci {
-      width: 110px;
-      height: 110px;
+      width: 115px;
+      height: 115px;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
       transition: all 0.3s ease;
     }
 
     .member-placeholder-merci {
-      width: 110px;
-      height: 110px;
+      width: 115px;
+      height: 115px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
       border: 3px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 36px;
       font-weight: 800;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.3);
       transition: all 0.3s ease;
     }
 
     .team-member:hover .member-photo-merci,
     .team-member:hover .member-placeholder-merci {
       border-color: var(--aph-red);
-      box-shadow: 0 15px 35px rgba(94, 10, 2, 0.5);
-    }
-    
-    .team-member:hover .member-placeholder-merci {
-      color: var(--aph-red);
-      background: rgba(94, 10, 2, 0.1);
+      box-shadow: 0 15px 35px rgba(94, 10, 2, 0.6);
     }
 
     .member-name {
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       color: rgba(255, 255, 255, 0.9);
-      background: rgba(0, 0, 0, 0.4);
-      padding: 6px 14px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 6px 16px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
@@ -168,95 +152,137 @@
       color: white;
     }
 
-    /* Rétrospective Événements */
-    .event-line {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      margin-bottom: 14px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .event-line::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background: var(--aph-red);
-      transform: scaleY(0);
-      transition: transform 0.3s ease;
-    }
-
-    .event-line:hover {
-      transform: translateX(10px);
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .event-line:hover::after {
-      transform: scaleY(1);
-    }
-
-    .event-line h3 {
-      margin: 0 0 4px 0;
-      font-size: 16px;
-    }
-
-    /* Statistiques de fin de mandat */
-    .stats-grid {
+    /* Vitrine Interactive des Événements */
+    .events-showcase {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 35px;
     }
 
-    .stat-card {
-      background: var(--card);
+    .event-visual-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #1a1b1e;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .event-bg-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      transition: transform 0.6s ease, opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .event-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 16, 18, 0.95) 0%, rgba(15, 16, 18, 0.4) 60%, transparent 100%);
+      z-index: 2;
+    }
+
+    .event-content-wrap {
+      position: relative;
+      z-index: 3;
+    }
+
+    .event-visual-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .event-visual-card:hover .event-bg-image {
+      transform: scale(1.06);
+      opacity: 0.5;
+    }
+
+    /* Intégration Livre d'Or */
+    .guestbook-section {
+      background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 35px 20px;
+      padding: 40px;
+      margin-top: 60px;
+    }
+
+    .guestbook-form {
+      display: grid;
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .guestbook-wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .guestbook-wall::-webkit-scrollbar { width: 6px; }
+    .guestbook-wall::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+    .note-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+      font-size: 14px;
+      line-height: 1.6;
+      animation: scaleUp 0.4s ease-out;
+    }
+
+    @keyframes scaleUp {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Statistiques */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .stat-box {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px 15px;
       text-align: center;
-      backdrop-filter: blur(var(--blur-card));
       transition: all 0.3s ease;
     }
 
-    .stat-card:hover {
-      transform: translateY(-5px);
+    .stat-box:hover {
       border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.03);
     }
 
-    .stat-number {
-      font-size: 40px;
+    .stat-num {
+      font-size: 42px;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 10px;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin-bottom: 8px;
     }
 
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 500;
-    }
-
-    @media (max-width: 768px) {
-      .event-line { flex-direction: column; align-items: flex-start; gap: 10px; }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -277,20 +303,19 @@
   <main>
     <section class="wrap hero-merci">
       <h1 class="huge-text">Merci<br>pour tout.</h1>
-      <p class="subtitle-merci">APH revient bientôt.</p>
+      <p class="subtitle-merci">Penser • Débattre • Agir</p>
     </section>
 
     <section class="wrap">
       <div class="card letter-card">
-        <p>Aujourd'hui, une page importante se tourne pour notre association. Après des mois d'engagement intense, de débats passionnés et de projets menés à bien, je quitte officiellement la présidence de l'Association Affaires Publiques HEIP (APH).</p>
-        <p>Lorsque nous avons relancé et structuré cette aventure, notre ambition était claire : jeter des ponts solides entre la théorie de nos enseignements et la réalité vibrante des institutions politiques. De la rédaction de nos Policy Briefs jusqu'à l'organisation minutieuse de nos simulations à l'échelle régionale et nationale, chaque instant a été guidé par une recherche constante d'excellence, de rigueur juridique et d'ouverture d'esprit.</p>
-        <p>Ce que nous avons accompli ensemble dépasse toutes mes espérances. Voir des dizaines d'étudiants s'emparer de textes législatifs complexes, s'affronter avec éloquence au sein d'hémicycles prestigieux, négocier chaque amendement avec une ferveur incroyable... Ce sont des moments gravés à jamais.</p>
-        <p>Rien de tout cela n'aurait été possible sans une équipe d'une fidélité et d'une force de travail exceptionnelles. À mon bureau, à mes responsables de pôle, et à chaque membre qui a investi son énergie : merci. Vous avez donné une âme et un prestige unique à cette association.</p>
-        <p>L'association sera et restera la plus belle chose qu'il me soit arrivé au cours de mon parcours étudiant. Je pars avec le sentiment profond du devoir accompli et une confiance absolue en la relève. L'histoire d'APH ne fait que commencer.</p>
+        <p>Une étape charnière s'achève pour notre collectif. Au terme d'un mandat intense, jalonné de débats exigeants et d'idées portées avec conviction, je quitte aujourd'hui mes fonctions de président de l'Association Affaires Publiques HEIP (APH).</p>
+        <p>Notre but initial était clair : créer un espace de décryptage et d'action, reliant directement la théorie de nos spécialisations académiques aux structures concrètes du monde institutionnel. De la rigueur rédactionnelle de nos analyses jusqu'à la mise en place de simulations immersives, nous avons ensemble instauré une dynamique de réflexion collective inédite.</p>
+        <p>Les résultats de ce projet commun dépassent toutes les prévisions. Observer notre communauté étudiante s'approprier des projets de lois denses, formuler des argumentations fines et confronter des visions politiques au sein de cadres officiels majeurs restera une immense source de fierté.</p>
+        <p>Je tiens à saluer l'implication sans faille de chaque membre de l'équipe. Votre réactivité et votre rigueur ont permis de donner corps à ces projets complexes. Cette aventure restera indiscutablement la plus belle réussite de mon cursus. Je transmets le flambeau avec sérénité, certain que la suite sera portée avec le même niveau d'ambition.</p>
         
         <div class="signature">
           Elyes Hached<br>
-          <span class="sub" style="font-size: 14px; font-weight: 400;">Président Sortant</span>
+          <span class="sub" style="font-size: 13px; font-weight: 400; letter-spacing: 0.5px;">Président Sortant</span>
         </div>
         
         <div class="president-profile">
@@ -300,40 +325,34 @@
     </section>
 
     <section class="wrap" style="padding-top: 60px;">
-      <h2 style="text-align: center; margin-bottom: 10px;">À notre équipe exceptionnelle</h2>
-      <p class="sub" style="text-align: center; margin: 0 auto;">Ceux qui ont rendu l'impossible réel au quotidien.</p>
+      <h2 style="text-align: center; margin-bottom: 8px;">Une équipe d'exception</h2>
+      <p class="sub" style="text-align: center; margin: 0 auto 30px;">Ceux qui ont structuré et concrétisé chaque projet du mandat.</p>
       
       <div class="team-gallery">
         <div class="team-member">
           <img src="/assets/uploads/whatsapp-image-2026-03-05-at-17.18.28.jpeg" alt="Pauline" class="member-photo-merci">
           <span class="member-name">Pauline</span>
         </div>
-        
         <div class="team-member">
           <img src="/assets/uploads/p1114957.jpg" alt="Erwan" class="member-photo-merci">
           <span class="member-name">Erwan</span>
         </div>
-        
         <div class="team-member">
           <img src="/assets/uploads/yahvi.jpg" alt="Yahvi" class="member-photo-merci">
           <span class="member-name">Yahvi</span>
         </div>
-        
         <div class="team-member">
           <img src="/assets/uploads/noah.jpg" alt="Noah" class="member-photo-merci">
           <span class="member-name">Noah</span>
         </div>
-        
         <div class="team-member">
           <img src="/assets/uploads/whatsapp-image-2026-03-05-at-04.17.03-1-.jpeg" alt="Antoine" class="member-photo-merci">
           <span class="member-name">Antoine</span>
         </div>
-        
         <div class="team-member">
           <img src="/assets/uploads/whatsapp-image-2026-03-05-at-04.17.03.jpeg" alt="Sarah" class="member-photo-merci">
           <span class="member-name">Sarah</span>
         </div>
-        
         <div class="team-member">
           <div class="member-placeholder-merci">FC</div>
           <span class="member-name">Flore</span>
@@ -341,72 +360,97 @@
       </div>
     </section>
 
-    <section class="wrap" style="padding-top: 80px;">
-      <h2 style="margin-bottom: 24px;">Ce que nous avons construit ensemble</h2>
+    <section class="wrap" style="padding-top: 70px;">
+      <h2>Médiathèque des Événements</h2>
+      <p class="sub" style="margin-bottom: 20px;">Explorez les retours visuels et les répertoires d'images de nos réalisations phares.</p>
       
-      <div class="stack">
-        <div class="event-line">
-          <div>
-            <h3>Simulation Parlementaire avec Valérie Pécresse</h3>
-            <p class="sub">Hémicycle Simone Veil - Conseil Régional d'Île-de-France</p>
+      <div class="events-showcase">
+        <div class="event-visual-card">
+          <img src="/assets/uploads/whatsapp-image-2026-04-12-at-18.49.29.jpeg" class="event-bg-image" alt="Simulation Conseil Régional">
+          <div class="event-gradient"></div>
+          <div class="event-content-wrap">
+            <span class="pill" style="margin-bottom: 12px;">Simulation Parlementaire</span>
+            <h3 style="font-size: 18px; margin-bottom: 8px;">Conseil Régional d'Île-de-France</h3>
+            <p class="sub" style="margin-bottom: 15px;">Hémicycle Simone Veil, débats majeurs en conditions réelles.</p>
+            <a href="https://drive.google.com/drive/folders/14a9SVEGAqUEhUOT7qY8KMc9ryE71tuPO?usp=sharing" target="_blank" class="btn primary" style="font-size: 12px; padding: 8px 14px;">Voir l'album photo</a>
           </div>
-          <span class="pill">25 Mars 2026</span>
         </div>
 
-        <div class="event-line">
-          <div>
-            <h3>Visite du Sénat</h3>
-            <p class="sub">Parrainée par Mme la Sénatrice Marie-Claude Lermytte</p>
+        <div class="event-visual-card">
+          <img src="/assets/uploads/whatsapp-image-2026-03-14-at-16.31.19.jpeg" class="event-bg-image" alt="Sénat">
+          <div class="event-gradient"></div>
+          <div class="event-content-wrap">
+            <span class="pill" style="margin-bottom: 12px;">Immersion Institutionnelle</span>
+            <h3 style="font-size: 18px; margin-bottom: 8px;">Visite Officielle du Sénat</h3>
+            <p class="sub" style="margin-bottom: 15px;">Palais du Luxembourg, échanges directs sur l'analyse parlementaire.</p>
+            <a href="https://drive.google.com/drive/folders/1J28j3U1-lwFcG29DTfOJLrAxaZHNuuRE?usp=share_link" target="_blank" class="btn primary" style="font-size: 12px; padding: 8px 14px;">Voir l'album photo</a>
           </div>
-          <span class="pill">12 Mars 2026</span>
         </div>
 
-        <div class="event-line">
-          <div>
-            <h3>Formation aux simulations parlementaires</h3>
-            <p class="sub">Les règles et mécanismes du débat parlementaire</p>
+        <div class="event-visual-card">
+          <img src="/assets/uploads/whatsapp-image-2026-02-05-at-23.21.28.jpeg" class="event-bg-image" alt="Theatrum Mundi">
+          <div class="event-gradient"></div>
+          <div class="event-content-wrap">
+            <span class="pill" style="margin-bottom: 12px;">Collaboration</span>
+            <h3 style="font-size: 18px; margin-bottom: 8px;">Simulation Networks & Sociétés</h3>
+            <p class="sub" style="margin-bottom: 15px;">Partenariat avec Theatrum Mundi axé sur la régulation des plateformes.</p>
+            <a href="https://drive.google.com/drive/folders/1OwSDqbwcDbSvRIgSuwLIVpTw375gdfSs?usp=share_link" target="_blank" class="btn primary" style="font-size: 12px; padding: 8px 14px;">Voir l'album photo</a>
           </div>
-          <span class="pill">05 Mars 2026</span>
-        </div>
-
-        <div class="event-line">
-          <div>
-            <h3>Simulation : Régulation des réseaux sociaux</h3>
-            <p class="sub">En collaboration avec Theatrum Mundi</p>
-          </div>
-          <span class="pill">05 Février 2026</span>
-        </div>
-        
-        <div class="event-line">
-          <div>
-            <h3>Simulation : Renforcement de l'autorité éducative</h3>
-            <p class="sub">Adoption et débats en plénière</p>
-          </div>
-          <span class="pill">Adopté</span>
         </div>
       </div>
     </section>
 
-    <section class="wrap" style="padding-top: 60px; padding-bottom: 80px;">
-      <h2 style="text-align: center; margin-bottom: 10px;">L'Association en chiffres</h2>
-      <p class="sub" style="text-align: center; margin: 0 auto; margin-bottom: 20px;">Le bilan d'un mandat d'exception.</p>
+    <section class="wrap" style="padding-top: 60px;">
+      <h2>Retour en Vidéo</h2>
+      <p class="sub" style="margin-bottom: 20px;">L'aftermovie exclusif de nos derniers travaux législatifs.</p>
+      <div class="video-responsive">
+        <iframe src="https://www.youtube.com/embed/nFgRV4XKcp8" title="Aftermovie APH" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="guestbook-section">
+        <h2 style="text-align: center; margin-bottom: 8px;">Livre d'Or de l'Association</h2>
+        <p class="sub" style="text-align: center; max-width: 600px; margin: 0 auto 30px;">Un message à laisser pour marquer la fin de cette session ? Partagez une pensée ou un souvenir.</p>
+        
+        <div class="guestbook-form">
+          <input type="text" id="guestName" class="input" placeholder="Votre prénom / Promotion" required />
+          <textarea id="guestMessage" class="input" rows="3" placeholder="Votre message..." required></textarea>
+          <button onclick="addMessage()" class="btn primary" style="justify-content: center;">Publier sur le mur</button>
+        </div>
+
+        <div class="guestbook-wall" id="guestbookWall">
+          <div class="note-card">
+            <strong style="color: var(--aph-white);">Félicitations pour ce mandat !</strong><br>
+            <span class="sub" style="font-size:11px; display:block; margin-top:4px;">Promotion 2026</span>
+          </div>
+          <div class="note-card">
+            <strong style="color: var(--aph-white);">Une rigueur absolue sur chaque simulation.</strong><br>
+            <span class="sub" style="font-size:11px; display:block; margin-top:4px;">Membre Débats</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-top: 70px; padding-bottom: 80px;">
+      <h2 style="text-align: center; margin-bottom: 8px;">Le bilan chiffré du mandat</h2>
       
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">120</div>
-          <div class="stat-label">Sièges Parlementaires Simulés</div>
+      <div class="stats-container">
+        <div class="stat-box">
+          <div class="stat-num">120</div>
+          <div class="stat-label" style="font-size:11px;">Sièges simulés activement</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">5</div>
-          <div class="stat-label">Groupes Politiques Actifs</div>
+        <div class="stat-box">
+          <div class="stat-num">5</div>
+          <div class="stat-label" style="font-size:11px;">Groupes parlementaires constitués</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">2</div>
-          <div class="stat-label">Institutions Investies</div>
+        <div class="stat-box">
+          <div class="stat-num">2</div>
+          <div class="stat-label" style="font-size:11px;">Hémicycles officiels investis</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">D'Engagement Étudiant</div>
+        <div class="stat-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-label" style="font-size:11px;">D'investissement collectif</div>
         </div>
       </div>
     </section>
@@ -414,12 +458,62 @@
 
   <footer>
     <div class="wrap foot" style="justify-content: center;">
-      <div>© <span id="year">2026</span> APH – Penser • Débattre • Agir</div>
+      <div>© <span id="year">2026</span> APH HEIP – Clôture de Mandat</div>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Logique interactive du Livre d'Or local
+    const storageKey = 'aph_guestbook_messages';
+
+    function loadMessages() {
+      const wall = document.getElementById('guestbookWall');
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        const messages = JSON.parse(saved);
+        messages.forEach(msg => {
+          renderMessage(msg.name, msg.text);
+        });
+      }
+    }
+
+    function renderMessage(name, text) {
+      const wall = document.getElementById('guestbookWall');
+      const card = document.createElement('div');
+      card.className = 'note-card';
+      
+      const cleanName = name.replace(/</g, "&lt;");
+      const cleanText = text.replace(/</g, "&lt;");
+      
+      card.innerHTML = `<span style="color: rgba(255,255,255,0.85); display:block; font-weight:400;">"${cleanText}"</span><strong style="color:var(--aph-red); font-size:12px; display:block; margin-top:8px;">- ${cleanName}</strong>`;
+      wall.prepend(card);
+    }
+
+    function addMessage() {
+      const nameInput = document.getElementById('guestName');
+      const msgInput = document.getElementById('guestMessage');
+      
+      if (!nameInput.value.trim() || !msgInput.value.trim()) return;
+
+      const name = nameInput.value.trim();
+      const text = msgInput.value.trim();
+
+      renderMessage(name, text);
+
+      // Sauvegarde locale
+      const saved = localStorage.getItem(storageKey);
+      const messages = saved ? JSON.parse(saved) : [];
+      messages.push({ name, text });
+      localStorage.setItem(storageKey, JSON.stringify(messages));
+
+      // Reset des champs
+      nameInput.value = '';
+      msgInput.value = '';
+    }
+
+    window.onload = loadMessages;
   </script>
 </body>
 </html>
