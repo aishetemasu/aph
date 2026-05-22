@@ -3,299 +3,250 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merci pour tout - APH HEIP</title>
   
-  <title>APH HEIP – Association Affaires Publiques & Simulations</title>
-  
-  <meta name="description" content="Site officiel de l'association APH (Affaires Publiques HEIP). Simulations parlementaires, conférences, débats et politique étudiante à HEIP." />
-  
-  <meta name="keywords" content="APH, HEIP, APH HEIP, Association APH, Affaires Publiques, Étudiants, Politique, Paris, Simulations, Conférences" />
-  <meta name="author" content="APH HEIP" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="APH – L'Association Affaires Publiques HEIP" />
-  <meta property="og:description" content="Simulations parlementaires, débats et conférences. Rejoignez la dynamique APH HEIP." />
-  <meta property="og:url" content="https://apheip.fr/" />
-  <meta property="og:image" content="/logo.png" /> 
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "APH HEIP",
-    "alternateName": ["APH", "Association APH", "Affaires Publiques HEIP", "Association Affaires Publiques"],
-    "url": "https://apheip.fr",
-    "logo": "https://apheip.fr/logo.png",
-    "description": "L'association étudiante de référence pour les affaires publiques et simulations parlementaires à HEIP."
-  }
-  </script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css" />
 
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <style>
+    /* Styles spécifiques pour la page de remerciements */
+    .hero-merci {
+      text-align: center;
+      padding: 10vh 20px 5vh;
+      animation: fadeInDown 1.2s ease-out;
+    }
+
+    .huge-text {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--aph-white) 0%, #ff8a80 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+
+    .subtitle-merci {
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .letter-card {
+      background: rgba(0, 0, 0, 0.2);
+      border-left: 4px solid var(--aph-red);
+      padding: 40px;
+      font-size: 18px;
+      line-height: 1.8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letter-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      right: 20px;
+      font-size: 120px;
+      color: rgba(255, 255, 255, 0.03);
+      font-family: serif;
+    }
+
+    .signature {
+      margin-top: 30px;
+      text-align: right;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--aph-white);
+    }
+
+    /* Grille interactive pour les prénoms */
+    .names-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .name-bubble {
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: default;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .name-bubble:hover {
+      transform: translateY(-8px) scale(1.1);
+      background: var(--aph-red);
+      border-color: var(--aph-red);
+      box-shadow: 0 15px 30px rgba(94, 10, 2, 0.5);
+      color: white;
+    }
+
+    /* Liste des événements interactive */
+    .event-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--aph-red);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .event-line:hover {
+      transform: translateX(10px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .event-line:hover::after {
+      transform: scaleY(1);
+    }
+
+    .event-line h3 {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="index.html" aria-label="Accueil APH HEIP">
-      <div class="logo" aria-hidden="true"><img src="logo.png" alt="Logo APH" /></div>
-      <div>
-        <strong>APH</strong>
-        <small>Affaires Publiques HEIP</small>
-      </div>
-    </a>
-
-    <nav class="nav-links" aria-label="Navigation principale">
-      <a data-nav href="index.html" class="active">Accueil</a>
-      <a data-nav href="evenements.html">Événements</a>
-      <a data-nav href="simulations.html">Simulations</a>
-      <a data-nav href="briefs.html">Policy Briefs</a>
-      <a data-nav href="equipe.html">Équipe</a>
-      <a data-nav href="apropos.html">À Propos</a>
-    </nav>
-
-    <div class="nav-actions">
-      <a class="btn primary desktop-only" href="rejoindre.html">Rejoindre</a>
-
-      <button class="burger mobile-only" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  <header class="nav">
+    <div class="wrap nav-inner" style="justify-content: center;">
+      <a class="brand" href="index.html" aria-label="Accueil APH HEIP">
+        <div class="logo" aria-hidden="true"><img src="logo.png" alt="Logo APH" /></div>
+        <div>
+          <strong>APH</strong>
+          <small>Affaires Publiques HEIP</small>
+        </div>
+      </a>
     </div>
-  </div>
-
-  <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
-    <a data-nav href="index.html">Accueil</a>
-    <a data-nav href="evenements.html">Événements</a>
-    <a data-nav href="simulations.html">Simulations</a>
-    <a data-nav href="briefs.html">Policy Briefs</a>
-    <a data-nav href="equipe.html">Équipe</a>
-    <a data-nav href="apropos.html">À Propos</a>
-    <a class="btn primary" href="rejoindre.html" style="width:100%; margin-top:10px; justify-content:center;">Rejoindre</a>
-  </div>
-</header>
+  </header>
 
   <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="kicker">Penser • Débattre • Agir </div>
-          <h1>Comprendre les décisions politiques.<br/>Former à l’analyse.<br/>Agir dans le débat.</h1>
-          
-          <p class="lead">
-            <b>APH (Association Affaires Publiques HEIP)</b> est l'association étudiante de référence dédiée à la politique et aux affaires publiques.
-            Nous créons des passerelles entre étudiants, institutions et professionnels à travers des formats exigeants.
-          </p>
-          <div style="height:35px"></div>
+    <section class="wrap hero-merci">
+      <h1 class="huge-text">Merci<br>pour tout.</h1>
+      <p class="subtitle-merci">APH revient bientôt.</p>
+    </section>
 
-          <div class="hero-actions">
-            <a class="btn primary" href="evenements.html">Voir nos événements</a>
-            <a class="btn" href="briefs.html">Lire nos Policy Briefs</a>
-          </div>
+    <section class="wrap">
+      <div class="card letter-card">
+        <p>Aujourd'hui, une page se tourne et je quitte la présidence de cette magnifique association.</p>
+        <p>Ce que nous avons accompli ensemble dépasse de loin tout ce que j'aurais pu imaginer. Nous avons débattu, nous avons porté des projets ambitieux, et nous avons fait vivre le débat public au cœur d'HEIP.</p>
+        <p>L'association sera et restera la plus belle chose qu'il me soit arrivé. Merci à toutes celles et ceux qui ont fait vivre ce projet avec passion et exigence.</p>
+        <div class="signature">
+          Elyes Hached<br>
+          <span class="sub" style="font-size: 14px; font-weight: 400;">Président Sortant</span>
         </div>
-
-        <div style="height:35px"></div>
-
-        <aside class="card">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-            <div>
-              <div style="font-weight:700;font-size:14px;">À la une</div>
-            </div>
-            <span class="pill">Infos</span>
-          </div>
-
-          <div style="height:12px"></div>
-
-          <div class="stack" id="featuredContainer">
-            <div class="card" style="box-shadow:none;">
-              <span class="pill">Chargement...</span>
-            </div>
-          </div>
-
-          <div style="height:14px"></div>
-          <a class="btn" href="rejoindre.html" style="width:100%;">Nous rejoindre</a>
-        </aside>
       </div>
     </section>
 
-    <section id="gallerySection" style="display:none;">
-      <div class="wrap">
-        <div style="margin-bottom:14px;">
-           <h2>Retour en images</h2>
+    <section class="wrap" style="padding-top: 60px;">
+      <h2 style="text-align: center; margin-bottom: 10px;">À notre équipe exceptionnelle</h2>
+      <p class="sub" style="text-align: center; margin: 0 auto;">Sans vous, rien de tout cela n'aurait été possible.</p>
+      
+      <div class="names-container">
+        <div class="name-bubble">Pauline</div>
+        <div class="name-bubble">Erwan</div>
+        <div class="name-bubble">Yahvi</div>
+        <div class="name-bubble">Noah</div>
+        <div class="name-bubble">Antoine</div>
+        <div class="name-bubble">Sarah</div>
+        <div class="name-bubble">Flore</div>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-top: 60px; padding-bottom: 80px;">
+      <h2 style="margin-bottom: 24px;">Ce que nous avons construit ensemble</h2>
+      
+      <div class="stack">
+        <div class="event-line">
+          <div>
+            <h3>Simulation Parlementaire avec Valérie Pécresse</h3>
+            <p class="sub">Hémicycle Simone Veil - Conseil Régional d'Île-de-France</p>
+          </div>
+          <span class="pill">25 Mars 2026</span>
+        </div>
+
+        <div class="event-line">
+          <div>
+            <h3>Visite du Sénat</h3>
+            <p class="sub">Parrainée par Mme la Sénatrice Marie-Claude Lermytte</p>
+          </div>
+          <span class="pill">12 Mars 2026</span>
+        </div>
+
+        <div class="event-line">
+          <div>
+            <h3>Formation aux simulations parlementaires</h3>
+            <p class="sub">Les règles et mécanismes du débat parlementaire</p>
+          </div>
+          <span class="pill">05 Mars 2026</span>
+        </div>
+
+        <div class="event-line">
+          <div>
+            <h3>Simulation : Régulation des réseaux sociaux</h3>
+            <p class="sub">En collaboration avec Theatrum Mundi</p>
+          </div>
+          <span class="pill">05 Février 2026</span>
         </div>
         
-        <div class="gallery-scroll" id="galleryContainer">
-           </div>
-      </div>
-    </section>
-    <section>
-      <div class="wrap">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;">
+        <div class="event-line">
           <div>
-            <h2>Nos formats APH</h2>
-            <p class="sub">Des événements pensés pour les étudiants HEIP : clairs, utiles et institutionnels.</p>
+            <h3>Simulation : Renforcement de l'autorité éducative</h3>
+            <p class="sub">Adoption et débats en plénière</p>
           </div>
-          <a class="btn" href="evenements.html">Tous nos événements</a>
-        </div>
-
-        <div class="grid-3">
-          <div class="card">
-            <span class="pill">Cafés-débats</span>
-            <h3 style="margin:12px 0 8px;">Décrypter un enjeu</h3>
-            <p class="sub">Un thème, des sources, une discussion structurée : argumenter, nuancer, convaincre.</p>
-          </div>
-
-          <div class="card">
-            <span class="pill">Simulations</span>
-            <h3 style="margin:12px 0 8px;">Vivre la loi</h3>
-            <p class="sub">Nos simulations parlementaires plongent les étudiants au cœur de l'Assemblée et du Sénat.</p>
-          </div>
-
-          <div class="card">
-            <span class="pill">Policy Briefs</span>
-            <h3 style="margin:12px 0 8px;">Écrire utile</h3>
-            <p class="sub">Notes courtes orientées décision : diagnostic, options, recommandation.</p>
-          </div>
+          <span class="pill">Adopté</span>
         </div>
       </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="card">
-          <div class="split">
-            <div>
-              <span class="pill">Rejoindre</span>
-              <h2 style="margin-top:12px;">Construire l'association APH</h2>
-              <p class="lead" style="margin-top:10px;">
-                Communication • Événementiel • Rédaction • Partenariats • Relations institutionnelles
-              </p>
-              <div style="height:12px"></div>
-              <a class="btn primary" href="rejoindre.html">Je rejoins l’asso</a>
-            </div>
-            <div>
-              <span class="pill">Pro</span>
-              <h3 style="margin-top:12px;">Vous souhaitez intervenir ?</h3>
-              <p class="sub" style="margin-top:10px;">
-                APH organise des rencontres et tables rondes : contactez-nous pour proposer un format.
-              </p>
-              <div style="height:10px"></div>
-              <a class="btn" href="rejoindre.html#contact">Nous contacter</a>
-            </div>
-          </div>
-        </div>
+      
+      <div style="margin-top: 40px; text-align: center;">
+        <a href="index.html" class="btn primary">Retour à l'accueil</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap foot">
-      <div>© <span id="year"></span> APH – Association Affaires Publiques HEIP</div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
-      </div>
+    <div class="wrap foot" style="justify-content: center;">
+      <div>© <span id="year">2026</span> APH – Penser • Débattre • Agir</div>
     </div>
   </footer>
 
-  <script src="script.js?v=9"></script>
-
   <script>
-    // 1. CHARGEMENT INFOS "À LA UNE"
-    (async function loadFeatured() {
-      const container = document.getElementById("featuredContainer");
-      try {
-        const res = await fetch("/content/featured.json");
-        if (!res.ok) throw new Error("featured.json introuvable");
-        const data = await res.json();
-        
-        const items = Array.isArray(data.items) ? data.items : [];
-        if(!items.length) {
-           container.innerHTML = `<p class="sub">Aucune info à la une.</p>`;
-           return;
-        }
-
-        container.innerHTML = "";
-        
-        function escapeHtml(str) {
-          return String(str ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
-        }
-
-        items.forEach(item => {
-          const tag = item.link ? 'a' : 'div';
-          const hrefAttr = item.link ? `href="${escapeHtml(item.link)}"` : '';
-          const style = "box-shadow:none; display:block; text-decoration:none; color:inherit;";
-
-          const html = `
-            <${tag} class="card" style="${style}" ${hrefAttr}>
-              <span class="pill">${escapeHtml(item.pill || "Info")}</span>
-              <p style="margin-top:10px; font-weight:600; font-size:14px; line-height:1.5;">
-                ${escapeHtml(item.title || "")}
-              </p>
-              ${item.sub ? `<p class="sub" style="margin-top:4px; font-size:12px;">${escapeHtml(item.sub)}</p>` : ''}
-            </${tag}>
-          `;
-          container.insertAdjacentHTML('beforeend', html);
-        });
-
-      } catch (err) {
-        console.warn(err);
-        container.innerHTML = `<div class="card" style="box-shadow:none;"><span class="pill">Erreur</span><p class="sub" style="margin-top:8px;">Impossible de charger les infos.</p></div>`;
-      }
-    })();
-
-    // 2. CHARGEMENT GALERIE PHOTO
-    (async function loadGallery() {
-        const section = document.getElementById("gallerySection");
-        const container = document.getElementById("galleryContainer");
-        
-        try {
-            const res = await fetch("/content/gallery.json");
-            if (!res.ok) return;
-            
-            const data = await res.json();
-            let allPhotos = [];
-
-            if (data.photo_groups && Array.isArray(data.photo_groups)) {
-                data.photo_groups.forEach(group => {
-                    if (group.images && Array.isArray(group.images)) {
-                        allPhotos = allPhotos.concat(group.images);
-                    }
-                });
-            } else if (data.photos && Array.isArray(data.photos)) {
-                allPhotos = data.photos;
-            }
-            
-            if (allPhotos.length === 0) return;
-
-            section.style.display = "block";
-            container.innerHTML = "";
-
-            allPhotos.forEach(p => {
-                if(!p.image) return;
-                const captionHTML = p.caption 
-                    ? `<div class="gallery-caption">${String(p.caption).replaceAll('<','&lt;')}</div>` 
-                    : '';
-                
-                const html = `
-                <div class="gallery-item">
-                    <img src="${p.image}" alt="Photo APH HEIP" loading="lazy">
-                    ${captionHTML}
-                </div>
-                `;
-                container.insertAdjacentHTML("beforeend", html);
-            });
-
-        } catch (err) {
-            console.warn("Pas de galerie chargée.");
-        }
-    })();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
