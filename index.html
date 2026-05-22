@@ -24,8 +24,8 @@
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 20px;
-      color: #ffffff; /* Texte en blanc pur */
-      text-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Ombre douce pour le volume */
+      color: #ffffff; /* Blanc pur */
+      text-shadow: 0 10px 35px rgba(0, 0, 0, 0.6); /* Profondeur accrue */
       letter-spacing: -2px;
       text-transform: uppercase;
     }
@@ -40,11 +40,15 @@
       background: rgba(0, 0, 0, 0.2);
       border-left: 4px solid var(--aph-red);
       padding: 40px;
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.8;
       position: relative;
       overflow: hidden;
       text-align: justify;
+    }
+
+    .letter-card p {
+      margin-bottom: 20px;
     }
 
     .letter-card::before {
@@ -65,7 +69,30 @@
       color: var(--aph-white);
     }
 
-    /* Grille interactive pour l'équipe (Photos) */
+    /* Bloc Photo du Président */
+    .president-profile {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    
+    .president-photo-large {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .president-photo-large:hover {
+      transform: scale(1.05);
+      border-color: var(--aph-red);
+      box-shadow: 0 15px 35px rgba(94, 10, 2, 0.6);
+    }
+
+    /* Grille pour l'équipe */
     .team-gallery {
       display: flex;
       flex-wrap: wrap;
@@ -97,7 +124,6 @@
       transition: all 0.3s ease;
     }
 
-    /* Le placeholder pour Flore (pas de photo) */
     .member-placeholder-merci {
       width: 110px;
       height: 110px;
@@ -142,7 +168,7 @@
       color: white;
     }
 
-    /* Liste des événements interactive */
+    /* Rétrospective Événements */
     .event-line {
       display: flex;
       align-items: center;
@@ -184,6 +210,46 @@
       font-size: 16px;
     }
 
+    /* Statistiques de fin de mandat */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 35px 20px;
+      text-align: center;
+      backdrop-filter: blur(var(--blur-card));
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+
     @media (max-width: 768px) {
       .event-line { flex-direction: column; align-items: flex-start; gap: 10px; }
     }
@@ -216,19 +282,26 @@
 
     <section class="wrap">
       <div class="card letter-card">
-        <p>Aujourd'hui, une page se tourne et je quitte la présidence de cette magnifique association.</p>
-        <p>Ce que nous avons accompli ensemble dépasse de loin tout ce que j'aurais pu imaginer. Nous avons débattu, nous avons porté des projets ambitieux, et nous avons fait vivre le débat public au cœur d'HEIP.</p>
-        <p>L'association sera et restera la plus belle chose qu'il me soit arrivé. Merci à toutes celles et ceux qui ont fait vivre ce projet avec passion et exigence.</p>
+        <p>Aujourd'hui, une page importante se tourne pour notre association. Après des mois d'engagement intense, de débats passionnés et de projets menés à bien, je quitte officiellement la présidence de l'Association Affaires Publiques HEIP (APH).</p>
+        <p>Lorsque nous avons relancé et structuré cette aventure, notre ambition était claire : jeter des ponts solides entre la théorie de nos enseignements et la réalité vibrante des institutions politiques. De la rédaction de nos Policy Briefs jusqu'à l'organisation minutieuse de nos simulations à l'échelle régionale et nationale, chaque instant a été guidé par une recherche constante d'excellence, de rigueur juridique et d'ouverture d'esprit.</p>
+        <p>Ce que nous avons accompli ensemble dépasse toutes mes espérances. Voir des dizaines d'étudiants s'emparer de textes législatifs complexes, s'affronter avec éloquence au sein d'hémicycles prestigieux, négocier chaque amendement avec une ferveur incroyable... Ce sont des moments gravés à jamais.</p>
+        <p>Rien de tout cela n'aurait été possible sans une équipe d'une fidélité et d'une force de travail exceptionnelles. À mon bureau, à mes responsables de pôle, et à chaque membre qui a investi son énergie : merci. Vous avez donné une âme et un prestige unique à cette association.</p>
+        <p>L'association sera et restera la plus belle chose qu'il me soit arrivé au cours de mon parcours étudiant. Je pars avec le sentiment profond du devoir accompli et une confiance absolue en la relève. L'histoire d'APH ne fait que commencer.</p>
+        
         <div class="signature">
           Elyes Hached<br>
           <span class="sub" style="font-size: 14px; font-weight: 400;">Président Sortant</span>
+        </div>
+        
+        <div class="president-profile">
+          <img src="/assets/uploads/p1115079.jpg" alt="Elyes Hached" class="president-photo-large">
         </div>
       </div>
     </section>
 
     <section class="wrap" style="padding-top: 60px;">
       <h2 style="text-align: center; margin-bottom: 10px;">À notre équipe exceptionnelle</h2>
-      <p class="sub" style="text-align: center; margin: 0 auto;">Sans vous, rien de tout cela n'aurait été possible.</p>
+      <p class="sub" style="text-align: center; margin: 0 auto;">Ceux qui ont rendu l'impossible réel au quotidien.</p>
       
       <div class="team-gallery">
         <div class="team-member">
@@ -268,7 +341,7 @@
       </div>
     </section>
 
-    <section class="wrap" style="padding-top: 80px; padding-bottom: 80px;">
+    <section class="wrap" style="padding-top: 80px;">
       <h2 style="margin-bottom: 24px;">Ce que nous avons construit ensemble</h2>
       
       <div class="stack">
@@ -310,6 +383,30 @@
             <p class="sub">Adoption et débats en plénière</p>
           </div>
           <span class="pill">Adopté</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-top: 60px; padding-bottom: 80px;">
+      <h2 style="text-align: center; margin-bottom: 10px;">L'Association en chiffres</h2>
+      <p class="sub" style="text-align: center; margin: 0 auto; margin-bottom: 20px;">Le bilan d'un mandat d'exception.</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">120</div>
+          <div class="stat-label">Sièges Parlementaires Simulés</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Groupes Politiques Actifs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Institutions Investies</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">D'Engagement Étudiant</div>
         </div>
       </div>
     </section>
